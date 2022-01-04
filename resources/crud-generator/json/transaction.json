@@ -12,14 +12,18 @@
             "name": "category",
             "type": "select",
             "options": {
-                "technology": "Technology",
-                "tips": "Tips",
-                "health": "Health"
+                "รายรับ": "รายรับ",
+                "รายจ่าย": "รายจ่าย"       
             }
         },
         {
             "name": "user_id",
             "type": "integer"
+        },
+        {
+            "name": "wallet_id",
+            "type": "integer"
         }
+
     ]
 }

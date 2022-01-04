@@ -23,6 +23,10 @@
             <a class="nav-link" href="{{ url('/user_personal') }}">
                 <i class="fas fa-circle"></i>
                 <span>หน้าหลัก</span></a>
+            <a class="nav-link" href="{{ url('/transaction') }}">
+              <i class="fas fa-circle"></i>
+              <span>transaction</span></a>
+                
         </li>
   {{-- <li class="nav-item">
             <a class="nav-link" href="{{ url('/volunteer_question') }}">
