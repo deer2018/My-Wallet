@@ -6,18 +6,21 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Transaction;
+use App\Transaction_02;
 use App\Category;
 
 class TransactionController extends Controller
 {
     public function index(Request $request)
     {
-       
+        $user_id = Auth::id();
+
         $perPage = 10;
         $keyword = $request->get('search');
 
         if (!empty($keyword)) {
-            $transaction = Transaction::Where('category_type', 'LIKE', "%$keyword%")
+            $transaction = Transaction_02::Where(array('user_id' => $user_id))
+                ->Where('category_type', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
             // $users = User::join('_q1_4', 'users.id', '=', '_q1_4.user_id')
             // ->leftJoin('diagnosis', 'users.id', '=', 'diagnosis.user_id')
@@ -26,7 +29,8 @@ class TransactionController extends Controller
             // ->select('users.*', '_q1_4.group', 'diagnosis.advice')
             // ->latest()->paginate($perPage);
         } else {
-            $transaction = Transaction::orderby('id', 'desc')->paginate($perPage); 
+            $transaction = Transaction_02::Where(array('user_id' => $user_id))
+            ->orderby('id', 'desc')->paginate($perPage); 
         }
          
         return view('user.user_tran.tran_index', compact('transaction'));
@@ -46,16 +50,15 @@ class TransactionController extends Controller
         $requestData["user_id"] = $user_id;
         $requestData["user_id"] = Auth::id();
         
-        Transaction::create($requestData);
+        Transaction_02::create($requestData);
        
-
         return redirect('transaction')->with('flash_message', 'Crud added!');
     }
 
   
     public function show($id)
     {
-        $crud = Transaction::findOrFail($id);
+        $crud = Transaction_02::findOrFail($id);
 
         return view('crud.show', compact('crud'));
     }
@@ -63,7 +66,7 @@ class TransactionController extends Controller
     
     public function edit($id)
     {
-        $transaction = Transaction::findOrFail($id);
+        $transaction = Transaction_02::findOrFail($id);
 
         return view('user.user_tran.tran_edit', compact('transaction'));
     }
@@ -73,7 +76,7 @@ class TransactionController extends Controller
         
         $requestData = $request->all();
         
-        $transaction = Transaction::findOrFail($id);
+        $transaction = Transaction_02::findOrFail($id);
         $transaction->update($requestData);
 
         return redirect('transaction')->with('flash_message', 'Crud updated!');
@@ -81,7 +84,7 @@ class TransactionController extends Controller
 
     public function destroy($id)
     {
-        Transaction::destroy($id);
+        Transaction_02::destroy($id);
 
         return redirect('transaction')->with('flash_message', 'Crud deleted!');
     }

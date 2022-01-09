@@ -63,6 +63,9 @@
                         <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0"
                             role="grid" aria-describedby="dataTable_info" style="width: 100%;">
 
+                        <?php $sum_income = 0 ?>
+                        <?php $sum_expense = 0 ?>
+                        <?php $total = 0 ?>                                 
                             <table class="table dataTable">
                                 <thead>
                                     <tr>
@@ -78,7 +81,11 @@
                                         <td>{{ $item->created_at }}</td>
                                         <td>{{ $item->category_type }}</td>
                                         <td>{{ $item->comment }}</td>
-                                        <td>{{ $item->value }}</td>
+                                        @if($item->category_type == 'รายรับ')
+                                            <td type='number' style="color:blue">{{ $item->income }}</td>  
+                                        @else
+                                            <td type='number' style="color:red">-{{ $item->expense }}</td>
+                                        @endif
                                         <td>
                                             <a href="{{ url('/transaction/' . $item->id . '/edit') }}"
                                                 title="Edit Crud"><button class="btn btn-primary btn-sm"><i
@@ -99,11 +106,20 @@
                                         </td>
 
                                     </tbody>
+                                    <?php $sum_income += $item->income ?>          
+                                    <?php $sum_expense += $item->expense ?>
+                                    <?php $total = $sum_income - $sum_expense ?>
                                 @endforeach
                             </table>
                             <hr>
 
-                            <div class="table " style="text-align: center">รวม : </div>
+                            <div class="table " style="text-align: center">รวม : 
+                            @if($total >= 0)
+                                <a style="color:blue">{{$total}}</a>  
+                            @else
+                                <a style="color:red">{{$total}}</a>
+                            @endif
+                            </div>
                     </div>
                     <div class="mt-4">{{ $transaction->links() }}</div>
                     <div class="pagination-wrapper"> {!! $transaction->appends(['search' => Request::get('search')])->render() !!} </div>
