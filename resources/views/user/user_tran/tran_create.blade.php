@@ -7,7 +7,7 @@
 
             <div class="col-md-9">
                 <div class="card">
-                    <div class="card-header">สร้างรายจ่าย</div>
+                    <div class="card-header">สร้างรายรับ-รายจ่าย</div>
                     <div class="card-body">
                         <a href="{{ url('/transaction') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> กลับ</button></a>
                         <br />
@@ -24,7 +24,7 @@
                         <form method="POST" action="{{ url('/transaction') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
                             {{ csrf_field() }}
 
-                            @include ('user.user_tran.tran_form_expense', ['formMode' => 'create'])
+                            @include ('user.user_tran.tran_form', ['formMode' => 'create'])
 
                         </form>
 

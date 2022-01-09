@@ -10,6 +10,6 @@ class Transaction extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['status', 'category_id', 'wallet', 'comment', 'income', 'expense', 'user_id'];
+    protected $fillable = ['status', 'category_id', 'category_type','value', 'comment', 'user_id'];
 
 }

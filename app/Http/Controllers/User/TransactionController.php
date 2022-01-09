@@ -13,22 +13,28 @@ class TransactionController extends Controller
     public function index(Request $request)
     {
        
-        $perPage = 25;
-        $id = Auth::id();
-        $tran = Transaction::latest()->paginate($perPage);
-       
+        $perPage = 10;
+        $keyword = $request->get('search');
 
-        return view('user.user_tran.tran_index', compact('tran'));
+        if (!empty($keyword)) {
+            $transaction = Transaction::Where('category_type', 'LIKE', "%$keyword%")
+                ->latest()->paginate($perPage);
+            // $users = User::join('_q1_4', 'users.id', '=', '_q1_4.user_id')
+            // ->leftJoin('diagnosis', 'users.id', '=', 'diagnosis.user_id')
+            // ->where('role', "อาสาสมัคร")
+            // ->where('name', 'LIKE' , "%$keyword%")
+            // ->select('users.*', '_q1_4.group', 'diagnosis.advice')
+            // ->latest()->paginate($perPage);
+        } else {
+            $transaction = Transaction::orderby('id', 'desc')->paginate($perPage); 
+        }
+         
+        return view('user.user_tran.tran_index', compact('transaction'));
     }
     
-    public function income()
+    public function create()
     {
-        return view('user.user_tran.tran_create_income');
-    }
-
-    public function expense()
-    {
-        return view('user.user_tran.tran_create_expense');
+        return view('user.user_tran.tran_create');
     }
 
   
@@ -55,21 +61,13 @@ class TransactionController extends Controller
     }
 
     
-    public function edit_income($id)
-    {
-        $income = Transaction::findOrFail($id);
-
-        return view('user.user_tran.tran_edit_income', compact('income'));
-    }
-
-    public function edit_expense($id)
+    public function edit($id)
     {
         $transaction = Transaction::findOrFail($id);
 
-        return view('user.user_tran.tran_edit_expense', compact('transaction'));
+        return view('user.user_tran.tran_edit', compact('transaction'));
     }
 
-   
     public function update(Request $request, $id)
     {
         

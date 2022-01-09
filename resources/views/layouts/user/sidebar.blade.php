@@ -1,6 +1,6 @@
 
    <!-- Sidebar -->
-   <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+   <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
   
   <!-- Sidebar - Brand -->
   <a class="sidebar-brand d-flex align-items-center justify-content-center"  href="{{ url('/') }}">
@@ -25,7 +25,10 @@
                 <span>หน้าหลัก</span></a>
             <a class="nav-link" href="{{ url('/transaction') }}">
               <i class="fas fa-circle"></i>
-              <span>transaction</span></a>
+              <span>หน้าธุรกรรม</span></a>
+            <a class="nav-link" href="{{ url('/report_user') }}">
+                <i class="fas fa-circle"></i>
+                <span>หน้าสรุปรวม</span></a>
                 
         </li>
   {{-- <li class="nav-item">
