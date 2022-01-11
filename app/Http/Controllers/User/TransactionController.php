@@ -58,7 +58,7 @@ class TransactionController extends Controller
   
     public function show($id)
     {
-        $crud = Transaction_02::findOrFail($id);
+        $transaction = Transaction_02::findOrFail($id);
 
         return view('crud.show', compact('crud'));
     }

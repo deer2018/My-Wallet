@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    My-Wallet
+                    MY-WALLET
                 </div>
             </div>
         </div>

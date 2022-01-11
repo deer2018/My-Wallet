@@ -63,9 +63,9 @@
                         <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0"
                             role="grid" aria-describedby="dataTable_info" style="width: 100%;">
 
-                        <?php $sum_income = 0 ?>
-                        <?php $sum_expense = 0 ?>
-                        <?php $total = 0 ?>                                 
+                        <?php $sum_income = 0.00 ?>
+                        <?php $sum_expense = 0.00 ?>
+                        <?php $total = 0.00 ?>                                 
                             <table class="table dataTable">
                                 <thead>
                                     <tr>
@@ -78,7 +78,7 @@
                                 </thead>
                                 @foreach ($transaction as $item)
                                     <tbody>
-                                        <td>{{ $item->created_at }}</td>
+                                        <td>{{ $item->created_at->toDateString()}}</td>
                                         <td>{{ $item->category_type }}</td>
                                         <td>{{ $item->comment }}</td>
                                         @if($item->category_type == 'รายรับ')
