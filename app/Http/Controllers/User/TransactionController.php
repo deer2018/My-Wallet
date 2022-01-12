@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Transaction;
 use App\Transaction_02;
-use App\Category;
+use App\Category_02;
 
 class TransactionController extends Controller
 {
@@ -38,9 +38,12 @@ class TransactionController extends Controller
     
     public function create()
     {
-        return view('user.user_tran.tran_create');
-    }
+        $category = Category_02::select('topic')
+        ->get();
 
+        return view('user.user_tran.tran_create' ,compact('category'));
+    }
+    
   
     public function store(Request $request)
     {
@@ -48,14 +51,13 @@ class TransactionController extends Controller
         $requestData = $request->all();
         $user_id = Auth::id();
         $requestData["user_id"] = $user_id;
-        $requestData["user_id"] = Auth::id();
+        // $requestData["user_id"] = Auth::id();
         
         Transaction_02::create($requestData);
        
         return redirect('transaction')->with('flash_message', 'Crud added!');
     }
 
-  
     public function show($id)
     {
         $transaction = Transaction_02::findOrFail($id);

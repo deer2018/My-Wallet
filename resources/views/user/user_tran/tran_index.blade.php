@@ -69,7 +69,8 @@
                             <table class="table dataTable">
                                 <thead>
                                     <tr>
-                                        <th>วันที่-เวลา</th>
+                                        <th>วัน-เดือน-ปี</th>
+                                        <th>ประเภท</th>
                                         <th>หมวดหมู่</th>
                                         <th>หมายเหตุ</th>
                                         <th>จำนวนเงิน</th>
@@ -80,9 +81,10 @@
                                     <tbody>
                                         <td>{{ $item->created_at->toDateString()}}</td>
                                         <td>{{ $item->category_type }}</td>
+                                        <td>{{ $item->category_id }}</td>
                                         <td>{{ $item->comment }}</td>
                                         @if($item->category_type == 'รายรับ')
-                                            <td type='number' style="color:blue">{{ $item->income }}</td>  
+                                            <td type='number' style="color:blue">&nbsp;&nbsp;{{ $item->income }}</td>  
                                         @else
                                             <td type='number' style="color:red">-{{ $item->expense }}</td>
                                         @endif
