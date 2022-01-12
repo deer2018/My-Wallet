@@ -18,19 +18,19 @@ class TransactionController extends Controller
         $perPage = 10;
         $keyword = $request->get('search');
 
+        //ค้นหา ด้วยหมวดหมู่(topic) หรือ ประเภท(category_type)
         if (!empty($keyword)) {
-            $transaction = Transaction_02::Where(array('user_id' => $user_id))
-                ->Where('category_type', 'LIKE', "%$keyword%")
+            $transaction = Transaction_02::join('category_02', 'transaction_02.category_id', '=', 'category_02.category_id')
+                ->where('transaction_02.user_id' ,'=', $user_id)  
+                ->select('transaction_02.*', 'category_02.topic')
+                ->where('category_type', 'LIKE', "%$keyword%")
+                ->orWhere('topic', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
-            // $users = User::join('_q1_4', 'users.id', '=', '_q1_4.user_id')
-            // ->leftJoin('diagnosis', 'users.id', '=', 'diagnosis.user_id')
-            // ->where('role', "อาสาสมัคร")
-            // ->where('name', 'LIKE' , "%$keyword%")
-            // ->select('users.*', '_q1_4.group', 'diagnosis.advice')
-            // ->latest()->paginate($perPage);
         } else {
-            $transaction = Transaction_02::Where(array('user_id' => $user_id))
-            ->orderby('id', 'desc')->paginate($perPage); 
+            $transaction = Transaction_02::join('category_02', 'transaction_02.category_id', '=', 'category_02.category_id')
+            ->where('transaction_02.user_id' ,'=', $user_id)  
+            ->select('transaction_02.*', 'category_02.topic')
+            ->latest()->paginate($perPage); 
         }
          
         return view('user.user_tran.tran_index', compact('transaction'));

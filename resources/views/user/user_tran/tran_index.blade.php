@@ -1,5 +1,5 @@
 @extends('layouts.user.main')
-
+<link href="/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 @section('content')
 
     <div class="container-fluid">
@@ -36,6 +36,28 @@
                             </select></label> 
                         </div>
                     </div> --}}
+
+                    <div class="container">
+                        <div class="row">
+                           <div class='col-sm-2'>
+                              <div class="form-group">
+                                 <div class='input-group date' id='datetimepicker3'>
+                                    <input type='text' class="form-control" />
+                                    <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-time"></span>
+                                    </span>
+                                 </div>
+                              </div>
+                           </div>
+                           <script type="text/javascript">
+                              $(function () {
+                                  $('#datetimepicker3').datetimepicker({
+                                      format: 'LT'
+                                  });
+                              });
+                           </script>
+                        </div>
+                     </div>
 
                     <!-- ค้นหา -->
                     {{-- <div class="col-sm-3 col-md-12 mb-4"> --}}
@@ -81,7 +103,7 @@
                                     <tbody>
                                         <td>{{ $item->created_at->toDateString()}}</td>
                                         <td>{{ $item->category_type }}</td>
-                                        <td>{{ $item->category_id }}</td>
+                                        <td>{{ $item->topic}}</td>
                                         <td>{{ $item->comment }}</td>
                                         @if($item->category_type == 'รายรับ')
                                             <td type='number' style="color:blue">&nbsp;&nbsp;{{ $item->income }}</td>  
@@ -131,3 +153,5 @@
     </div>
 
 @endsection
+
+
