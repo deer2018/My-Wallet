@@ -30,5 +30,6 @@ Route::patch('/transaction/{id}', 'User\TransactionController@update');
 Route::delete('/transaction/{id}', 'User\TransactionController@destroy');
 
 Route::get('/report_user', 'User\ReportController@index');
+Route::get('/chart', 'User\ReportController@donutChart');
 
 //---------------------------------------------------------------
