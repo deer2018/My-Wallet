@@ -44,9 +44,9 @@
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="h3 font-weight-bold text-gray-800">รายงาน ประจำเดือน</div>
-                                    <h4 class="mb-1 font-weight-bold text-primary text-uppercase ">{{$monthly_income}}<a class="h4 mb-1 font-weight-bold text-dark text-uppercase "> บาท</a></h4>
-                                    <h4 class="mb-1 font-weight-bold text-danger text-uppercase ">{{$monthly_expense}}<a class="h4 mb-1 font-weight-bold text-dark text-uppercase "> บาท</a></h4>                                
+                                    <div class="h3 font-weight-bold text-gray-800">รายงาน ประจำเดือนปัจจุบัน</div>
+                                    <h4 class="mb-1 font-weight-bold text-primary text-uppercase "><a class="h4 mb-1 font-weight-bold text-dark text-uppercase ">รายรับ </a> {{$monthly_income}}<a class="h4 mb-1 font-weight-bold text-dark text-uppercase "> บาท</a></h4>
+                                    <h4 class="mb-1 font-weight-bold text-danger text-uppercase "><a class="h4 mb-1 font-weight-bold text-dark text-uppercase ">รายจ่าย </a> {{$monthly_expense}}<a class="h4 mb-1 font-weight-bold text-dark text-uppercase "> บาท</a></h4>                                
                                 </div>
                             </div>
                         </div>   
@@ -59,9 +59,9 @@
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="h3 font-weight-bold text-gray-800">รายงาน ประจำปี</div>
-                                    <h4 class="mb-1 font-weight-bold text-primary text-uppercase ">{{$annual_income}}<a class="h4 mb-1 font-weight-bold text-dark text-uppercase "> บาท</a></h4>
-                                    <h4 class="mb-1 font-weight-bold text-danger text-uppercase ">{{$annual_expense}}<a class="h4 mb-1 font-weight-bold text-dark text-uppercase "> บาท</a></h4>                                
+                                    <div class="h3 font-weight-bold text-gray-800">รายงาน ประจำปีปัจจุบัน</div>
+                                    <h4 class="mb-1 font-weight-bold text-primary text-uppercase "><a class="h4 mb-1 font-weight-bold text-dark text-uppercase ">รายรับ </a> {{$annual_income}}<a class="h4 mb-1 font-weight-bold text-dark text-uppercase "> บาท</a></h4>
+                                    <h4 class="mb-1 font-weight-bold text-danger text-uppercase "><a class="h4 mb-1 font-weight-bold text-dark text-uppercase ">รายจ่าย </a> {{$annual_expense}}<a class="h4 mb-1 font-weight-bold text-dark text-uppercase "> บาท</a></h4>                                
                                 </div>
                             </div>
                         </div>   
@@ -72,15 +72,22 @@
 
         <hr>
 
-        <div class="row">
+        <div class="row ">
                 <!-- หมวดหมู่ -->
-                <div class="col-xl-12 col-md-6 mb-4">
+                <div class="col-xl-6 col-md-6 mb-4 ">
                     <div class="card border-left-success shadow h-100 py-2">
+                        {{-- <a href="{{ url('/chart') }}" title="Back"><button class="btn btn-warning btn-sm"><i
+                            class="fa fa-arrow-left" aria-hidden="true"></i> ไป</button></a>   --}}
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <a href="{{ url('/chart') }}" title="Back"><button class="btn btn-warning btn-sm"><i
-                                        class="fa fa-arrow-left" aria-hidden="true"></i> ไป</button></a>             
+                             
+                                    @foreach ($transaction as $item)
+                                        <div  class="h4 font-weight-bold text-gray-800">
+                                            {{ $item->topic }}<a class="h4 mb-1 font-weight-bold text-danger text-uppercase"> {{ $item->total_sum }}</a> บาท
+                                        </div>
+                                    @endforeach
+                                    {{-- <div class="mt-4">{{ $transaction->links() }}</div>            --}}
                                 </div>
                             </div>
                         </div>   
@@ -89,28 +96,11 @@
 
            
                 <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>วัน-เดือน-ปี</th>
-                                <th>ประเภท</th>
-                                <th>หมวดหมู่</th>
-                                <th>หมายเหตุ</th>
-                                <th>จำนวนเงิน</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        @foreach ($transaction as $item)
-                            <tr>
-                                <td>{{ $item->created_at->toDateString() }}</td>
-                                <td>{{ $item->category_type }}</td>
-                                {{-- <td>{{ $item->topic }}</td> --}}
-                                <td>{{ $item->comment }}</td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+                   
+                      
+                      
+                      
+
                     {{-- <div class="pagination-wrapper"> {!! $crud->appends(['search' => Request::get('search')])->render() !!} </div> --}}
                 </div>
             

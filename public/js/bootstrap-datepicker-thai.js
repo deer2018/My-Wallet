@@ -10,7 +10,7 @@
                 , code    : 'th'
                 , bound   : 2400  // full year value that detect as thai year 
                 , shbound : 40  // short year value that detect as thai year 
-                , shwrap  : 70  // short year value that wrap to previous century
+                , shwrap  : 84  // short year value that wrap to previous century
                 , shbase  : 2000  // default base for short year 20xx
                 }
                 
@@ -75,6 +75,8 @@
             var formats = format //this.parseFormat(format)
               , parts   = date && date.match(this.nonpunctuation) || []
             
+            if (typeof formats === 'string')
+              formats = DPGlobal.parseFormat(format);
             if (parts.length == formats.parts.length) {
               var seps  = $.extend([], formats.separators)
                 , xdate = []
@@ -106,6 +108,9 @@
                 , yyyy: (thai.adj+date.getUTCFullYear()).toString()
                 }
                 
+            if (typeof formats === 'string')
+              formats = DPGlobal.parseFormat(format);
+              
             if (parts.length == formats.parts.length) {
               var seps  = $.extend([], formats.separators)
                 , xdate = []
@@ -135,7 +140,9 @@
             var d         = new Date(this.viewDate)
               , year      = d.getUTCFullYear()
               , month     = d.getUTCMonth()
-              , elem      = this.picker.find('.datepicker-days th:eq(1)')
+              , elem      = this.picker.find('.datepicker-days th:eq(1)'
+              , yearStart = ""
+              , yearEnd = "")
               
             elem
               .text(elem.text()
@@ -143,28 +150,68 @@
 
             this.picker
               .find('.datepicker-months')
-              .find('th:eq(1)')
+              .find('th:eq(2)')
               .text(''+(year+thai.adj))
-              
-            year = parseInt((year+thai.adj)/10, 10) * 10
             
+            //console.log(year);
+            // yearStart = (parseInt(d.getUTCFullYear() / 10, 10) * 10) + 543;
+            // yearEnd = (((parseInt(d.getUTCFullYear() / 10, 10) + 1) * 10) - 1) + 543;   
+            //year = parseInt((d.getUTCFullYear()+thai.adj)/100, 10) * 100
+
             this.picker
               .find('.datepicker-years')
-              .find('th:eq(1)')
-              .text(year + '-' + (year + 9))
+              .find('th:eq(2)')
+              .text((parseInt(d.getUTCFullYear() / 10, 10) * 10) + 543 + '-' + ((((parseInt(d.getUTCFullYear() / 10, 10) + 1) * 10) - 1) + 543))
               .end()
               .find('td')
               .find('span.year')
               .each( 
                 function() {
+                  // console.log(year);
                   $(this)
                     .text(Number($(this).text()) + thai.adj)
                 })
+            
+            // yearStart = (parseInt(d.getUTCFullYear() / 100, 10) * 100) + 543;
+            // yearEnd = (((parseInt(d.getUTCFullYear() / 100, 10) + 1) * 100) - 10) + 543;
+            //year = parseInt((d.getUTCFullYear()+thai.adj)/100, 10) * 100
+            
+            this.picker
+            .find('.datepicker-decades')
+            .find('th:eq(2)')
+            .text((parseInt(d.getUTCFullYear() / 100, 10) * 100) + 543 + '-' + ((((parseInt(d.getUTCFullYear() / 100, 10) + 1) * 100) - 10) + 543))
+            .end()
+            .find('td')
+            .find('span.decade')
+            .each( 
+              function() {
+                // console.log(year);
+                $(this)
+                  .text(Number($(this).text()) + thai.adj)
+              })
+
+            //yearStart = (parseInt(d.getUTCFullYear() / 1000, 10) * 1000) + 543;
+            //yearEnd = (((parseInt(d.getUTCFullYear() / 1000, 10) + 1) * 1000) - 100) + 543;
+            //year = parseInt((d.getUTCFullYear()+thai.adj)/1000, 10) * 1000
+            
+            this.picker
+            .find('.datepicker-centuries')
+            .find('th:eq(2)')
+            .text((parseInt(d.getUTCFullYear() / 1000, 10) * 1000) + 543 + '-' + ((((parseInt(d.getUTCFullYear() / 1000, 10) + 1) * 1000) - 100) + 543))
+            .end()
+            .find('td')
+            .find('span.century')
+            .each( 
+              function() {
+                // console.log(year);
+                $(this)
+                  .text(Number($(this).text()) + thai.adj)
+              })
           }
       , fill: function(){
             _basemethod_.fill.call(this)
             
-            if (dspThaiYear(this.language))
+            if (dspThaiYear(this.o.language))
               this.fillThai()
           }
       , clickThai: function(e){
@@ -172,9 +219,13 @@
             
             if (target.length === 1 && target.is('.year'))
               target.text(Number(target.text()) - thai.adj)
+            if (target.length === 1 && target.is('.decade'))
+              target.text(Number(target.text()) - thai.adj)
+            if (target.length === 1 && target.is('.century'))
+              target.text(Number(target.text()) - thai.adj)
           }
       , click: function(e){
-            if (dspThaiYear(this.language))
+            if (dspThaiYear(this.o.language))
               this.clickThai(e)
               
             _basemethod_.click.call(this,e)

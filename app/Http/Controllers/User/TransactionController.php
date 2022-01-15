@@ -30,7 +30,7 @@ class TransactionController extends Controller
             $transaction = Transaction_02::join('category_02', 'transaction_02.category_id', '=', 'category_02.category_id')
             ->where('transaction_02.user_id' ,'=', $user_id)  
             ->select('transaction_02.*', 'category_02.topic')
-            ->latest()->paginate($perPage); 
+            ->orderBy('id','desc')->paginate($perPage); 
         }
          
         return view('user.user_tran.tran_index', compact('transaction'));
@@ -41,7 +41,7 @@ class TransactionController extends Controller
         // $category = Category_02::select('topic')
         // ->get();
 
-        return view('user.user_tran.tran_create' ,compact('category'));
+        return view('user.user_tran.tran_create' );
     }
     
   
@@ -66,11 +66,18 @@ class TransactionController extends Controller
     }
 
     
-    public function edit($id)
+    public function edit_inc($id)
     {
         $transaction = Transaction_02::findOrFail($id);
 
-        return view('user.user_tran.tran_edit', compact('transaction'));
+        return view('user.user_tran.tran_edit_income', compact('transaction'));
+    }
+
+    public function edit_exp($id)
+    {
+        $transaction = Transaction_02::findOrFail($id);
+
+        return view('user.user_tran.tran_edit_expense', compact('transaction'));
     }
 
     public function update(Request $request, $id)

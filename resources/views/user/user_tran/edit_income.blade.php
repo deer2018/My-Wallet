@@ -1,24 +1,15 @@
     {{-- เลือกรายรับ-รายจ่าย --}}
+   
     <div class="form-group {{ $errors->has('category_type') ? 'has-error' : ''}}">
         <label for="category_type" class="control-label">{{ 'ประเภท' }}</label>
-        <select name="category_type" class="form-control" id="category_type" required>
-        <option selected disabled>กรุณาเลือกหมวดหมู่</option>
-        @foreach (json_decode('{"รายรับ":"รายรับ","รายจ่าย":"รายจ่าย"}', true) as $optionKey => $optionvalue)
+        <select name="category_type" class="form-control" id="category_type" disabled>
+        @foreach (json_decode('{"รายรับ":"รายรับ"}', true) as $optionKey => $optionvalue)
             <option value="{{ $optionKey }}" {{ (isset($transaction->category_type) && $transaction->category_type == $optionKey) ? 'selected' : ''}}>{{ $optionvalue }}</option>
         @endforeach
     </select>
         {!! $errors->first('category_type', '<p class="help-block">:message</p>') !!}
     </div>
-
-{{-- 
-    <div class="form-group {{ $errors->has('category_type') ? 'has-error' : ''}}">
-        <label for="category_type" class="control-label">{{ 'ประเภทของรายการ' }}<font size="2" color="#FF0000">*</font></label>
-        <select id="category_type" name="category_type" class="form-control" required>
-        <option selected disabled>กรุณาเลือกประเภท</option>
-            <option id="รายรับ" value="รายรับ">รายรับ</option>
-            <option id="รายจ่าย" value="รายจ่าย">รายจ่าย</option>
-        </select>
-    </div> --}}
+    
 
 
     <div class="form-group {{ $errors->has('category_id') ? 'has-error' : ''}}">
@@ -36,14 +27,8 @@
 
     <div id="inc" style="display: block" class="form-group {{ $errors->has('income') ? 'has-error' : ''}}">
         <label for="income" class="control-label">{{ 'จำนวนเงิน' }}</label>
-        <input class="form-control" name="income" type="number" pattern="[0-9]+([,\.][0-9]+)?" step="0.01" placeholder="0.00" id="income" value="{{ isset($transaction->income) ? $transaction->income : ''}}" >               
+        <input class="form-control" name="income" type="number" pattern="[0-9]+([,\.][0-9]+)?" step="0.01" placeholder="0.00" value="{{ isset($transaction->income) ? $transaction->income : ''}}" >               
         {!! $errors->first('income', '<p class="help-block">:message</p>') !!}
-    </div>
-
-    <div id="exp" style="display: none" class="form-group  {{ $errors->has('expense') ? 'has-error' : ''}}">
-        <label for="expense" class="control-label">{{ 'จำนวนเงิน' }}</label>
-        <input class="form-control" name="expense" type="number" pattern="[0-9]+([,\.][0-9]+)?" step="0.01" placeholder="0.00" id="expense" value="{{ isset($transaction->expense) ? $transaction->expense : ''}}" >
-        {!! $errors->first('expense', '<p class="help-block">:message</p>') !!}
     </div>
 
     <div class="form-group">
@@ -53,6 +38,7 @@
 <script>
         document.addEventListener('DOMContentLoaded', (event) => {
             console.log("START");
+            showTopicIncome();   
         });
 
 
@@ -62,12 +48,10 @@
             if (e.target.value === 'รายรับ') {
                 document.getElementById('exp').style.display = 'none';
                 document.getElementById('inc').style.display = 'block';
-                document.getElementById('income').required = true;
                 showTopicIncome();
             } else {
                 document.getElementById('inc').style.display = 'none';
                 document.getElementById('exp').style.display = 'block'
-                document.getElementById('expense').required = true;
                 showTopicExpense();
             }
         });
@@ -107,8 +91,6 @@
                     }
                 });
         }
-
-    
 
 </script>
 

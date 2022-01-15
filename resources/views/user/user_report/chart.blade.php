@@ -69,15 +69,11 @@
                 series: [{
                     type:'pie',
                     name:'รายจ่าย',
-                    data: [
-                ['1', 21],
-                ['2', 109],
-               ],
                 }]
             }
             myarray = [];
             $.each(topic, function(index, val) {
-                myarray[index] = [val.topic, val.count ,val.expense];
+                myarray[index] = [val.topic, val.count];
             });
             options.series[0].data = myarray;
             chart = new Highcharts.Chart(options);

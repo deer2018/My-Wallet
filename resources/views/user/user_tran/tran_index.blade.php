@@ -3,23 +3,24 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    {{-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> --}}
+
     {{-- /**เรียกใช้ jquery**/ --}}
     <script type="text/javascript" src="jquery.js"></script>
 
     {{-- เรียกใช้ datepicker --}}
     <link href="assets/bootstrap-datepicker-thai/css/datepicker.css" rel="stylesheet">
 
-    <script type="text/javascript" src="bootstrap-datepicker-thai/js/bootstrap-datepicker.js"></script>
+    {{-- <script type="text/javascript" src="bootstrap-datepicker-thai/js/bootstrap-datepicker.js"></script>
     <script type="text/javascript" src="bootstrap-datepicker-thai/js/bootstrap-datepicker-thai.js"></script>
-    <script type="text/javascript" src="bootstrap-datepicker-thai/js/locales/bootstrap-datepicker.th.js"></script>
-
-    <script>
+    <script type="text/javascript" src="bootstrap-datepicker-thai/js/locales/bootstrap-datepicker.th.js"></script> --}}
+    {{-- <script type="text/javascript" src="bootstrap-datepicker.th.js" charset="UTF-8"></script> --}}
+    <script type="text/javascript">
         $(function() {
-            $("#datepicker").datepicker({
-                language: 'th-th',
-                format: 'dd/mm/yyyy',
-                autoclose: true
+            $('#date-start').datetimepicker({
+                locale: 'th',
+                format: 'L'
+
             });
         });
     </script>
@@ -65,12 +66,19 @@
                         </div>
                     </div> --}}
 
+                    <input type="date" name="date-start" id="date-start" value="" pattern="\d{1,2}/\d{1,2}/\d{4}"/>ไปถึง
+                    <input type="date" name="date-end" id="date-end" value="" pattern="\d{1,2}/\d{1,2}/\d{4}"/>
+                    <a href="#"
+                        title="Edit Crud"><button class="btn btn-primary btn-sm"><i
+                                class="fas fa-search"></i></button></a>
+
+
                     {{-- <div class="container">
                         <div class="row">
                             <div class='col-sm-2'>
                                 <div class="form-group">
-                                    <div class='input-group date' id='datepicker'>
-                                        <input type="text" name="datepicker" id="datepicker" />
+                                    <div class='input-group date' >
+                                       <input type="text" name="datepicker" id="datepicker" value=""/>
                                         <span class="input-group-addon">
                                             <span class="fas fa-time"></span>
                                         </span>
@@ -85,6 +93,9 @@
                     {{-- <div class="col-sm-3 col-md-12 mb-4"> --}}
                     <form method="GET" action="{{ url('/transaction') }}" accept-charset="UTF-8"
                         class="form-inline my-2 my-lg-0 float-right" role="search">
+
+
+
                         <div class="input-group">
 
                             <input class="form-control form-control" name="search" id="search"
@@ -123,7 +134,8 @@
                                     </thead>
                                     @foreach ($transaction as $item)
                                         <tbody>
-                                            <td>{{ $item->created_at->toDateString() }}</td>
+                                            {{-- toDateString() แสดงแค่วันที่ --}}
+                                            <td>{{ $item->created_at->thaidate() }}</td>
                                             <td>{{ $item->category_type }}</td>
                                             <td>{{ $item->topic }}</td>
                                             <td>{{ $item->comment }}</td>
@@ -133,9 +145,15 @@
                                                 <td type='number' style="color:red">-{{ $item->expense }}</td>
                                             @endif
                                             <td>
-                                                <a href="{{ url('/transaction/' . $item->id . '/edit') }}"
-                                                    title="Edit Crud"><button class="btn btn-primary btn-sm"><i
-                                                            class="fas fa-edit"></i></button></a>
+                                                @if ($item->category_type == 'รายรับ')
+                                                    <a href="{{ url('/transaction/' . $item->id . '/edit_inc') }}"
+                                                        title="Edit Crud"><button class="btn btn-primary btn-sm"><i
+                                                                class="fas fa-edit"></i></button></a>
+                                                @else
+                                                    <a href="{{ url('/transaction/' . $item->id . '/edit_exp') }}"
+                                                        title="Edit Crud"><button class="btn btn-primary btn-sm"><i
+                                                                class="fas fa-edit"></i></button></a>
+                                                @endif
                                                 <form method="POST" action="{{ url('/transaction' . '/' . $item->id) }}"
                                                     accept-charset="UTF-8" style="display:inline">
                                                     {{ method_field('DELETE') }}
@@ -176,10 +194,37 @@
 
     @endsection
 
-
-
-
-
 </body>
 
 </html>
+
+<script>
+    $('.datepicker').datepicker();
+
+    var startDate = new Date(2012, 1, 20);
+    var endDate = new Date(2012, 1, 25);
+    $('#date-start')
+        .datepicker()
+        .on('changeDate', function(ev) {
+            if (ev.date.valueOf() > endDate.valueOf()) {
+                $('#alert').show().find('strong').text('The start date must be before the end date.');
+            } else {
+                $('#alert').hide();
+                startDate = new Date(ev.date);
+                $('#date-start-display').text($('#date-start').data('date'));
+            }
+            $('#date-start').datepicker('hide');
+        });
+    $('#date-end')
+        .datepicker()
+        .on('changeDate', function(ev) {
+            if (ev.date.valueOf() < startDate.valueOf()) {
+                $('#alert').show().find('strong').text('The end date must be after the start date.');
+            } else {
+                $('#alert').hide();
+                endDate = new Date(ev.date);
+                $('#date-end-display').text($('#date-end').data('date'));
+            }
+            $('#date-end').datepicker('hide');
+        });
+</script>

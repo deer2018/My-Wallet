@@ -53,9 +53,47 @@ class ReportController extends Controller
         //     ->where('transaction_02.user_id' ,'=', $user_id)  
         //     ->select('transaction_02.*', 'category_02.topic')
         //     ->latest(); 
+
+
+
+        // $transaction = Transaction_02::join('category_02', 'transaction_02.category_id', '=', 'category_02.category_id')
+        // ->where('transaction_02.user_id' ,'=', $user_id)  
+        // ->select('transaction_02.*', 'category_02.topic', DB::raw("(sum(income)) as total_income"))
+        // ->get()
+        // ->groupBy('category_02.topic');
+
+        $transaction = Transaction_02::join('category_02', 'transaction_02.category_id', '=', 'category_02.category_id')
+        ->where('transaction_02.user_id' ,'=', $user_id )
+        ->where('category_type' ,'=', 'รายจ่าย')   
+        ->select( DB::raw("sum('expense') as total_sum") ,'topic')
+        ->groupBy('topic')
+        ->get();
+
+
+        // $transaction = Transaction_02::select('category_type')
+        // ->where('category_type' ,'=', 'รายรับ')  
+        // ->orderBy('created_at')
+        // ->groupBy('category_type')
+        // ->get();
+       
+        // $transaction = DB::table('transaction_02')
+        // ->select('category_type')
+        // ->where('category_type' ,'=', 'รายรับ') 
+        // ->groupBy('category_type')
+        // ->get();
+
+        // $transaction = DB::table('transaction_02')
+        // ->groupBy('category_id')
+        // ->selectRaw('sum(income) as total, category_id')
+        // ->pluck('total','category_id');
         
-        $transaction = Transaction_02::latest();   
         
+
+
+
+
+
+
         return view('user.user_report.report',compact('income','expense','monthly_income','monthly_expense','annual_income','annual_expense','transaction'));
     }
 
@@ -65,8 +103,8 @@ class ReportController extends Controller
 
         $donut_topic = Transaction_02::join('category_02', 'transaction_02.category_id', '=', 'category_02.category_id')
                 ->where('transaction_02.user_id' ,'=', $user_id)  
-                ->select('transaction_02.*', 'category_02.topic')
-                ->select('topic', DB::raw("COUNT('id') as count"))
+                // ->select('transaction_02.*', 'category_02.topic')
+                ->select('topic', DB::raw("COUNT('expense') as count"))
                 ->groupBy('topic')
                 ->get();
 

@@ -103,28 +103,7 @@
                                         {{ $data->phone }}
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <strong>
-                                            <span class="glyphicon glyphicon-calendar text-primary"></span>
-                                            เข้าร่วมเมื่อ
-                                        </strong>
-                                    </td>
-                                    <td class="text-primary">
-                                        {{ $data->created_at }}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <strong>
-                                            <span class="glyphicon glyphicon-calendar text-primary"></span>
-                                            แก้ไขเมื่อ
-                                        </strong>
-                                    </td>
-                                    <td class="text-primary">
-                                        {{ $data->updated_at }}
-                                    </td>
-                                </tr>
+                             
                             </tbody>
                         </table>
                         <tr>

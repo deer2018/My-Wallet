@@ -24,7 +24,7 @@
                             {{ method_field('PATCH') }}
                             {{ csrf_field() }}
 
-                            @include ('user.user_tran.tran_form', ['formMode' => 'edit'])
+                            @include ('user.user_tran.edit_income', ['formMode' => 'edit'])
 
                         </form>
 

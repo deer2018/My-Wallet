@@ -37,7 +37,8 @@ Route::resource('user_personal', 'User\user_perController');
 Route::get('/transaction', 'User\TransactionController@index');
 Route::get('/transaction/create', 'User\TransactionController@create');
 Route::post('/transaction', 'User\TransactionController@store');
-Route::get('/transaction/{id}/edit', 'User\TransactionController@edit');
+Route::get('/transaction/{id}/edit_inc', 'User\TransactionController@edit_inc');
+Route::get('/transaction/{id}/edit_exp', 'User\TransactionController@edit_exp');
 Route::patch('/transaction/{id}', 'User\TransactionController@update');
 Route::delete('/transaction/{id}', 'User\TransactionController@destroy');
 
@@ -46,3 +47,7 @@ Route::get('/chart', 'User\ReportController@donutChart');
 Route::get('/chart_report', 'User\ReportController@chart');
 
 //---------------------------------------------------------------
+
+Route::get('/datepicker', function () {
+    return view('user.user_report.datepicker');
+});
