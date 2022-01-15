@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use App\Transaction_02;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 use App\User;
 use Illuminate\Http\Request;
@@ -22,7 +25,7 @@ class Admin_UserController extends Controller
     {
         $perPage = 25;
         $keyword = $request->get('search'); 
-        $type = $request->get('dataTable_length');
+        // $type = $request->get('dataTable_length');
         switch(Auth::user()->role)
         {
                 case "แอดมิน" : 
@@ -30,6 +33,7 @@ class Admin_UserController extends Controller
                     if (!empty($keyword)) {
                         $users = User::Where('role', '=', "ผู้ใช้ทั่วไป")
                             ->where('name', 'LIKE' , "%$keyword%")
+                            ->orWhere('email', 'LIKE' , "%$keyword%")
                             // ->where('name', 'LIKE' , "%$keyword%")
                             // ->orwhere('role', '!=' , "อาสาสมัคร")
                             // ->orWhere('email', 'LIKE', "%$keyword%")
@@ -59,10 +63,13 @@ class Admin_UserController extends Controller
         //
     }
 
+   
+
  
     public function show($id)
     {
-        //
+        $users = User::findOrFail($id);
+        return view('admin.admin_user.admin_show', compact('users'));
     }
 
     
@@ -70,7 +77,7 @@ class Admin_UserController extends Controller
     {
         $users = User::findOrFail($id);
 
-        return view('admin.admin_user.edit', compact('users'));
+        return view('admin.admin_user.admin_edit', compact('users'));
     }
 
    

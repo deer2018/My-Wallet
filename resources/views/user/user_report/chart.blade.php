@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    
+    <title>เว็บบันทึกข้อมูรายรับ-รายจ่าย</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
     <style type="text/css">
@@ -15,13 +15,12 @@
     <div class="container" style="margin-top: 50px;">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
-                <div class="panel panel-primary">
+                <div class="row no-gutters align-items-center panel panel-primary">
                     <div class="panel-heading">
-                        <h3 class="panel-title">รายจ่ายแยกตามหมวดหมู่</h3>
+                        <h3 class="panel-title font-weight-bold">รายจ่ายแยกตามหมวดหมู่</h3>
                     </div>
                     <div class="panel-body" align="center">
-                        <div id="pie_chart" style="width:750px; height:450px;">
-                        </div>
+                        <div id="pie_chart" style="width:750px; height:550px;"></div>   
                     </div>
                 </div>
             </div>
@@ -33,6 +32,13 @@
         $(document).ready(function() {
             var topic =  <?php echo json_encode($donut_topic); ?>;
             var options = {
+                stackLabels: {
+                    enabled: true,
+                    verticalAlign: 'bottom',
+                    crop: false,
+                    overflow: 'none',
+                    y: -275
+                },
                 chart: {
                     renderTo: 'pie_chart',
                     plotBackgroundColor: null,
@@ -42,8 +48,8 @@
                 title: {
                     text: 'เปอร์เซ็นตามหมวดหมู่'
                 },
-                 tooltip: {
-                    pointFormat: '{series.name}: <b>{point.percentage}%</b>',
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.y:,.2f}</b>',
                     percentageDecimals: 1
                 },
                 plotOptions: {
@@ -62,12 +68,16 @@
                 },
                 series: [{
                     type:'pie',
-                    name:'รายจ่าย'
+                    name:'รายจ่าย',
+                    data: [
+                ['1', 21],
+                ['2', 109],
+               ],
                 }]
             }
             myarray = [];
             $.each(topic, function(index, val) {
-                myarray[index] = [val.topic, val.count];
+                myarray[index] = [val.topic, val.count ,val.expense];
             });
             options.series[0].data = myarray;
             chart = new Highcharts.Chart(options);

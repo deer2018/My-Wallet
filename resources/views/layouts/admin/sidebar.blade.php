@@ -26,7 +26,12 @@
                     <span>จัดการสมาชิก</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+              <a class="nav-link" href="{{ url('/category') }}">
+                  <i class="fas fa-circle"></i>
+                  <span>จัดการหมวดหมู่</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/dashboard') }}">
                     <i class="fas fa-circle"></i>
                     <span>แดชบอร์ด</span></a>
             </li>

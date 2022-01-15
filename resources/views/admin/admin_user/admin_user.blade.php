@@ -59,16 +59,14 @@
               <td> {{ $item->name  }}</td>
               <td> {{ $item->email  }}</td>
               <td> {{ $item->role  }}</td>
-              {{-- <td><a href="{{ url('/admin_user/' . $item->id . '/edit') }}" title="Edit"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>แก้ไขข้อมูล</button></a>
-                <form method="POST" action="{{ url('/admin_user' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
-                  {{ method_field('DELETE') }}
-                  {{ csrf_field() }}
-                  <button type="submit" class="btn btn-danger btn-sm" title="Delete Crud" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i>ลบข้อมูล</button>
-                </form>
-              </td> --}}
+              <td><a href="{{ url('/admin_user/' . $item->id) }}" title="View Detail"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>ประวัติส่วนตัว</button></a>
+                <a href="{{ url('/admin_user_report/' . $item->id ) }}" title="Report"><button class="btn btn-info btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>สรุปรายรับ-จ่าย</button></a>
+             
+                </td>
             </tbody>
             @endforeach
           </table>
+          <div class="mt-4">{{ $users->links() }}</div>
           <div class="pagination-wrapper"> {!! $users->appends(['search' => Request::get('search')])->render() !!} </div>
 
       </div>

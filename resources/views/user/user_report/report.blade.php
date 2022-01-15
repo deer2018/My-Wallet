@@ -86,26 +86,55 @@
                         </div>   
                     </div>
                 </div>
+
+           
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>วัน-เดือน-ปี</th>
+                                <th>ประเภท</th>
+                                <th>หมวดหมู่</th>
+                                <th>หมายเหตุ</th>
+                                <th>จำนวนเงิน</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($transaction as $item)
+                            <tr>
+                                <td>{{ $item->created_at->toDateString() }}</td>
+                                <td>{{ $item->category_type }}</td>
+                                {{-- <td>{{ $item->topic }}</td> --}}
+                                <td>{{ $item->comment }}</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                    {{-- <div class="pagination-wrapper"> {!! $crud->appends(['search' => Request::get('search')])->render() !!} </div> --}}
+                </div>
+            
+              
         </div>
             
-                        <!-- Donut Chart -->
-                        {{-- <div class="col-xl-4 col-lg-5">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Donut Chart</h6>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div>
-                                        <canvas id="pieChart" style="max-width: 500px;"></canvas>
-                                    </div>
-                                    <hr>
-                                    Styling for the donut chart can be found in the
-                                    <code>/js/demo/chart-pie-demo.js</code> file.
-                                </div>
-                            </div>
-                        </div> --}}
+                         <!-- Donut Chart -->
+                         {{-- <div class="col-xl-4 col-lg-5">
+                        //     <div class="card shadow mb-4">
+                        //         <!-- Card Header - Dropdown -->
+                        //         <div class="card-header py-3">
+                        //             <h6 class="m-0 font-weight-bold text-primary">Donut Chart</h6>
+                        //         </div>
+                        //         <!-- Card Body -->
+                        //         <div class="card-body">
+                        //             <div>
+                        //                 <canvas id="pieChart" style="max-width: 500px;"></canvas>
+                        //             </div>
+                        //             <hr>
+                        //             Styling for the donut chart can be found in the
+                        //             <code>/js/demo/chart-pie-demo.js</code> file.
+                        //         </div>
+                        //     </div>
+                        // </div> --}}
 </div>                        
 @endsection
 

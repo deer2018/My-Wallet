@@ -38,8 +38,8 @@ class TransactionController extends Controller
     
     public function create()
     {
-        $category = Category_02::select('topic')
-        ->get();
+        // $category = Category_02::select('topic')
+        // ->get();
 
         return view('user.user_tran.tran_create' ,compact('category'));
     }

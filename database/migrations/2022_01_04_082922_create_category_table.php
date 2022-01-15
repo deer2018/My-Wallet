@@ -14,6 +14,7 @@ class CreateCategoryTable extends Migration
             $table->integer('user_id')->nullable();
             $table->integer('category_id')->nullable();
             $table->string('topic')->nullable();
+            $table->timestamps();
         });
     }
 

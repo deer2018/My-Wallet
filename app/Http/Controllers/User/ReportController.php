@@ -16,7 +16,6 @@ class ReportController extends Controller
     {
         $user_id = Auth::id();
 
-
         $income = DB::table('transaction_02')
         ->where(array('user_id' => $user_id))
         ->sum('income');
@@ -49,9 +48,15 @@ class ReportController extends Controller
             ->where(array('user_id' => $user_id))
             ->whereYear('created_at', Carbon::now()->year)
             ->sum('expense');
-          
         
-        return view('user.user_report.report',compact('income','expense','monthly_income','monthly_expense','annual_income','annual_expense'));
+        // $transaction = Transaction_02::join('category_02', 'transaction_02.category_id', '=', 'category_02.category_id')
+        //     ->where('transaction_02.user_id' ,'=', $user_id)  
+        //     ->select('transaction_02.*', 'category_02.topic')
+        //     ->latest(); 
+        
+        $transaction = Transaction_02::latest();   
+        
+        return view('user.user_report.report',compact('income','expense','monthly_income','monthly_expense','annual_income','annual_expense','transaction'));
     }
 
     public function donutChart()
@@ -61,12 +66,28 @@ class ReportController extends Controller
         $donut_topic = Transaction_02::join('category_02', 'transaction_02.category_id', '=', 'category_02.category_id')
                 ->where('transaction_02.user_id' ,'=', $user_id)  
                 ->select('transaction_02.*', 'category_02.topic')
-                ->select('topic', \DB::raw("COUNT('id') as count"))
+                ->select('topic', DB::raw("COUNT('id') as count"))
                 ->groupBy('topic')
                 ->get();
 
         return view('user.user_report.chart', compact('donut_topic'));
     }
+
+    // public function chart()
+    // {
+    //     $user_id = Auth::id();
+    //     $year = ['2015','2016','2017','2018','2019','2020'];
+
+    //     $expense = [];
+    //     foreach ($year as $key => $value) {
+    //         $expense[] = Transaction_02::join('category_02', 'transaction_02.category_id', '=', 'category_02.category_id')
+    //         ->where('transaction_02.user_id' ,'=', $user_id)  
+    //         ->select('transaction_02.*', 'category_02.topic')
+    //         ->where(\DB::rawraw("COUNT('id') as count"),$value)->count();
+    //     }
+
+    // 	return view('user.user_report.report',compact('year'))->with('year',json_encode($year,JSON_NUMERIC_CHECK))->with('expense',json_encode($expense,JSON_NUMERIC_CHECK));
+    // }
 
    
     public function create()
