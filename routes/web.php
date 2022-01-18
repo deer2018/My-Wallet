@@ -35,6 +35,7 @@ Route::resource('user_personal', 'User\user_perController');
 
 //transaction--------------------------------------------------
 Route::get('/transaction', 'User\TransactionController@index');
+// Route::get('/daterange', 'User\TransactionController@dateRange'); 
 Route::get('/transaction/create', 'User\TransactionController@create');
 Route::post('/transaction', 'User\TransactionController@store');
 Route::get('/transaction/{id}/edit_inc', 'User\TransactionController@edit_inc');

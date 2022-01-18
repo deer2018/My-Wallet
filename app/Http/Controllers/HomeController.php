@@ -16,11 +16,11 @@ class HomeController extends Controller
     public function index()
     {
         if(Auth::user()->role == "แอดมิน"){
-            return redirect("admin_user");
+            return redirect("dashboard");
     }else if(Auth::user()->role == "ผู้ใช้ทั่วไป"){
-            return redirect("user_personal");
+            return redirect("transaction");
     }
-    return view("home");
+    return view("login");
     
     }
 }

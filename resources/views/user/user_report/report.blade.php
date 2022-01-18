@@ -11,8 +11,8 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="h2 font-weight-bold text-gray-800">รายรับทั้งหมด</div>
-                                <h4 class="mb-1 font-weight-bold text-primary text-uppercase ">{{$income}}<a class="h4 mb-1 font-weight-bold text-dark text-uppercase "> บาท</a></h4>                                
+                                <div class="h3 font-weight-bold text-gray-800">รายรับทั้งหมด</div>
+                                <h5 class="mb-1 font-weight-bold text-primary text-uppercase ">{{$income}}<a class="h5 mb-1 font-weight-bold text-dark text-uppercase "> บาท</a></h5>                                
                             </div>
                         </div>
                     </div>   
@@ -25,8 +25,8 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="h2 font-weight-bold text-gray-800">รายจ่ายทั้งหมด</div>
-                                <h4 class="mb-1 font-weight-bold text-danger text-uppercase ">{{$expense}}<a class="h4 mb-1 font-weight-bold text-dark text-uppercase "> บาท</a></h4>                                
+                                <div class="h3 font-weight-bold text-gray-800">รายจ่ายทั้งหมด</div>
+                                <h5 class="mb-1 font-weight-bold text-danger text-uppercase ">{{$expense}}<a class="h5 mb-1 font-weight-bold text-dark text-uppercase "> บาท</a></h5>                                
                             </div>
                         </div>
                     </div>   
@@ -44,9 +44,9 @@
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="h3 font-weight-bold text-gray-800">รายงาน ประจำเดือนปัจจุบัน</div>
-                                    <h4 class="mb-1 font-weight-bold text-primary text-uppercase "><a class="h4 mb-1 font-weight-bold text-dark text-uppercase ">รายรับ </a> {{$monthly_income}}<a class="h4 mb-1 font-weight-bold text-dark text-uppercase "> บาท</a></h4>
-                                    <h4 class="mb-1 font-weight-bold text-danger text-uppercase "><a class="h4 mb-1 font-weight-bold text-dark text-uppercase ">รายจ่าย </a> {{$monthly_expense}}<a class="h4 mb-1 font-weight-bold text-dark text-uppercase "> บาท</a></h4>                                
+                                    <div class="h4 font-weight-bold text-gray-800">รายงาน ประจำเดือนปัจจุบัน</div>
+                                    <h5 class="mb-1 font-weight-bold text-primary text-uppercase "><a class="h5 mb-1 font-weight-bold text-dark text-uppercase ">รายรับ </a> {{$monthly_income}}<a class="h4 mb-1 font-weight-bold text-dark text-uppercase "> บาท</a></h5>
+                                    <h5 class="mb-1 font-weight-bold text-danger text-uppercase "><a class="h5 mb-1 font-weight-bold text-dark text-uppercase ">รายจ่าย </a> {{$monthly_expense}}<a class="h4 mb-1 font-weight-bold text-dark text-uppercase "> บาท</a></h5>                                
                                 </div>
                             </div>
                         </div>   

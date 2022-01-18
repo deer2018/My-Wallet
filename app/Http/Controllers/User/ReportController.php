@@ -65,7 +65,7 @@ class ReportController extends Controller
         $transaction = Transaction_02::join('category_02', 'transaction_02.category_id', '=', 'category_02.category_id')
         ->where('transaction_02.user_id' ,'=', $user_id )
         ->where('category_type' ,'=', 'รายจ่าย')   
-        ->select( DB::raw("sum('expense') as total_sum") ,'topic')
+        ->select('topic' , DB::raw("sum('expense') as total_sum") )
         ->groupBy('topic')
         ->get();
 
