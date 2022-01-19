@@ -35,29 +35,28 @@
         <div class="container-fluid">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-1 font-weight-bold text-success">ข้อมูลอาสาสมัคร</h6>
+                    <h6 class="m-1 font-weight-bold text-success">ข้อมูลรายรับ-รายจ่าย</h6>
                 </div>
 
                 <div class="card-body">
                     <div class="form-group">
-                        <a href="{{ url('/transaction/create') }}" class="btn btn-success btn-sm" title="Add New Transaction">
+                        <a href="{{ url('/transaction/create') }}" class="btn btn-success btn-sm"
+                            title="Add New Transaction">
                             <i class="fa fa-plus" aria-hidden="true"></i> เพิ่มรายการ
                         </a>
-                    </div>           
-                           
+                    </div>
+
                     <form method="GET" action="{{ url('/transaction') }}" accept-charset="UTF-8">
-                        <div class="row">  
-                                         
-                       
+                        <div class="row">
+
                             <div class="form-group">
                                 <input class="form-control" type="date" name="date-start" id="date-start"
                                     value="{{ request('date-start') }}" pattern="\d{1,2}/\d{1,2}/\d{4}" />
-                              
                             </div>
                             &nbsp;ไปถึง&nbsp;
                             <div class="form-group">
                                 <input class="form-control" type="date" name="date-end" id="date-end"
-                                value="{{ request('date-end') }}" pattern="\d{1,2}/\d{1,2}/\d{4}" />
+                                    value="{{ request('date-end') }}" pattern="\d{1,2}/\d{1,2}/\d{4}" />
                             </div>
                             {{-- &nbsp;ประเภท&nbsp;
 
@@ -71,8 +70,6 @@
                                         </select></label>
                                 </div>
                             </div>
-
-                           
                             &nbsp;หมวดหมู่&nbsp;
                             <div class="dataTables_length" >
                                 <label><select id="category_topic" name="category_topic" class="form-control" >
@@ -84,51 +81,51 @@
                             <div class="form-group">
 
                                 <input class="form-control form-control" name="search" id="search"
-                                    value="{{ request('search') }}" placeholder="{{$keyword}}" />
-                               
+                                    value="{{ $keyword }}" placeholder="Search..." />
+
                             </div>
                             &nbsp;
-                            <div class="dataTables_length" >
+                            <div class="dataTables_length">
                                 <button class="btn btn-primary" type="submit">
                                     <i class="fa fa-search"></i>
                                 </button>
                             </div>
-                        
+
                         </div>
                     </form>
-                    @if (isset($startDate))
-                        {{$startDate}}
+                    {{-- @if (isset($startDate))
+                        {{ $startDate }}
                     @else
                         ว่าง
                     @endif
                     -
                     @if (isset($endDate))
-                        {{$endDate}}
+                        {{ $endDate }}
                     @else
                         ว่าง
                     @endif
                     ,ประเภท =
-                        @if (isset($type))
-                        {{$type}}
+                    @if (isset($type))
+                        {{ $type }}
                     @else
                         ว่าง
                     @endif
                     ,หมวดหมู่ =
-                        @if (isset($topic))
-                        {{$topic}}
+                    @if (isset($topic))
+                        {{ $topic }}
                     @else
                         ว่าง
                     @endif
                     ,keyword =
-                        @if (isset($keyword))
-                        {{$keyword}}
+                    @if (isset($keyword))
+                        {{ $keyword }}
                     @else
                         ว่าง
-                    @endif
-                
-                 
+                    @endif --}}
+
+
                     {{-- เลือกเวลาภาษาไทย --}}
-                {{-- <div class="container">
+                    {{-- <div class="container">
                         <div class="row">
                             <div class='col-sm-2'>
                                 <div class="form-group">
@@ -144,9 +141,9 @@
                         </div>
                     </div> --}}
 
-                <!-- ค้นหา -->
-                {{-- <div class="col-sm-3 col-md-12 mb-4"> --}}
-                {{-- <form method="GET" action="{{ url('/transaction') }}" accept-charset="UTF-8"
+                    <!-- ค้นหา -->
+                    {{-- <div class="col-sm-3 col-md-12 mb-4"> --}}
+                    {{-- <form method="GET" action="{{ url('/transaction') }}" accept-charset="UTF-8"
                         class="form-inline my-2 my-lg-0 float-right" role="search">
 
 
@@ -162,89 +159,89 @@
                             </span>
                         </div>
                     </form> --}}
-                {{-- </div> --}}
+                    {{-- </div> --}}
 
 
 
-                <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                    <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
 
 
-                    <div class="table-responsive-sm">
-                        <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0"
-                            role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                        <div class="table-responsive-sm">
+                            <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0"
+                                role="grid" aria-describedby="dataTable_info" style="width: 100%;">
 
-                            <?php $sum_income = 0.0; ?>
-                            <?php $sum_expense = 0.0; ?>
-                            <?php $total = 0.0; ?>
-                            <table class="table dataTable">
-                                <thead>
-                                    <tr>
-                                        <th>วัน-เดือน-ปี</th>
-                                        <th>ประเภท</th>
-                                        <th>หมวดหมู่</th>
-                                        <th>หมายเหตุ</th>
-                                        <th>จำนวนเงิน</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                @foreach ($transaction as $item)
-                                    <tbody>
-                                        {{-- toDateString() แสดงแค่วันที่ --}}
-                                        <td>{{ $item->created_at->thaidate() }}</td>
-                                        <td>{{ $item->category_type }}</td>
-                                        <td>{{ $item->topic }}</td>
-                                        <td>{{ $item->comment }}</td>
-                                        @if ($item->category_type == 'รายรับ')
-                                            <td type='number' style="color:blue">&nbsp;&nbsp;{{ $item->income }}</td>
-                                        @else
-                                            <td type='number' style="color:red">-{{ $item->expense }}</td>
-                                        @endif
-                                        <td>
+                                <?php $sum_income = 0.0; ?>
+                                <?php $sum_expense = 0.0; ?>
+                                <?php $total = 0.0; ?>
+                                <table class="table dataTable">
+                                    <thead>
+                                        <tr>
+                                            <th>วัน-เดือน-ปี</th>
+                                            <th>ประเภท</th>
+                                            <th>หมวดหมู่</th>
+                                            <th>หมายเหตุ</th>
+                                            <th>จำนวนเงิน</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    @foreach ($transaction as $item)
+                                        <tbody>
+                                            {{-- toDateString() แสดงแค่วันที่ --}}
+                                            <td>{{ $item->created_at->thaidate() }}</td>
+                                            <td>{{ $item->category_type }}</td>
+                                            <td>{{ $item->topic }}</td>
+                                            <td>{{ $item->comment }}</td>
                                             @if ($item->category_type == 'รายรับ')
-                                                <a href="{{ url('/transaction/' . $item->id . '/edit_inc') }}"
-                                                    title="Edit Crud"><button class="btn btn-primary btn-sm"><i
-                                                            class="fas fa-edit"></i></button></a>
+                                                <td type='number' style="color:blue">&nbsp;&nbsp;{{ $item->income }}</td>
                                             @else
-                                                <a href="{{ url('/transaction/' . $item->id . '/edit_exp') }}"
-                                                    title="Edit Crud"><button class="btn btn-primary btn-sm"><i
-                                                            class="fas fa-edit"></i></button></a>
+                                                <td type='number' style="color:red">-{{ $item->expense }}</td>
                                             @endif
-                                            <form method="POST" action="{{ url('/transaction' . '/' . $item->id) }}"
-                                                accept-charset="UTF-8" style="display:inline">
-                                                {{ method_field('DELETE') }}
-                                                {{ csrf_field() }}
-                                                <button type="submit" class="btn btn-danger btn-sm" title="Delete Crud"
-                                                    onclick="return confirm(&quot;Confirm delete?&quot;)"><i
-                                                        class="fas fa-trash" aria-hidden="true"></i></button>
-                                            </form>
-                                            {{-- <a href="{{ url('/medic_volunteer/' . $item->id) }}"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>ข้อมูลอาสาสมัคร</button></a>
+                                            <td>
+                                                @if ($item->category_type == 'รายรับ')
+                                                    <a href="{{ url('/transaction/' . $item->id . '/edit_inc') }}"
+                                                        title="แก้ไขรายการ"><button class="btn btn-primary btn-sm"><i
+                                                                class="fas fa-edit"></i></button></a>
+                                                @else
+                                                    <a href="{{ url('/transaction/' . $item->id . '/edit_exp') }}"
+                                                        title="แก้ไขรายการ"><button class="btn btn-primary btn-sm"><i
+                                                                class="fas fa-edit"></i></button></a>
+                                                @endif
+                                                <form method="POST" action="{{ url('/transaction' . '/' . $item->id) }}"
+                                                    accept-charset="UTF-8" style="display:inline">
+                                                    {{ method_field('DELETE') }}
+                                                    {{ csrf_field() }}
+                                                    <button type="submit" class="btn btn-danger btn-sm" title="ลบรายการ"
+                                                        onclick="return confirm(&quot;Confirm delete?&quot;)"><i
+                                                            class="fas fa-trash" aria-hidden="true"></i></button>
+                                                </form>
+                                                {{-- <a href="{{ url('/medic_volunteer/' . $item->id) }}"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>ข้อมูลอาสาสมัคร</button></a>
 
                                 @if (!empty($item->advice2))
                                     <a href="{{ url('/medic_pdf/' . $item->id) }}"><button class="btn btn-success btn-sm" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i>ปริ้น PDF</button></a>
                                 @endif --}}
-                                        </td>
+                                            </td>
 
-                                    </tbody>
-                                    <?php $sum_income += $item->income; ?>
-                                    <?php $sum_expense += $item->expense; ?>
-                                    <?php $total = $sum_income - $sum_expense; ?>
-                                @endforeach
-                            </table>
-                            <hr>
+                                        </tbody>
+                                        <?php $sum_income += $item->income; ?>
+                                        <?php $sum_expense += $item->expense; ?>
+                                        <?php $total = $sum_income - $sum_expense; ?>
+                                    @endforeach
+                                </table>
+                                <hr>
 
-                            <div class="table " style="text-align: center">รวม :
-                                @if ($total >= 0)
-                                    <a style="color:blue">{{ $total }}</a>
-                                @else
-                                    <a style="color:red">{{ $total }}</a>
-                                @endif
-                            </div>
+                                <div class="table " style="text-align: center">รวม :
+                                    @if ($total >= 0)
+                                        <a style="color:blue">{{number_format($total, 2, '.', ',')}}</a>
+                                    @else
+                                        <a style="color:red">{{number_format($total, 2, '.', ',')}}</a>
+                                    @endif
+                                </div>
+                        </div>
+                        <div class="mt-4">{{ $transaction->links() }}</div>
+                        {{-- <div class="pagination-wrapper"> {!! $transaction->appends(['search' => Request::get('search')])->render() !!} </div> --}}
                     </div>
-                    <div class="mt-4">{{ $transaction->links() }}</div>
-                    {{-- <div class="pagination-wrapper"> {!! $transaction->appends(['search' => Request::get('search')])->render() !!} </div> --}}
                 </div>
             </div>
-        </div>
         </div>
 
     @endsection
@@ -258,36 +255,36 @@
 
     // เริ่มทำงานเมื่อโหลดหน้าจอ
     document.addEventListener('DOMContentLoaded', (event) => {
-            console.log("START");
-            showTopic();
-        });
+        console.log("START");
+        showTopic();
+    });
 
     document.getElementById('category_type').addEventListener("change", function(e) {
-            if (e.target.value === 'รายรับ') {
-                document.getElementById('รายรับ').selected = true;
-            } else {
-                document.getElementById('รายจ่าย').selected = true;
-            }
-        });
+        if (e.target.value === 'รายรับ') {
+            document.getElementById('รายรับ').selected = true;
+        } else {
+            document.getElementById('รายจ่าย').selected = true;
+        }
+    });
 
     // ดึงข้อมูลหมวดหมู่ผ่าน Dropdown 
-    function showTopic(){
-            //PARAMETERS
-            fetch("{{ url('/') }}/api/category")
-                .then(response => response.json())
-                .then(result => {
-                    console.log(result);
-                    //UPDATE SELECT OPTION
-                    let category_topic = document.querySelector("#category_topic");
-                    category_topic.innerHTML = '<option value="" >-- ทั้งหมด --</option>';
-                    for (let item of result) {
-                        let option = document.createElement("option");
-                        option.text = item.topic;
-                        option.value = item.topic;
-                        category_topic.appendChild(option);
-                    }
-                });
-        }
+    function showTopic() {
+        //PARAMETERS
+        fetch("{{ url('/') }}/api/category")
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                //UPDATE SELECT OPTION
+                let category_topic = document.querySelector("#category_topic");
+                category_topic.innerHTML = '<option value="" >-- ทั้งหมด --</option>';
+                for (let item of result) {
+                    let option = document.createElement("option");
+                    option.text = item.topic;
+                    option.value = item.topic;
+                    category_topic.appendChild(option);
+                }
+            });
+    }
 
 
     // var startDate = new Date(2012, 1, 20);

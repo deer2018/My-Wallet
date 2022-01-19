@@ -23,23 +23,19 @@ class Admin_UserController extends Controller
   
     public function index(Request $request)
     {
-        $perPage = 25;
+        $perPage = 10;
         $keyword = $request->get('search'); 
         // $type = $request->get('dataTable_length');
         switch(Auth::user()->role)
         {
                 case "แอดมิน" : 
-                   
                     if (!empty($keyword)) {
-                        $users = User::Where('role', '=', "ผู้ใช้ทั่วไป")
-                            ->where('name', 'LIKE' , "%$keyword%")
+                        $users = User::Where('name', 'LIKE' , "%$keyword%")
                             ->orWhere('email', 'LIKE' , "%$keyword%")
-                            // ->where('name', 'LIKE' , "%$keyword%")
-                            // ->orwhere('role', '!=' , "อาสาสมัคร")
-                            // ->orWhere('email', 'LIKE', "%$keyword%")
+                            ->Where('role','=', "ผู้ใช้ทั่วไป")
                             ->latest()->paginate($perPage);
                     } else {
-                        $users = User::where('role', "ผู้ใช้ทั่วไป")    
+                        $users = User::where('role','=', "ผู้ใช้ทั่วไป")    
                         ->latest()->paginate($perPage);
                     }
                     break;

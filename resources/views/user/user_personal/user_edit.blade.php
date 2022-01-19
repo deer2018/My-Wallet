@@ -16,11 +16,17 @@
                         {{ method_field('PATCH') }}
                         {{ csrf_field() }}
 
+                        <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
+
+                            <label for="name" class="control-label">{{ 'ชื่อที่แสดงบนเว็บไซต์' }}<font size="2" color="#FF0000">*</font></label>
+                            <input class="form-control" name="name" type="text" id="name" value="{{ isset($User->name) ? $User->name : ''}}" required>
+                            {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
+                        </div>
 
                         <div class="form-group {{ $errors->has('mastername') ? 'has-error' : ''}}">
 
                             <label for="mastername" class="control-label">{{ 'ชื่อ' }}<font size="2" color="#FF0000">*</font></label>
-                            <input class="form-control" name="mastername" type="text" id="username" value="{{ isset($User->mastername) ? $User->mastername : ''}}" required>
+                            <input class="form-control" name="mastername" type="text" id="mastername" value="{{ isset($User->mastername) ? $User->mastername : ''}}" required>
                             {!! $errors->first('mastername', '<p class="help-block">:message</p>') !!}
                         </div>
 

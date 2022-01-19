@@ -3,7 +3,7 @@
 @section('content')
 <div class="card">
     <div class="card-header py-3">
-        <h6 class="m-1 font-weight-bold text-primary">ประวัติส่วนตัว</h6>
+        <h6 class="m-1 font-weight-bold text-success">ประวัติส่วนตัว</h6>
     </div>
     <br>
     <div class="container bootstrap snippets bootdey">

@@ -2,7 +2,7 @@
     <div class="form-group {{ $errors->has('category_type') ? 'has-error' : ''}}">
         <label for="category_type" class="control-label">{{ 'ประเภท' }}</label>
         <select name="category_type" class="form-control" id="category_type" required>
-        <option selected disabled>กรุณาเลือกหมวดหมู่</option>
+        <option selected disabled>กรุณาเลือกประเภท</option>
         @foreach (json_decode('{"รายรับ":"รายรับ","รายจ่าย":"รายจ่าย"}', true) as $optionKey => $optionvalue)
             <option value="{{ $optionKey }}" {{ (isset($transaction->category_type) && $transaction->category_type == $optionKey) ? 'selected' : ''}}>{{ $optionvalue }}</option>
         @endforeach
@@ -22,7 +22,7 @@
 
 
     <div class="form-group {{ $errors->has('category_id') ? 'has-error' : ''}}">
-        <label for="input_category" class="control-label">{{ 'หมวดหมู่ของรายการ' }}<font size="2" color="#FF0000">*</font></label>
+        <label for="input_category" class="control-label">{{ 'หมวดหมู่ของรายการ' }}</label>
         <select id="input_category" name="category_id" class="form-control" required>
         <option value="" selected disabled>กรุณาเลือกหมวดหมู่</option>
         </select>

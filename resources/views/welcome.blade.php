@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>เว็บบันทึกข้อมูรายรับ-รายจ่าย</title>
+        <title>เว็บเก็บข้อมูลรายรับ-รายจ่าย</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
@@ -12,7 +12,7 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #fff;
+                background-color: #AAF1B4;
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
@@ -80,9 +80,13 @@
             @endif
 
             <div class="content">
+                <i class="fas fa-edit" weight="250" height="250" ></i>
                 <div class="title m-b-md">
                     MY-WALLET
                 </div>
+                <h1>เว็บเก็บข้อมูลรายรับ-รายจ่าย</h1>
+                <br><marquee scrollamount="10" direction="left" >จัดทำโดย นายปิยบุตร สมสกุล นักศึกษาจาก
+                    มหาวิทยาลัยราชภัฏวไลยอลงกรณ์ ในพระบรมราชูปถัมภ์</marquee>
             </div>
         </div>
     </body>

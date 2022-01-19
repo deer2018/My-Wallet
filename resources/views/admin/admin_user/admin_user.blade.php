@@ -67,7 +67,7 @@
             @endforeach
           </table>
           <div class="mt-4">{{ $users->links() }}</div>
-          <div class="pagination-wrapper"> {!! $users->appends(['search' => Request::get('search')])->render() !!} </div>
+          {{-- <div class="pagination-wrapper"> {!! $users->appends(['search' => Request::get('search')])->render() !!} </div> --}}
 
       </div>
     </div>

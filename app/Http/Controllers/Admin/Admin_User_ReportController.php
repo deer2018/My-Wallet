@@ -55,12 +55,20 @@ class Admin_User_ReportController extends Controller
         $transaction = Transaction_02::join('category_02', 'transaction_02.category_id', '=', 'category_02.category_id')
             ->where('transaction_02.user_id' ,'=', $user_id->id )
             ->where('category_type' ,'=', 'รายจ่าย')   
-            ->select( DB::raw("sum('expense') as total_sum") ,'topic')
+            ->select( 'topic')
             ->groupBy('topic')
             ->get();
+
+        $group = DB::table('transaction_02')
+        // ->leftJoin('category_02', 'transaction_02.category_id', '=', 'category_02.category_id')
+        ->select('category_id' , DB::raw('sum(expense) as total'))
+        ->groupBy('category_id')
+        ->where('user_id' ,'=', $user_id->id )
+        ->where('category_type' ,'=', 'รายจ่าย')
+        ->get();
     
         // $transaction = Transaction_02::latest();   
         
-        return view('admin.admin_user.admin_user_report',compact('income','expense','monthly_income','monthly_expense','annual_income','annual_expense','transaction','user_id'));
+        return view('admin.admin_user.admin_user_report',compact('income','expense','monthly_income','monthly_expense','annual_income','annual_expense','transaction','user_id','group'));
     }
 }

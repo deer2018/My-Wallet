@@ -61,15 +61,42 @@ class ReportController extends Controller
         // ->select('transaction_02.*', 'category_02.topic', DB::raw("(sum(income)) as total_income"))
         // ->get()
         // ->groupBy('category_02.topic');
+        
 
         $transaction = Transaction_02::join('category_02', 'transaction_02.category_id', '=', 'category_02.category_id')
-        ->where('transaction_02.user_id' ,'=', $user_id )
-        ->where('category_type' ,'=', 'รายจ่าย')   
-        ->select('topic' , DB::raw("sum('expense') as total_sum") )
-        ->groupBy('topic')
+            ->where('transaction_02.user_id' ,'=', $user_id )
+            ->where('category_type' ,'=', 'รายจ่าย')   
+            ->select( 'topic')
+            ->groupBy('topic')
+            ->get();
+
+        $group = DB::table('transaction_02')
+        // ->leftJoin('category_02', 'transaction_02.category_id', '=', 'category_02.category_id')
+        ->select('category_id' , DB::raw('sum(expense) as total'))
+        ->groupBy('category_id')
+        ->where('user_id' ,'=', $user_id )
+        ->where('category_type' ,'=', 'รายจ่าย')
         ->get();
 
+        // $projects = Transaction_02::select(DB::raw('transaction_02.*, SUM(expense) as total'))
+        //  ->leftJoin('category_02', 'transaction_02.category_id', '=', 'category_02.category_id')
+        //  ->groupBy('category_id')
+        //  ->get();
 
+        // $projects = Transaction_02::with('category_02')->get()->toArray();
+
+        // $projects = DB::table('transaction_02')
+        // ->join('category_02', 'transaction_02.category_id', '=', 'category_02.category_id')
+        // ->select('transaction_02.*' ,'category_02.*', DB::raw('sum(expense) as total'))
+        // ->groupBy('topic')
+        // ->where('user_id' ,'=', $user_id )
+        // ->where('category_type' ,'=', 'รายจ่าย')
+        // ->get();
+
+        // $group = DB::table('transaction_02')
+        // ->leftJoin('category_02', 'transaction_02.category_id', '=', 'category_02.category_id')
+        // ->select('transaction_02.*', 'category_02.topic')
+        // ->get();
         // $transaction = Transaction_02::select('category_type')
         // ->where('category_type' ,'=', 'รายรับ')  
         // ->orderBy('created_at')
@@ -94,7 +121,7 @@ class ReportController extends Controller
 
 
 
-        return view('user.user_report.report',compact('income','expense','monthly_income','monthly_expense','annual_income','annual_expense','transaction'));
+        return view('user.user_report.report',compact('income','expense','monthly_income','monthly_expense','annual_income','annual_expense','transaction','group',));
     }
 
     public function donutChart()

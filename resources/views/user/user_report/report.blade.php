@@ -7,12 +7,15 @@
      
             <!-- รายรับ -->
             <div class="col-xl-6 col-md-6 mb-4">
-                <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card border-left-primary shadow h-100 ">
+                    <div class="card-header py-2">
+                        <h4 class="m-1 font-weight-bold text-gray-800">รายรับทั้งหมด</h4>
+                    </div>
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="h3 font-weight-bold text-gray-800">รายรับทั้งหมด</div>
-                                <h5 class="mb-1 font-weight-bold text-primary text-uppercase ">{{$income}}<a class="h5 mb-1 font-weight-bold text-dark text-uppercase "> บาท</a></h5>                                
+                                {{-- <div class="h3 font-weight-bold text-gray-800">รายรับทั้งหมด</div> --}}
+                                <h5 class="mb-1 font-weight-bold text-primary text-uppercase ">{{number_format($income, 2, '.', ',')}}<a class="h5 mb-1 font-weight-bold text-dark text-uppercase "> บาท</a></h5>                                
                             </div>
                         </div>
                     </div>   
@@ -21,12 +24,15 @@
 
               <!-- รายจ่าย -->
             <div class="col-xl-6 col-md-6 mb-4">
-                <div class="card border-left-danger shadow h-100 py-2">
+                <div class="card border-left-danger shadow h-100 ">
+                    <div class="card-header py-2">
+                        <h4 class="m-1 font-weight-bold text-gray-800">รายจ่ายทั้งหมด</h4>
+                    </div>
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="h3 font-weight-bold text-gray-800">รายจ่ายทั้งหมด</div>
-                                <h5 class="mb-1 font-weight-bold text-danger text-uppercase ">{{$expense}}<a class="h5 mb-1 font-weight-bold text-dark text-uppercase "> บาท</a></h5>                                
+                                {{-- <div class="h3 font-weight-bold text-gray-800">รายจ่ายทั้งหมด</div> --}}
+                                <h5 class="mb-1 font-weight-bold text-danger text-uppercase ">{{number_format($expense, 2, '.', ',')}}<a class="h5 mb-1 font-weight-bold text-dark text-uppercase "> บาท</a></h5>                                
                             </div>
                         </div>
                     </div>   
@@ -40,13 +46,16 @@
 
                 <!-- ประจำปี -->
                 <div class="col-xl-6 col-md-6 mb-4">
-                    <div class="card border-left-success shadow h-100 py-2">
+                    <div class="card border-left-success shadow h-100 ">
+                        <div class="card-header py-2">
+                            <h4 class="m-1 font-weight-bold text-gray-800">รายงาน ประจำเดือนปัจจุบัน</h4>
+                        </div>
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="h4 font-weight-bold text-gray-800">รายงาน ประจำเดือนปัจจุบัน</div>
-                                    <h5 class="mb-1 font-weight-bold text-primary text-uppercase "><a class="h5 mb-1 font-weight-bold text-dark text-uppercase ">รายรับ </a> {{$monthly_income}}<a class="h4 mb-1 font-weight-bold text-dark text-uppercase "> บาท</a></h5>
-                                    <h5 class="mb-1 font-weight-bold text-danger text-uppercase "><a class="h5 mb-1 font-weight-bold text-dark text-uppercase ">รายจ่าย </a> {{$monthly_expense}}<a class="h4 mb-1 font-weight-bold text-dark text-uppercase "> บาท</a></h5>                                
+                                    {{-- <div class="h4 font-weight-bold text-gray-800">รายงาน ประจำเดือนปัจจุบัน</div> --}}
+                                    <h5 class="mb-1 font-weight-bold text-primary text-uppercase "><a class="h5 mb-1 font-weight-bold text-dark text-uppercase ">รายรับ </a> {{number_format($monthly_income, 2, '.', ',')}}<a class="h4 mb-1 font-weight-bold text-dark text-uppercase "> บาท</a></h5>
+                                    <h5 class="mb-1 font-weight-bold text-danger text-uppercase "><a class="h5 mb-1 font-weight-bold text-dark text-uppercase ">รายจ่าย </a> {{number_format($monthly_expense, 2, '.', ',')}}<a class="h4 mb-1 font-weight-bold text-dark text-uppercase "> บาท</a></h5>                                
                                 </div>
                             </div>
                         </div>   
@@ -54,14 +63,17 @@
                 </div>
 
                  <!-- ประจำปี -->
-                 <div class="col-xl-6 col-md-6 mb-4">
-                    <div class="card border-left-success shadow h-100 py-2">
+                 <div class="col-xl-6 col-md-6 mb-4"> 
+                    <div class="card border-left-success shadow h-100 ">
+                        <div class="card-header py-2">
+                            <h4 class="m-1 font-weight-bold text-gray-800">รายงาน ประจำปีปัจจุบัน</h4>
+                        </div>
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="h3 font-weight-bold text-gray-800">รายงาน ประจำปีปัจจุบัน</div>
-                                    <h4 class="mb-1 font-weight-bold text-primary text-uppercase "><a class="h4 mb-1 font-weight-bold text-dark text-uppercase ">รายรับ </a> {{$annual_income}}<a class="h4 mb-1 font-weight-bold text-dark text-uppercase "> บาท</a></h4>
-                                    <h4 class="mb-1 font-weight-bold text-danger text-uppercase "><a class="h4 mb-1 font-weight-bold text-dark text-uppercase ">รายจ่าย </a> {{$annual_expense}}<a class="h4 mb-1 font-weight-bold text-dark text-uppercase "> บาท</a></h4>                                
+                                    {{-- <div class="h4 font-weight-bold text-gray-800">รายงาน ประจำปีปัจจุบัน</div> --}}
+                                    <h5 class="mb-1 font-weight-bold text-primary text-uppercase "><a class="h5 mb-1 font-weight-bold text-dark text-uppercase ">รายรับ </a>{{number_format($annual_income, 2, '.', ',')}} <a class="h4 mb-1 font-weight-bold text-dark text-uppercase "> บาท</a></h5>
+                                    <h5 class="mb-1 font-weight-bold text-danger text-uppercase "><a class="h5 mb-1 font-weight-bold text-dark text-uppercase ">รายจ่าย </a>{{number_format($annual_expense, 2, '.', ',')}}<a class="h4 mb-1 font-weight-bold text-dark text-uppercase "> บาท</a></h5>                                
                                 </div>
                             </div>
                         </div>   
@@ -75,19 +87,32 @@
         <div class="row ">
                 <!-- หมวดหมู่ -->
                 <div class="col-xl-6 col-md-6 mb-4 ">
-                    <div class="card border-left-success shadow h-100 py-2">
+                    <div class="card border-left-success shadow h-100 ">
                         {{-- <a href="{{ url('/chart') }}" title="Back"><button class="btn btn-warning btn-sm"><i
                             class="fa fa-arrow-left" aria-hidden="true"></i> ไป</button></a>   --}}
+                            <div class="card-header py-2">
+                                <h4 class="m-1 font-weight-bold text-gray-800">รายจ่ายตามหมวดหมู่</h4>
+                            </div>
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                             
-                                    @foreach ($transaction as $item)
-                                        <div  class="h4 font-weight-bold text-gray-800">
-                                            {{ $item->topic }}<a class="h4 mb-1 font-weight-bold text-danger text-uppercase"> {{ $item->total_sum }}</a> บาท
+                                    <div class="row">
+                                        <div class="col-xl-5 col-md-6 mb-4 ">  
+                                            @foreach ($transaction as $item)
+                                            <div  class="h5 font-weight-bold text-gray-800">
+                                             {{ $item->topic }}  <br> 
+                                            </div>
+                                            @endforeach
                                         </div>
-                                    @endforeach
+                                        <div class="col-xl-5 col-md-6 mb-4 ">                                             
+                                            @foreach ($group as $item)
+                                                <div  class="h5 font-weight-bold text-gray-800">
+                                            <a class="h5 mb-1 font-weight-bold text-danger text-uppercase"> {{number_format($item->total, 2, '.', ',')}}</a> บาท<br>
+                                                </div>
+                                            @endforeach
+                                        </div>
                                     {{-- <div class="mt-4">{{ $transaction->links() }}</div>            --}}
+                                    </div>
                                 </div>
                             </div>
                         </div>   
@@ -95,15 +120,8 @@
                 </div>
 
            
-                <div class="table-responsive">
-                   
-                      
-                      
-                      
-
-                    {{-- <div class="pagination-wrapper"> {!! $crud->appends(['search' => Request::get('search')])->render() !!} </div> --}}
-                </div>
-            
+               
+       
               
         </div>
             
