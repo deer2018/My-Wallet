@@ -9,10 +9,6 @@
                 <h6 class="m-1 font-weight-bold text-success">ข้อมูลหมวดหมู่</h6>
             </div>
             <div class="card-body">
-                <a href="{{ url('/category/create') }}" class="btn btn-success btn-sm" title="Add New category">
-                    <i class="fa fa-plus" aria-hidden="true"></i> เพิ่มรายการหมวดหมู่
-                </a>
-
                 <div class="table-responsive-sm">
 
                     <!-- จำกัดหน้าแสดงข้อมูล -->
@@ -20,12 +16,9 @@
                         <div class="row">
                             <div class="col-sm-12 col-md-10">
                                 <div class="dataTables_length" id="dataTable_length">
-                                    <!-- <label>Show <select name="dataTable_length" aria-controls="dataTable" class="custom-select  form-control " value= "{{ request('dataTable_length') }}">
-                        <option value="guest">-- เลือกประเภทผู้ใช้ --</option>
-                        <option value="volunteer">อาสาสมัคร</option>
-                        <option value="medic">หมอ</option>
-                        <option value="admin">แอดมิน</option>
-                      </select> entries</label> -->
+                                    <a href="{{ url('/category/create') }}" class="btn btn-success btn-sm" title="Add New category">
+                                        <i class="fa fa-plus" aria-hidden="true"></i> เพิ่มรายการหมวดหมู่
+                                    </a>
                                 </div>
                             </div>
 

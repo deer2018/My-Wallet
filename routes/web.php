@@ -20,6 +20,8 @@ Route::get('/admin_user_report/{id}', 'Admin\Admin_User_ReportController@report'
 //dashboard-admin
 Route::get('/dashboard', 'Admin\Admin_DashboardController@index');
 
+Route::get('/dashboard2', 'Admin\Dashboard2_Controller@index');
+
 
 //category-admin--------------
 Route::get('/category', 'Admin\CategoryController@index');

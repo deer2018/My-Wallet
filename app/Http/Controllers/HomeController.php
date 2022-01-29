@@ -16,7 +16,7 @@ class HomeController extends Controller
     public function index()
     {
         if(Auth::user()->role == "แอดมิน"){
-            return redirect("dashboard");
+            return redirect("admin_user");
     }else if(Auth::user()->role == "ผู้ใช้ทั่วไป"){
             return redirect("transaction");
     }

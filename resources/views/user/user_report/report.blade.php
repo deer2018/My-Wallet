@@ -91,7 +91,7 @@
                         {{-- <a href="{{ url('/chart') }}" title="Back"><button class="btn btn-warning btn-sm"><i
                             class="fa fa-arrow-left" aria-hidden="true"></i> ไป</button></a>   --}}
                             <div class="card-header py-2">
-                                <h4 class="m-1 font-weight-bold text-gray-800">รายจ่ายตามหมวดหมู่</h4>
+                                <h4 class="m-1 font-weight-bold text-gray-800">สรุปรายจ่ายแยกตามหมวดหมู่</h4>
                             </div>
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">

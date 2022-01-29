@@ -15,7 +15,7 @@ class TransactionController extends Controller
     {
         $user_id = Auth::id();
 
-        $perPage = 10;
+        $perPage = 20;
         $keyword = $request->get('search');
 
         // รับค่าจากปุ่มเสริจ

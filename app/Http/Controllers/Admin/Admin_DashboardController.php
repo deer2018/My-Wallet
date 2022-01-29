@@ -16,22 +16,69 @@ class Admin_DashboardController extends Controller
     {
             $year = $request->get('year');
             $month = $request->get('month');
-
-        if(empty($year && $month)){
-            $inc_my = Transaction_02::sum('income');
-        }else{
-            if(!empty($month)){
-                $inc_my = Transaction_02::whereYear('created_at', '=', $year)
+            $month_year =$request->get('month_year');
+      
+            // $month = Carbon::createFromFormat('d/m/Y', $request->get('month'));
+      
+        if(!empty($month)){
+                $inc_m = Transaction_02::whereYear('created_at', '=', $month_year)
+                ->whereMonth('created_at',  '=',  $month)
+                ->sum('income'); 
+                
+                $exp_m = Transaction_02::whereYear('created_at','=', $month_year)
                 ->whereMonth('created_at', '=', $month)
-                ->sum('income');
-            }
-            else{
-                $inc_my = Transaction_02::whereYear('created_at', '=', $year)
-                ->sum('income');
-            }
+                ->sum('expense');  
+        }
+        else{
+            $inc_m = Transaction_02::whereYear('created_at', Carbon::now()->year)
+            ->whereMonth('created_at', Carbon::now()->month)
+            ->sum('income');
+
+            $exp_m = Transaction_02::whereYear('created_at', Carbon::now()->year)
+            ->whereMonth('created_at', Carbon::now()->month)
+            ->sum('expense');    
+               
         }
 
+        if(!empty($year)){
+            $inc_y = Transaction_02::whereYear('created_at', '=', $year)     
+            ->sum('income'); 
+            
+            $exp_y = Transaction_02::whereYear('created_at','=', $year)       
+            ->sum('expense');  
+        }
+        else{
+            $inc_y = Transaction_02::whereYear('created_at', Carbon::now()->year)      
+            ->sum('income');
 
+            $exp_y = Transaction_02::whereYear('created_at', Carbon::now()->year)
+            ->sum('expense');    
+            
+        }
+
+        // if(!empty($month)){
+        //     $exp_my = Transaction_02::whereMonth('created_at', Carbon::now()->month)
+        //     // ->whereMonth('created_at', 'LIKE', $month)
+        //     ->sum('expense');       
+        // }
+        // else{
+           
+        // }
+        
+
+        // if(empty($year && $month)){
+        //     $exp_my = Transaction_02::sum('expense');
+        // }else{
+        //     if(!empty($month)){
+        //         $exp_my = Transaction_02::whereYear('created_at', '=', $year)
+        //         ->whereMonth('created_at', '=', $month)
+        //         ->sum('expense');
+        //     }
+        //     else{
+        //         $exp_my = Transaction_02::whereYear('created_at', '=', $year)
+        //         ->sum('expense');
+        //     }
+        // }
 
 
         // if(!empty($month)){
@@ -64,7 +111,7 @@ class Admin_DashboardController extends Controller
             ->select( DB::raw("sum('income') as total_income") ,'topic')
             ->groupBy('topic')
             ->get();
-          //รวมกลุ่ม Topic หมวดหมู่รายจ่าย
+        //รวมกลุ่ม Topic หมวดหมู่รายจ่าย
         $category_expense = Transaction_02::join('category_02', 'transaction_02.category_id', '=', 'category_02.category_id')
             ->where('category_type' ,'=', 'รายจ่าย')   
             ->select( DB::raw("sum('expense') as total_expense") ,'topic')
@@ -110,6 +157,8 @@ class Admin_DashboardController extends Controller
 
 
        
-        return view('admin.dashboard',compact('income','expense','category_income','category_expense','group_income','group_expense','transaction_income','transaction_expense','year','month','inc_my'));
+        return view('admin.dashboard',compact('income','expense','category_income','category_expense',
+        'group_income','group_expense','transaction_income','transaction_expense',
+        'year','month','month_year','inc_m','exp_m','inc_y','exp_y'));
     }
 }

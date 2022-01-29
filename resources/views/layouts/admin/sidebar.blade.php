@@ -18,8 +18,13 @@
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
+    {{-- <li class="nav-item">
         <a class="nav-link" href="{{ url('/dashboard') }}">
+            <i class="fas fa-circle"></i>
+            <span>แดชบอร์ด</span></a>
+    </li> --}}
+     <li class="nav-item">
+        <a class="nav-link" href="{{ url('/dashboard2') }}">
             <i class="fas fa-circle"></i>
             <span>แดชบอร์ด</span></a>
     </li>
@@ -33,7 +38,6 @@
             <i class="fas fa-circle"></i>
             <span>จัดการหมวดหมู่</span></a>
     </li>
-
 
 
 

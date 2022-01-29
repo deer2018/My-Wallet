@@ -38,6 +38,8 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $requestData = $request->all();
+        // $user_id = Auth::id();
+        // $requestData["user_id"] = $user_id;
    
         Category_02::create($requestData);
        
