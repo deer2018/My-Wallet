@@ -16,6 +16,12 @@
                         {{ method_field('PATCH') }}
                         {{ csrf_field() }}
 
+                        <div class="form-group {{ $errors->has('student_id') ? 'has-error' : ''}}">
+                            <label for="student_id" class="control-label">{{ 'รหัสนักศึกษา' }}<font size="2" color="#FF0000">*</font></label>
+                            <input class="form-control" name="student_id" type="text" id="student_id" pattern="[0-9]{11}" value="{{ isset($User->student_id) ? $User->student_id : ''}}" required>
+                            {!! $errors->first('student_id', '<p class="help-block">:message</p>') !!}
+                        </div>
+
                         <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
 
                             <label for="name" class="control-label">{{ 'ชื่อที่แสดงบนเว็บไซต์' }}<font size="2" color="#FF0000">*</font></label>
@@ -36,15 +42,18 @@
                             {!! $errors->first('surname', '<p class="help-block">:message</p>') !!}
                         </div>
 
-                        <div class="form-group {{ $errors->has('sex') ? 'has-error' : ''}}">
-                            <label for="sex" class="control-label">{{ 'เพศ' }}</label>
-                            <select name="sex" class="form-control" id="sex">
-                                <option value=""selected disabled>-กรุณาเลือกเพศ-</option>
-                                @foreach (json_decode('{"ชาย":"ชาย","หญิง":"หญิง"}', true) as $optionKey => $optionValue)
-                                <option value="{{ $optionKey }}" {{ (isset($User->sex) && $User->sex == $optionKey) ? 'selected' : ''}}>{{ $optionValue }}</option>
+                        <div class="form-group {{ $errors->has('faculty') ? 'has-error' : ''}}">
+                            <label for="faculty" class="control-label">{{ 'คณะ' }}</label>
+                            <select name="faculty" class="form-control" id="faculty">
+                                <option value=""selected disabled>-กรุณาเลือกคณะ-</option>
+                                @foreach (json_decode('{"ครุศาสตร์":"ครุศาสตร์","วิทยาการจัดการ":"วิทยาการจัดการ",
+                                "วิทยาศาสตร์และเทคโนโลยี":"วิทยาศาสตร์และเทคโนโลยี","เทคโนโลยีอุตสาหกรรม":"เทคโนโลยีอุตสาหกรรม"
+                                ,"เทคโนโลยีการเกษตร":"เทคโนโลยีการเกษตร","มนุษยศาสตร์และสังคมศาสตร์":"มนุษยศาสตร์และสังคมศาสตร์"
+                                ,"บัณฑิตวิทยาลัย":"บัณฑิตวิทยาลัย","สาธารณสุขศาสตร์":"สาธารณสุขศาสตร์"}', true) as $optionKey => $optionValue)
+                                <option value="{{ $optionKey }}" {{ (isset($User->faculty) && $User->faculty == $optionKey) ? 'selected' : ''}}>{{ $optionValue }}</option>
                                 @endforeach
                             </select>
-                            {!! $errors->first('sex', '<p class="help-block">:message</p>') !!}
+                            {!! $errors->first('faculty', '<p class="help-block">:message</p>') !!}
                         </div>
 
                         <div class="form-group {{ $errors->has('age') ? 'has-error' : ''}}">
@@ -57,6 +66,17 @@
                             <label for="phone" class="control-label">{{ 'เบอร์โทรศัพท์' }}<font size="2" color="#FF0000">*</font></label>
                             <input class="form-control" name="phone" type="text" id="phone" value="{{ isset($User->phone) ? $User->phone : ''}}" required>
                             {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
+                        </div>
+
+                        <div class="form-group {{ $errors->has('sex') ? 'has-error' : ''}}">
+                            <label for="sex" class="control-label">{{ 'เพศ' }}</label>
+                            <select name="sex" class="form-control" id="sex">
+                                <option value=""selected disabled>-กรุณาเลือกเพศ-</option>
+                                @foreach (json_decode('{"ชาย":"ชาย","หญิง":"หญิง"}', true) as $optionKey => $optionValue)
+                                <option value="{{ $optionKey }}" {{ (isset($User->sex) && $User->sex == $optionKey) ? 'selected' : ''}}>{{ $optionValue }}</option>
+                                @endforeach
+                            </select>
+                            {!! $errors->first('sex', '<p class="help-block">:message</p>') !!}
                         </div>
 
 

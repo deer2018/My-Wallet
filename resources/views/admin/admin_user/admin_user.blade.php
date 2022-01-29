@@ -49,7 +49,7 @@
                 <th>#</th>
                 <th>ชื่อในเว็บ</th>
                 <th>อีเมล</th>
-                <th>สถานะ</th>
+                <th>คณะ</th>
                 <th></th>
               </tr>
             </thead>
@@ -58,8 +58,8 @@
               <td>{{ $loop->iteration }}</td>
               <td> {{ $item->name  }}</td>
               <td> {{ $item->email  }}</td>
-              <td> {{ $item->role  }}</td>
-              <td><a href="{{ url('/admin_user/' . $item->id) }}" title="View Detail"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>ประวัติส่วนตัว</button></a>
+              <td> {{ $item->faculty  }}</td>
+              <td><a href="{{ url('/admin_user/' . $item->id) }}" title="ประวัติส่วนตัว"><button class="btn btn-primary btn-sm"><i class="fas fa-edit" aria-hidden="true"></i></button></a>
                 {{-- <a href="{{ url('/admin_user_report/' . $item->id ) }}" title="Report"><button class="btn btn-info btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>สรุปรายรับ-จ่าย</button></a> --}}
                 <form method="POST" action="{{ url('/admin_user' . '/' . $item->id) }}"
                   accept-charset="UTF-8" style="display:inline">

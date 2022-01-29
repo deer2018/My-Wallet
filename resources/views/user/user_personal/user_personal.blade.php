@@ -28,6 +28,17 @@
                                 <tr>
                                     <td>
                                         <strong>
+                                            <span class="glyphicon glyphicon-asterisk text-primary"></span>
+                                            รหัสนักศึกษา
+                                        </strong>
+                                    </td>
+                                    <td class="text-primary">
+                                        {{ $data->student_id }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>
                                             <span class="glyphicon glyphicon-user  text-primary"></span>
                                             ชื่อ
                                         </strong>
@@ -101,6 +112,17 @@
                                     </td>
                                     <td class="text-primary">
                                         {{ $data->phone }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>
+                                            <span class="glyphicon glyphicon-asterisk text-primary"></span>
+                                            คณะ
+                                        </strong>
+                                    </td>
+                                    <td class="text-primary">
+                                        {{ $data->faculty }}
                                     </td>
                                 </tr>
                              

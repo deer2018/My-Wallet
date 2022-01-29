@@ -18,8 +18,8 @@ class Admin_User_ReportController extends Controller
     {
        
         $user_id = User::findOrFail($id);
-      
-
+        
+        
         $income = DB::table('transaction_02')
         ->where(array('user_id' => $user_id->id))
         ->sum('income');
