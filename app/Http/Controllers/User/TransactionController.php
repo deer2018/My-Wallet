@@ -15,6 +15,9 @@ class TransactionController extends Controller
     {
         $user_id = Auth::id();
 
+        $sum_income = 0;
+        $sum_expense = 0;
+
         $perPage = 20;
         $keyword = $request->get('search');
 
@@ -37,6 +40,10 @@ class TransactionController extends Controller
                     ->orWhere('category_02.topic', 'LIKE', "%$keyword%")
                     ->where('transaction_02.user_id' ,'=', $user_id) 
                     ->orderBy('created_at','desc')->paginate($perPage);
+
+                    // $sum_income += $transaction['income'];
+                    // $sum_expense += $transaction['expense'];
+                    // $transaction_total = $sum_income - $sum_expense;
                 }
                 else {
                     // ถ้าระยะเวลาเริ่มต้นและสิ้นสุด เป็นค่าว่าง แต่ปุ่มเสริจ ไม่ใช่ค่าว่าง ให้แสดง
@@ -48,6 +55,10 @@ class TransactionController extends Controller
                         ->orWhere('topic', 'LIKE', "%$keyword%")
                         ->where('transaction_02.user_id' ,'=', $user_id)  
                         ->orderBy('created_at','desc')->paginate($perPage);
+
+                        // $sum_income += $transaction['income'];
+                        // $sum_expense += $transaction['expense'];
+                        // $transaction_total = $sum_income - $sum_expense;
                     }
                     else{
                         // วันเริ่มต้นไม่เป็นค่าว่าง ให้แสดง
@@ -105,6 +116,12 @@ class TransactionController extends Controller
             ->where('transaction_02.user_id' ,'=', $user_id)  
             ->select('transaction_02.*', 'category_02.topic')
             ->orderBy('created_at','desc')->paginate($perPage); 
+
+            // $sum_income = Transaction_02::where('transaction_02.user_id' ,'=', $user_id) 
+            // ->sum('income');
+            // $sum_expense = Transaction_02::where('transaction_02.user_id' ,'=', $user_id) 
+            // ->sum('expense');
+            // $transaction_total = $sum_income - $sum_expense;
         }
          
         return view('user.user_tran.tran_index', compact('transaction','topic','startDate','endDate','type','keyword'));

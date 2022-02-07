@@ -41,7 +41,7 @@
                             <input class="form-control" rows="5" name="surname" type="text" id="surname" value="{{ isset($User->surname) ? $User->surname : ''}}" required>
                             {!! $errors->first('surname', '<p class="help-block">:message</p>') !!}
                         </div>
-
+                        {{-- บัณฑิตวิทยาลัย --}}
                         <div class="form-group {{ $errors->has('faculty') ? 'has-error' : ''}}">
                             <label for="faculty" class="control-label">{{ 'คณะ' }}</label>
                             <select name="faculty" class="form-control" id="faculty">
@@ -49,7 +49,7 @@
                                 @foreach (json_decode('{"ครุศาสตร์":"ครุศาสตร์","วิทยาการจัดการ":"วิทยาการจัดการ",
                                 "วิทยาศาสตร์และเทคโนโลยี":"วิทยาศาสตร์และเทคโนโลยี","เทคโนโลยีอุตสาหกรรม":"เทคโนโลยีอุตสาหกรรม"
                                 ,"เทคโนโลยีการเกษตร":"เทคโนโลยีการเกษตร","มนุษยศาสตร์และสังคมศาสตร์":"มนุษยศาสตร์และสังคมศาสตร์"
-                                ,"บัณฑิตวิทยาลัย":"บัณฑิตวิทยาลัย","สาธารณสุขศาสตร์":"สาธารณสุขศาสตร์"}', true) as $optionKey => $optionValue)
+                                ,"สาธารณสุขศาสตร์":"สาธารณสุขศาสตร์"}', true) as $optionKey => $optionValue)
                                 <option value="{{ $optionKey }}" {{ (isset($User->faculty) && $User->faculty == $optionKey) ? 'selected' : ''}}>{{ $optionValue }}</option>
                                 @endforeach
                             </select>

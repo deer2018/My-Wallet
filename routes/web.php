@@ -49,6 +49,11 @@ Route::get('/report_user', 'User\ReportController@index');
 Route::get('/chart', 'User\ReportController@donutChart');
 Route::get('/chart_report', 'User\ReportController@chart');
 
+Route::get('/report_sup/jan_income', 'User\AnnualController@jan_income');
+Route::get('/report_sup/jan_expense', 'User\AnnualController@jan_expense');
+
+
+
 //---------------------------------------------------------------
 
 Route::get('/datepicker', function () {
