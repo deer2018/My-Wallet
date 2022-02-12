@@ -6,7 +6,7 @@
 
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-1 font-weight-bold text-success">ข้อมูลหมวดหมู่</h6>
+                <h6 class="m-1 font-weight-bold text-info">ข้อมูลหมวดหมู่</h6>
             </div>
             <div class="card-body">
                 <div class="table-responsive-sm">
@@ -16,7 +16,7 @@
                         <div class="row">
                             <div class="col-sm-12 col-md-10">
                                 <div class="dataTables_length" id="dataTable_length">
-                                    <a href="{{ url('/category/create') }}" class="btn btn-success btn-sm" title="Add New category">
+                                    <a href="{{ url('/category/create') }}" class="btn btn-info btn-sm" title="Add New category">
                                         <i class="fa fa-plus" aria-hidden="true"></i> เพิ่มรายการหมวดหมู่
                                     </a>
                                 </div>
@@ -30,7 +30,7 @@
                                         <input type="text" class="form-control form-control" name="search"
                                             placeholder="Search..." value="{{ request('search') }}">
                                         <span class="input-group-append">
-                                            <button class="btn btn-success" type="submit">
+                                            <button class="btn btn-info" type="submit">
                                                 <i class="fa fa-search"></i>
                                             </button>
                                         </span>

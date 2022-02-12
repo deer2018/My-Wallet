@@ -49,8 +49,33 @@ Route::get('/report_user', 'User\ReportController@index');
 Route::get('/chart', 'User\ReportController@donutChart');
 Route::get('/chart_report', 'User\ReportController@chart');
 
-Route::get('/report_sup/jan_income', 'User\AnnualController@jan_income');
-Route::get('/report_sup/jan_expense', 'User\AnnualController@jan_expense');
+//report รายรับ เดือน 1-12
+Route::get('/report_sup/{select_year}/jan_income', 'User\Report_incomeController@jan_income');
+Route::get('/report_sup/{select_year}/feb_income', 'User\Report_incomeController@feb_income');
+Route::get('/report_sup/{select_year}/mar_income', 'User\Report_incomeController@mar_income');
+Route::get('/report_sup/{select_year}/apr_income', 'User\Report_incomeController@apr_income');
+Route::get('/report_sup/{select_year}/may_income', 'User\Report_incomeController@may_income');
+Route::get('/report_sup/{select_year}/jun_income', 'User\Report_incomeController@jun_income');
+Route::get('/report_sup/{select_year}/jul_income', 'User\Report_incomeController@jul_income');
+Route::get('/report_sup/{select_year}/aug_income', 'User\Report_incomeController@aug_income');
+Route::get('/report_sup/{select_year}/sep_income', 'User\Report_incomeController@sep_income');
+Route::get('/report_sup/{select_year}/oct_income', 'User\Report_incomeController@oct_income');
+Route::get('/report_sup/{select_year}/nov_income', 'User\Report_incomeController@nov_income');
+Route::get('/report_sup/{select_year}/dec_income', 'User\Report_incomeController@dec_income');
+
+//report รายจ่าย เดือน 1-12
+Route::get('/report_sup/{select_year}/jan_expense', 'User\Report_expenseController@jan_expense');
+Route::get('/report_sup/{select_year}/feb_expense', 'User\Report_expenseController@feb_expense');
+Route::get('/report_sup/{select_year}/mar_expense', 'User\Report_expenseController@mar_expense');
+Route::get('/report_sup/{select_year}/apr_expense', 'User\Report_expenseController@apr_expense');
+Route::get('/report_sup/{select_year}/may_expense', 'User\Report_expenseController@may_expense');
+Route::get('/report_sup/{select_year}/jun_expense', 'User\Report_expenseController@jun_expense');
+Route::get('/report_sup/{select_year}/jul_expense', 'User\Report_expenseController@jul_expense');
+Route::get('/report_sup/{select_year}/aug_expense', 'User\Report_expenseController@aug_expense');
+Route::get('/report_sup/{select_year}/sep_expense', 'User\Report_expenseController@sep_expense');
+Route::get('/report_sup/{select_year}/oct_expense', 'User\Report_expenseController@oct_expense');
+Route::get('/report_sup/{select_year}/nov_expense', 'User\Report_expenseController@nov_expense');
+Route::get('/report_sup/{select_year}/dec_expense', 'User\Report_expenseController@dec_expense');
 
 
 

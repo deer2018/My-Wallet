@@ -18,7 +18,7 @@ class TransactionController extends Controller
         $sum_income = 0;
         $sum_expense = 0;
 
-        $perPage = 20;
+        $perPage = 10;
         $keyword = $request->get('search');
 
         // รับค่าจากปุ่มเสริจ

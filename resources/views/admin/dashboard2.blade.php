@@ -65,10 +65,10 @@
 
         <hr>
 
-        <div class="row">
+        {{-- <div class="row">
 
 
-            <!-- รายรับ -->
+             รายรับ 
             <div class="col-xl-6 col-md-6 mb-4">
                 <div class="card border-left-primary shadow h-100 ">
                     <div class="card-header py-2">
@@ -77,7 +77,7 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                {{-- <div class="h3 font-weight-bold text-gray-800">รายรับทั้งหมด</div><hr> --}}
+                               
                                 <h5 class="mb-1 font-weight-bold text-primary text-uppercase ">{{ $income }}<a
                                         class="h5 mb-1 font-weight-bold text-dark text-uppercase "> บาท</a></h5>
                             </div>
@@ -86,7 +86,7 @@
                 </div>
             </div>
 
-            <!-- รายจ่าย -->
+             รายจ่าย 
             <div class="col-xl-6 col-md-6 mb-4">
                 <div class="card border-left-danger shadow h-100 ">
                     <div class="card-header py-2">
@@ -95,7 +95,7 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                {{-- <div class="h3 font-weight-bold text-gray-800">รายจ่ายทั้งหมด</div><hr> --}}
+                           
                                 <h5 class="mb-1 font-weight-bold text-danger text-uppercase ">{{ $expense }}<a
                                         class="h4 mb-1 font-weight-bold text-dark text-uppercase "> บาท</a></h5>
                             </div>
@@ -105,12 +105,12 @@
             </div>
 
 
-        </div>
+        </div> --}}
 
-        <div class="row">
+        {{-- <div class="row">
 
 
-            <!-- รายรับ -->
+       
             <div class="col-xl-6 col-md-6 mb-4">
                 <div class="card border-left-primary shadow h-100 ">
                     <div class="card-header py-2">
@@ -135,7 +135,7 @@
                                             </div>
                                         @endforeach
                                     </div>
-                                    {{-- <div class="mt-4">{{ $transaction->links() }}</div> --}}
+                                    
                                 </div>
                             </div>
                         </div>
@@ -143,7 +143,6 @@
                 </div>
             </div>
 
-            <!-- รายจ่าย -->
             <div class="col-xl-6 col-md-6 mb-4">
                 <div class="card border-left-danger shadow h-100 ">
                     <div class="card-header py-2">
@@ -168,7 +167,7 @@
                                             </div>
                                         @endforeach
                                     </div>
-                                    {{-- <div class="mt-4">{{ $transaction->links() }}</div> --}}
+                                   
                                 </div>
                                 <h5 class="mb-1 font-weight-bold text-danger text-uppercase ">{{ $expense }}<a
                                     class="h4 mb-1 font-weight-bold text-dark text-uppercase "> บาท</a></h5>
@@ -179,7 +178,7 @@
             </div>
 
 
-        </div>
+        </div> --}}
 
 
 

@@ -229,13 +229,13 @@
                                 </table>
                                 <hr>
 
-                                <div class="table " style="text-align: center">รวม :
+                                {{-- <div class="table " style="text-align: center">รวม :
                                     @if ($total >= 0)
                                         <a style="color:blue">{{number_format($total, 2, '.', ',')}}</a>
                                     @else
                                         <a style="color:red">{{number_format($total, 2, '.', ',')}}</a>
                                     @endif
-                                </div>
+                                </div> --}}
                         </div>
                         <div class="mt-4">{{ $transaction->links() }}</div>
                         {{-- <div class="pagination-wrapper"> {!! $transaction->appends(['search' => Request::get('search')])->render() !!} </div> --}}

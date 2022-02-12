@@ -12,11 +12,14 @@ use Illuminate\Support\Facades\DB;
 class ReportController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
         $user_id = Auth::id();
 
         $date = Carbon::now();
+        $monthCheck = Carbon::now()->month;
+        $yearCheck = Carbon::now()->format('Y');
+        $select_year = $request->get('selectYear');
 
         $thai_months = [
             1 => 'มกราคม',
@@ -36,7 +39,15 @@ class ReportController extends Controller
         // แปลงเลขเดือนเป็นชื่อเดือน
         $monthName = $thai_months[$date->month];
         // แปลงปีค.ศ. เป็น พ.ศ.
-        $yearName = $date->format('Y') + 543;
+        $yearName = $select_year + 543;
+
+        $group_year = Transaction_02::select( DB::raw('YEAR(created_at) year'))
+            ->where(array('user_id' => $user_id))
+            ->groupBy('year')
+            ->orderBy('year','desc')
+            ->get();
+    
+
 
         //คำนวนรายรับทั้งหมด
         $income = DB::table('transaction_02')
@@ -51,13 +62,13 @@ class ReportController extends Controller
         $jan_income = DB::table("transaction_02")
             ->where(array('user_id' => $user_id))
             ->whereMonth('created_at', '=', '01')
-            ->whereYear('created_at', Carbon::parse($date)->year)
+            ->whereYear('created_at', '=', $select_year)
             ->sum('income');
         
         $jan_expense = DB::table("transaction_02")
             ->where(array('user_id' => $user_id))
             ->whereMonth('created_at', '=', '01')
-            ->whereYear('created_at', Carbon::parse($date)->year)
+            ->whereYear('created_at', '=', $select_year)
             ->sum('expense');
         $jan_total = $jan_income - $jan_expense;
 
@@ -65,143 +76,143 @@ class ReportController extends Controller
         $feb_income = DB::table("transaction_02")
             ->where(array('user_id' => $user_id))
             ->whereMonth('created_at', '=', '02')
-            ->whereYear('created_at', Carbon::parse($date)->year)
+            ->whereYear('created_at', '=', $select_year)
             ->sum('income');
         
         $feb_expense = DB::table("transaction_02")
             ->where(array('user_id' => $user_id))
-            ->whereMonth('created_at', '=', '0032')
-            ->whereYear('created_at', Carbon::parse($date)->year)
+            ->whereMonth('created_at', '=', '02')
+            ->whereYear('created_at', '=', $select_year)
             ->sum('expense');
-        $feb_total = $jan_income - $jan_expense;
+        $feb_total = $feb_income - $feb_expense;
 
         $mar_income = DB::table("transaction_02")
             ->where(array('user_id' => $user_id))
             ->whereMonth('created_at', '=', '03')
-            ->whereYear('created_at', Carbon::parse($date)->year)
+            ->whereYear('created_at', '=', $select_year)
             ->sum('income');
         
         $mar_expense = DB::table("transaction_02")
             ->where(array('user_id' => $user_id))
             ->whereMonth('created_at', '=', '03')
-            ->whereYear('created_at', Carbon::parse($date)->year)
+            ->whereYear('created_at', '=', $select_year)
             ->sum('expense');
         $mar_total = $mar_income - $mar_expense;
 
         $apr_income = DB::table("transaction_02")
             ->where(array('user_id' => $user_id))
             ->whereMonth('created_at', '=', '04')
-            ->whereYear('created_at', Carbon::parse($date)->year)
+            ->whereYear('created_at', '=', $select_year)
             ->sum('income');
         
         $apr_expense = DB::table("transaction_02")
             ->where(array('user_id' => $user_id))
             ->whereMonth('created_at', '=', '04')
-            ->whereYear('created_at', Carbon::parse($date)->year)
+            ->whereYear('created_at', '=', $select_year)
             ->sum('expense');
         $apr_total = $apr_income - $apr_expense;
 
         $may_income = DB::table("transaction_02")
             ->where(array('user_id' => $user_id))
             ->whereMonth('created_at', '=', '05')
-            ->whereYear('created_at', Carbon::parse($date)->year)
+            ->whereYear('created_at', '=', $select_year)
             ->sum('income');
         
         $may_expense = DB::table("transaction_02")
             ->where(array('user_id' => $user_id))
             ->whereMonth('created_at', '=', '05')
-            ->whereYear('created_at', Carbon::parse($date)->year)
+            ->whereYear('created_at', '=', $select_year)
             ->sum('expense');
         $may_total = $may_income - $may_expense;
 
         $jun_income = DB::table("transaction_02")
             ->where(array('user_id' => $user_id))
             ->whereMonth('created_at', '=', '06')
-            ->whereYear('created_at', Carbon::parse($date)->year)
+            ->whereYear('created_at', '=', $select_year)
             ->sum('income');
         
         $jun_expense = DB::table("transaction_02")
             ->where(array('user_id' => $user_id))
             ->whereMonth('created_at', '=', '06')
-            ->whereYear('created_at', Carbon::parse($date)->year)
+            ->whereYear('created_at', '=', $select_year)
             ->sum('expense');
         $jun_total = $jun_income - $jun_expense;
 
         $jul_income = DB::table("transaction_02")
             ->where(array('user_id' => $user_id))
             ->whereMonth('created_at', '=', '07')
-            ->whereYear('created_at', Carbon::parse($date)->year)
+            ->whereYear('created_at', '=', $select_year)
             ->sum('income');
         
         $jul_expense = DB::table("transaction_02")
             ->where(array('user_id' => $user_id))
             ->whereMonth('created_at', '=', '07')
-            ->whereYear('created_at', Carbon::parse($date)->year)
+            ->whereYear('created_at', '=', $select_year)
             ->sum('expense');
         $jul_total = $jul_income - $jul_expense;
 
         $aug_income = DB::table("transaction_02")
             ->where(array('user_id' => $user_id))
             ->whereMonth('created_at', '=', '08')
-            ->whereYear('created_at', Carbon::parse($date)->year)
+            ->whereYear('created_at', '=', $select_year)
             ->sum('income');
         
         $aug_expense = DB::table("transaction_02")
             ->where(array('user_id' => $user_id))
             ->whereMonth('created_at', '=', '08')
-            ->whereYear('created_at', Carbon::parse($date)->year)
+            ->whereYear('created_at', '=', $select_year)
             ->sum('expense');
         $aug_total = $aug_income - $aug_expense;
 
         $sep_income = DB::table("transaction_02")
             ->where(array('user_id' => $user_id))
             ->whereMonth('created_at', '=', '09')
-            ->whereYear('created_at', Carbon::parse($date)->year)
+            ->whereYear('created_at', '=', $select_year)
             ->sum('income');
         
         $sep_expense = DB::table("transaction_02")
             ->where(array('user_id' => $user_id))
             ->whereMonth('created_at', '=', '09')
-            ->whereYear('created_at', Carbon::parse($date)->year)
+            ->whereYear('created_at', '=', $select_year)
             ->sum('expense');
         $sep_total = $sep_income - $sep_expense;
 
         $oct_income = DB::table("transaction_02")
             ->where(array('user_id' => $user_id))
             ->whereMonth('created_at', '=', '10')
-            ->whereYear('created_at', Carbon::parse($date)->year)
+            ->whereYear('created_at', '=', $select_year)
             ->sum('income');
         
         $oct_expense = DB::table("transaction_02")
             ->where(array('user_id' => $user_id))
             ->whereMonth('created_at', '=', '10')
-            ->whereYear('created_at', Carbon::parse($date)->year)
+            ->whereYear('created_at', '=', $select_year)
             ->sum('expense');
         $oct_total = $oct_income - $oct_expense;
 
         $nov_income = DB::table("transaction_02")
             ->where(array('user_id' => $user_id))
             ->whereMonth('created_at', '=', '11')
-            ->whereYear('created_at', Carbon::parse($date)->year)
+            ->whereYear('created_at', '=', $select_year)
             ->sum('income');
         
         $nov_expense = DB::table("transaction_02")
             ->where(array('user_id' => $user_id))
             ->whereMonth('created_at', '=', '11')
-            ->whereYear('created_at', Carbon::parse($date)->year)
+            ->whereYear('created_at', '=', $select_year)
             ->sum('expense');
         $nov_total = $nov_income - $nov_expense;
 
         $dec_income = DB::table("transaction_02")
             ->where(array('user_id' => $user_id))
             ->whereMonth('created_at', '=', '12')
-            ->whereYear('created_at', Carbon::parse($date)->year)
+            ->whereYear('created_at', '=', $select_year)
             ->sum('income');
         
         $dec_expense = DB::table("transaction_02")
             ->where(array('user_id' => $user_id))
             ->whereMonth('created_at', '=', '12')
-            ->whereYear('created_at', Carbon::parse($date)->year)
+            ->whereYear('created_at', '=', $select_year)
             ->sum('expense');
         $dec_total = $dec_income - $dec_expense;
 
@@ -228,14 +239,14 @@ class ReportController extends Controller
         //คำนวนรายรับ ประจำปี -จากปีปัจจุบัน
         $annual_income = DB::table("transaction_02")
             ->where(array('user_id' => $user_id))
-            ->whereYear('created_at', Carbon::now()->year)
+            ->whereYear('created_at', '=', $select_year)
             ->sum('income');
         //คำนวนรายจ่าย ประจำปี -จากปีปัจจุบัน
         $annual_expense = DB::table("transaction_02")
             ->where(array('user_id' => $user_id))
-            ->whereYear('created_at', Carbon::now()->year)
+            ->whereYear('created_at', '=', $select_year)
             ->sum('expense');
-
+        $annual_total = $annual_income - $annual_expense;
     
         // $transaction = Transaction_02::join('category_02', 'transaction_02.category_id', '=', 'category_02.category_id')
         //     ->where('transaction_02.user_id', '=', $user_id)
@@ -262,6 +273,7 @@ class ReportController extends Controller
                 'monthly_expense',
                 'annual_income',
                 'annual_expense',
+                'annual_total',
                 'group',
                 'yearName',
                 'monthName',
@@ -269,6 +281,11 @@ class ReportController extends Controller
                 'jan_income',
                 'jan_expense',
                 'jan_total',
+                'monthCheck',
+                // 'yearCheck',
+                'group_year',
+                'select_year',
+               
 
                 'feb_income',
                 'feb_expense',

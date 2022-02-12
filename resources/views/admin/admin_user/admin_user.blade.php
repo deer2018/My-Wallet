@@ -6,7 +6,7 @@
 
   <div class="card shadow mb-4">
     <div class="card-header py-3">
-      <h6 class="m-1 font-weight-bold text-success">ข้อมูลสมาชิก</h6>
+      <h6 class="m-1 font-weight-bold text-info">ข้อมูลสมาชิก</h6>
     </div>
     <div class="card-body">
       <div class="table-responsive-sm">
@@ -31,7 +31,7 @@
                 <div class="input-group">
                   <input type="text" class="form-control form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
                   <span class="input-group-append">
-                    <button class="btn btn-success" type="submit">
+                    <button class="btn btn-info" type="submit">
                       <i class="fa fa-search"></i>
                     </button>
                   </span>
