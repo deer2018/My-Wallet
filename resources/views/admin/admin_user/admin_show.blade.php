@@ -22,7 +22,7 @@
                                 <tbody>
                                 <tbody>
                                     <tr><th>เลขลำดับอาสาสมัคร</th><td>{{ $users->id }} </td></tr>
-                                    <tr><th>รหัสนักศึกษา</th><td>{{ $users->student_id }} </td></tr>
+                                    {{-- <tr><th>รหัสนักศึกษา</th><td>{{ $users->student_id }} </td></tr> --}}
                                     <tr><th>ชื่อ</th><td> {{ $users->mastername }} </td></tr>
                                     <tr><th>นามสกุล</th><td> {{ $users->surname }} </td></tr>
                                     <tr><th>เบอร์-มือถือ</th><td> {{ $users->phone }} </td></tr>

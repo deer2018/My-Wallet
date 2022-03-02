@@ -41,7 +41,7 @@
 
 
                             <div class="table-responsive-sm">
-                                <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0"
+                                <table class="table table-bordered dataTable text-weight-bold" id="dataTable" width="100%" cellspacing="0"
                                     role="grid" aria-describedby="dataTable_info" style="width: 100%;">
 
                                     <?php $sum_income = 0.0; ?>
@@ -77,7 +77,7 @@
                                     @endforeach
                                 </table>
                               
-                                <div class="table " style="text-align: right ; padding-right:10%">รวม :
+                                <div class="table text-weight-bold" style="text-align: right ; padding-right:10%">รวม :
                                         <a style="color:blue">{{number_format($sum_income, 2, '.', ',')}}</a>                                
                                 </div>
                             </div>
@@ -85,6 +85,52 @@
                         </div>
 
                     </div>
+
+                     <!-- หมวดหมู่รายรับ -->
+            <div class="col-xl-12 col-md-6 mb-4 ">
+                <div class="card ">
+                    {{-- <a href="{{ url('/chart') }}" title="Back"><button class="btn btn-warning btn-sm"><i
+                        class="fa fa-arrow-left" aria-hidden="true"></i> ไป</button></a> --}}
+                    <div class="card-header py-2 ">
+                        <h5 class="m-1 font-weight-bold text-gray-800">รายรับตามหมวดหมู่</h5>
+                    
+                    </div>
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                {{-- <div class="h4 font-weight-bold text-gray-800">รายจ่ายตามหมวดหมู่ทั้งหมด</div><hr> --}}
+                                <div class="row">
+                                    <div class="col-xl-4 col-md-6 mb-3 ">
+                                        @foreach ($income_cate as $item)
+                                            <div class=" font-weight-bold text-gray-800">
+                                                {{ $item->topic }} <br>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                    <div class="col-xl-4 col-md-6 mb-3 ">
+                                        @foreach ($income_cate as $item)
+                                            <div class=" font-weight-bold text-gray-800">
+                                                <a class=" mb-1 font-weight-bold text-primary text-uppercase">
+                                                    {{ number_format($item->total_income, 2, '.', ',') }}</a> บาท<br>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                    <div class="col-xl-4 col-md-6 mb-3 ">
+                                        @foreach ($income_cate as $item)
+                                            <div class=" font-weight-bold text-primary">
+                                                <a class=" mb-1 font-weight-bold text-dark text-uppercase">คิดเป็น : </a>
+                                                    {{ number_format($item->total_income/$income_total * 100 , 2, '.', ',') }} 
+                                                <a class=" mb-1 font-weight-bold text-dark text-uppercase"> % ของยอดรวม </a><br>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                    {{-- <div class="mt-4">{{ $transaction->links() }}</div> --}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
                 </div>           
       
     </div>

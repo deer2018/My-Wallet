@@ -523,14 +523,13 @@
                     <div class="row justify-content-around">
 
                         <!-- รายรับ -->
-                        <div class="col-xl-3 col-md-5 mb-4">
+                        <div class="col-xl-5 col-md-5 mb-4">
                             <div class="card ">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <h5 class="mb-1 font-weight-bold text-primary text-uppercase ">
-                                                <a class="h5 mb-1 font-weight-bold text-dark text-uppercase ">รวมรายรับปี
-                                                    {{ $yearName }} :</a>
+                                                <a class="h5 mb-1 font-weight-bold text-dark text-uppercase ">รวมรายรับปี {{ $yearName }} :</a>
                                                 {{ number_format($annual_income, 2, '.', ',') }}
                                                 <a class="h5 mb-1 font-weight-bold text-dark text-uppercase "> บาท</a>
                                             </h5>
@@ -541,7 +540,7 @@
                         </div>
 
                         <!-- รายจ่าย -->
-                        <div class="col-xl-3 col-md-5 mb-4">
+                        <div class="col-xl-5 col-md-5 mb-4">
                             <div class="card ">
 
                                 <div class="card-body">

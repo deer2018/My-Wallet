@@ -62,6 +62,11 @@ class Dashboard2_Controller extends Controller
             ->where('faculty', '=', 'สาธารณสุขศาสตร์')
             ->count();
 
+        $no_faculty = User::select('users.id', 'users.faculty')
+            ->where('role', '=', 'ผู้ใช้ทั่วไป')
+            ->whereNull('faculty')
+            ->count();
+
 
         //ผลรวมรายรับทั้งหมด
         $income = DB::table('transaction_02')
@@ -101,6 +106,7 @@ class Dashboard2_Controller extends Controller
                 'agricultural',
                 'humanities',
                 'public_h',
+                'no_faculty',
                 'income_cate',
                 'expense_cate',
             )

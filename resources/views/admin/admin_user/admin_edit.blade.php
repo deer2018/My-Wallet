@@ -19,11 +19,11 @@
                             {{ method_field('PATCH') }}
                             {{ csrf_field() }}
 
-                            <div class="form-group {{ $errors->has('student_id') ? 'has-error' : ''}}">
+                            {{-- <div class="form-group {{ $errors->has('student_id') ? 'has-error' : ''}}">
                                 <label for="student_id" class="control-label">{{ 'รหัสนักศึกษา' }}<font size="2" color="#FF0000">*</font></label>
                                 <input class="form-control" name="student_id" type="text" id="student_id" pattern="[0-9]{11}" value="{{ isset($users->student_id) ? $users->student_id : ''}}" required>
                                 {!! $errors->first('student_id', '<p class="help-block">:message</p>') !!}
-                            </div>
+                            </div> --}}
 
                             <div class="form-group {{ $errors->has('mastername') ? 'has-error' : ''}}">
                                 <label for="mastername" class="control-label">{{ 'ชื่อ' }}</label>
@@ -44,7 +44,7 @@
                                     @foreach (json_decode('{"ครุศาสตร์":"ครุศาสตร์","วิทยาการจัดการ":"วิทยาการจัดการ",
                                     "วิทยาศาสตร์และเทคโนโลยี":"วิทยาศาสตร์และเทคโนโลยี","เทคโนโลยีอุตสาหกรรม":"เทคโนโลยีอุตสาหกรรม"
                                     ,"เทคโนโลยีการเกษตร":"เทคโนโลยีการเกษตร","มนุษยศาสตร์และสังคมศาสตร์":"มนุษยศาสตร์และสังคมศาสตร์"
-                                    ,"บัณฑิตวิทยาลัย":"บัณฑิตวิทยาลัย","สาธารณสุขศาสตร์":"สาธารณสุขศาสตร์"}', true) as $optionKey => $optionValue)
+                                    ,"สาธารณสุขศาสตร์":"สาธารณสุขศาสตร์"}', true) as $optionKey => $optionValue)
                                     <option value="{{ $optionKey }}" {{ (isset($users->faculty) && $users->faculty == $optionKey) ? 'selected' : ''}}>{{ $optionValue }}</option>
                                     @endforeach
                                 </select>

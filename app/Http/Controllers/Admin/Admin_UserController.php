@@ -32,6 +32,7 @@ class Admin_UserController extends Controller
                     if (!empty($keyword)) {
                         $users = User::Where('name', 'LIKE' , "%$keyword%")
                             ->orWhere('email', 'LIKE' , "%$keyword%")
+                            ->orWhere('faculty', 'LIKE' , "%$keyword%")
                             ->Where('role','=', "ผู้ใช้ทั่วไป")
                             ->latest()->paginate($perPage);
                     } else {

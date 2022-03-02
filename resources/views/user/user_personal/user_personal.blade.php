@@ -25,7 +25,7 @@
                                         {{ $data->id }}
                                     </td>
                                 </tr>
-                                <tr>
+                                {{-- <tr>
                                     <td>
                                         <strong>
                                             <span class="glyphicon glyphicon-asterisk text-primary"></span>
@@ -35,7 +35,7 @@
                                     <td class="text-primary">
                                         {{ $data->student_id }}
                                     </td>
-                                </tr>
+                                </tr> --}}
                                 <tr>
                                     <td>
                                         <strong>

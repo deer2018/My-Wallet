@@ -55,6 +55,12 @@
                                     </a> &nbsp;&nbsp;{{ $public_h }}
                                     <a class="h4 mb-1 font-weight-bold text-dark text-uppercase "> &nbsp;&nbsp;คน</a>
                                 </h5>
+                                <hr>
+                                <h5 class="mb-1 font-weight-bold text-success text-uppercase ">
+                                    <a class="h5 mb-1 font-weight-bold text-dark text-uppercase ">ไม่มีข้อมูลคณะ
+                                    </a> &nbsp;&nbsp;{{ $no_faculty }}
+                                    <a class="h4 mb-1 font-weight-bold text-dark text-uppercase "> &nbsp;&nbsp;คน</a>
+                                </h5>
                             </div>
                         </div>
                     </div>
