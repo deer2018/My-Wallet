@@ -31,6 +31,15 @@ Route::get('/category/{id}/edit', 'Admin\CategoryController@edit');
 Route::patch('/category/{id}', 'Admin\CategoryController@update');
 Route::delete('/category/{id}', 'Admin\CategoryController@destroy');
 
+//faculty_report
+Route::get('/faculty01', 'Admin\FacultyController@faculty_01');
+Route::get('/faculty02', 'Admin\FacultyController@faculty_02');
+Route::get('/faculty03', 'Admin\FacultyController@faculty_03');
+Route::get('/faculty04', 'Admin\FacultyController@faculty_04');
+Route::get('/faculty05', 'Admin\FacultyController@faculty_05');
+Route::get('/faculty06', 'Admin\FacultyController@faculty_06');
+Route::get('/faculty07', 'Admin\FacultyController@faculty_07');
+
 
 //User----------------------------------------------------------------------------------------------------------------------------------------
 Route::resource('user_personal', 'User\user_perController');

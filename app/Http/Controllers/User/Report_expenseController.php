@@ -15,7 +15,7 @@ class Report_expenseController extends Controller
     public function jan_expense(Request $request, $select_year)
     {
         $user_id = Auth::id();
-        $perPage = 50;
+        $perPage = 30;
         $date = Carbon::now();
         $select = $request->get('category_topic');
 
