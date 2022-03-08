@@ -5,6 +5,7 @@
 
         <div class="row">
 
+          
             {{-- จำนวนผู้ใช้ในเว็บ --}}
             <div class="col-xl-12 col-md-6 mb-4">
                 <div class="card  shadow h-100 ">
@@ -22,7 +23,7 @@
                                 </h5>
                                 <a href="{{ url('/faculty01') }}" title="Edit Crud"><button
                                         class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o"
-                                            aria-hidden="true"></i>รายละเอียด</button></a>
+                                            aria-hidden="true"></i>สรุปรายรับรายจ่ายรายปี</button></a>
                                 <hr>
                                 <h5 class="mb-1 font-weight-bold text-success text-uppercase ">
                                     <a class="h5 mb-1 font-weight-bold text-dark text-uppercase ">คณะวิทยาการจัดการ
@@ -31,7 +32,7 @@
                                 </h5>
                                 <a href="{{ url('/faculty02') }}" title="Edit Crud"><button
                                         class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o"
-                                            aria-hidden="true"></i>รายละเอียด</button></a>
+                                            aria-hidden="true"></i>สรุปรายรับรายจ่ายรายปี</button></a>
                                 <hr>
                                 <h5 class="mb-1 font-weight-bold text-success text-uppercase ">
                                     <a class="h5 mb-1 font-weight-bold text-dark text-uppercase ">คณะวิทยาศาสตร์และเทคโนโลยี
@@ -40,7 +41,7 @@
                                 </h5>
                                 <a href="{{ url('/faculty03') }}" title="Edit Crud"><button
                                         class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o"
-                                            aria-hidden="true"></i>รายละเอียด</button></a>
+                                            aria-hidden="true"></i>สรุปรายรับรายจ่ายรายปี</button></a>
                                 <hr>
                                 <h5 class="mb-1 font-weight-bold text-success text-uppercase ">
                                     <a class="h5 mb-1 font-weight-bold text-dark text-uppercase ">คณะเทคโนโลยีอุตสาหกรรม
@@ -49,7 +50,7 @@
                                 </h5>
                                 <a href="{{ url('/faculty04') }}" title="Edit Crud"><button
                                     class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o"
-                                        aria-hidden="true"></i>รายละเอียด</button></a>
+                                        aria-hidden="true"></i>สรุปรายรับรายจ่ายรายปี</button></a>
                                 <hr>
                                 <h5 class="mb-1 font-weight-bold text-success text-uppercase ">
                                     <a class="h5 mb-1 font-weight-bold text-dark text-uppercase ">คณะเทคโนโลยีการเกษตร
@@ -58,7 +59,7 @@
                                 </h5>
                                 <a href="{{ url('/faculty05') }}" title="Edit Crud"><button
                                         class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o"
-                                            aria-hidden="true"></i>รายละเอียด</button></a>
+                                            aria-hidden="true"></i>สรุปรายรับรายจ่ายรายปี</button></a>
                                 <hr>
                                 <h5 class="mb-1 font-weight-bold text-success text-uppercase ">
                                     <a class="h5 mb-1 font-weight-bold text-dark text-uppercase ">คณะมนุษยศาสตร์และสังคมศาสตร์
@@ -67,7 +68,7 @@
                                 </h5>
                                 <a href="{{ url('/faculty06') }}" title="Edit Crud"><button
                                         class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o"
-                                            aria-hidden="true"></i>รายละเอียด</button></a>
+                                            aria-hidden="true"></i>สรุปรายรับรายจ่ายรายปี</button></a>
                                 <hr>
                                 <h5 class="mb-1 font-weight-bold text-success text-uppercase ">
                                     <a class="h5 mb-1 font-weight-bold text-dark text-uppercase ">คณะสาธารณสุขศาสตร์
@@ -76,7 +77,7 @@
                                 </h5>
                                 <a href="{{ url('/faculty07') }}" title="Edit Crud"><button
                                         class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o"
-                                            aria-hidden="true"></i>รายละเอียด</button></a>
+                                            aria-hidden="true"></i>สรุปรายรับรายจ่ายรายปี</button></a>
                                 <hr>
                                 <h5 class="mb-1 font-weight-bold text-success text-uppercase ">
                                     <a class="h5 mb-1 font-weight-bold text-dark text-uppercase ">ไม่มีข้อมูลคณะ

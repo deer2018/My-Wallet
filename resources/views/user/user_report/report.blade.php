@@ -3,90 +3,11 @@
 @section('content')
     <div class="container-fluid">
 
-        {{-- <div class="row"> --}}
-
-        <!-- รายรับ -->
-        {{-- <div class="col-xl-6 col-md-6 mb-4">
-                <div class="card border-left-primary shadow h-100 ">
-                    <div class="card-header py-2">
-                        <h4 class="m-1 font-weight-bold text-gray-800">รายรับทั้งหมด</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                              
-                                <h5 class="mb-1 font-weight-bold text-primary text-uppercase ">
-                                    {{ number_format($income, 2, '.', ',') }}<a
-                                        class="h5 mb-1 font-weight-bold text-dark text-uppercase "> บาท</a></h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
-
-        <!-- รายจ่าย -->
-        {{-- <div class="col-xl-6 col-md-6 mb-4">
-                <div class="card border-left-danger shadow h-100 ">
-                    <div class="card-header py-2">
-                        <h4 class="m-1 font-weight-bold text-gray-800">รายจ่ายทั้งหมด</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                         
-                                <h5 class="mb-1 font-weight-bold text-danger text-uppercase ">
-                                    {{ number_format($expense, 2, '.', ',') }}<a
-                                        class="h5 mb-1 font-weight-bold text-dark text-uppercase "> บาท</a></h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <hr> --}}
-
         <div class="row">
-
-            <!-- ประจำปี -->
-            {{-- <div class="col-xl-6 col-md-6 mb-4">
-                    <div class="card border-left-success shadow h-100 ">
-                        <div class="card-header py-2">
-                            <h4 class="m-1 font-weight-bold text-gray-800">รายงาน ประจำเดือนปัจจุบัน</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                 
-                                    <h5 class="mb-1 font-weight-bold text-primary text-uppercase "><a class="h5 mb-1 font-weight-bold text-dark text-uppercase ">รายรับ </a> {{number_format($monthly_income, 2, '.', ',')}}<a class="h4 mb-1 font-weight-bold text-dark text-uppercase "> บาท</a></h5>
-                                    <h5 class="mb-1 font-weight-bold text-danger text-uppercase "><a class="h5 mb-1 font-weight-bold text-dark text-uppercase ">รายจ่าย </a> {{number_format($monthly_expense, 2, '.', ',')}}<a class="h4 mb-1 font-weight-bold text-dark text-uppercase "> บาท</a></h5>                                
-                                </div>
-                            </div>
-                        </div>   
-                    </div>
-                </div> --}}
-
-            <!-- ประจำปี -->
-            {{-- <div class="col-xl-6 col-md-6 mb-4"> 
-                    <div class="card border-left-success shadow h-100 ">
-                        <div class="card-header py-2">
-                            <h4 class="m-1 font-weight-bold text-gray-800">รายงาน ประจำปีปัจจุบัน</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                              
-                                    <h5 class="mb-1 font-weight-bold text-primary text-uppercase "><a class="h5 mb-1 font-weight-bold text-dark text-uppercase ">รายรับ </a>{{number_format($annual_income, 2, '.', ',')}} <a class="h4 mb-1 font-weight-bold text-dark text-uppercase "> บาท</a></h5>
-                                    <h5 class="mb-1 font-weight-bold text-danger text-uppercase "><a class="h5 mb-1 font-weight-bold text-dark text-uppercase ">รายจ่าย </a>{{number_format($annual_expense, 2, '.', ',')}}<a class="h4 mb-1 font-weight-bold text-dark text-uppercase "> บาท</a></h5>                                
-                                </div>
-                            </div>
-                        </div>   
-                    </div>
-                </div> --}}
 
             {{-- แสดงค่าเป็นเดือนๆของปีปัจจุบัน --}}
             <div class="col-xl-12 col-md-12 mb-4">
-                <div class="card border-left-success shadow h-100 ">
+                <div class="card  shadow h-100 ">
                     <div class="card-header py-2">
 
                         <form method="GET" action="{{ url('/report_user') }}" accept-charset="UTF-8"
@@ -112,8 +33,458 @@
 
                         </form>
                         @if (!isset($select_year))
-                        @else
+                        <h4 class="m-1 font-weight-bold text-gray-800 " style="text-align: center">
+                            รายงานสรุปค่าใช้จ่ายปี {{ $yearThai }}</h4>
+                </div>
+                <form method="GET" action="{{ url('/report_sup') }}" accept-charset="UTF-8">
+                    <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0"
+                        role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <th class="h5 mb-1 font-weight-bold text-dark text-uppercase ">เดือน</th>
+                                <th class="h5 mb-1 font-weight-bold text-dark text-uppercase ">รายรับ</th>
+                                <th class="h5 mb-1 font-weight-bold text-dark text-uppercase ">รายจ่าย</th>
+                                <th class="h5 mb-1 font-weight-bold text-dark text-uppercase ">รวม</th>
+                            </tr>
+                        </thead>
 
+                        <tbody>
+                            @if ($monthCheck == '1')
+                                <td class="h5 mb-1 font-weight-bold text-dark text-uppercase "><a>มกราคม</a></td>
+                            @else
+                                <td class="h5 mb-1 font-weight-bold text-dark text-uppercase ">มกราคม</td>
+                            @endif
+                            <td class="h5 mb-1 font-weight-bold text-primary text-uppercase ">
+                                {{ number_format($jan_income, 2, '.', ',') }}
+                                <a href="{{ url('/report_sup/' . $yearCheck . '/jan_income') }}"
+                                    class="btn btn-sm font-weight-bold" name="jan_income" title="Detail"><i
+                                        class="font-weight-bold">more...</i></a>
+
+                            </td>
+                            <td class="h5 mb-1 font-weight-bold text-danger text-uppercase ">
+                                {{ number_format($jan_expense, 2, '.', ',') }}
+                                <a href="{{ url('/report_sup/' . $yearCheck . '/jan_expense') }}"
+                                    class="btn  btn-sm" title="Detail"><i class="font-weight-bold">more...</i></a>
+                            </td>
+
+                            @if ($jan_total >= 0)
+                                <td class="h5 mb-1 font-weight-bold text-success text-uppercase ">
+                                    &nbsp;{{ number_format($jan_total, 2, '.', ',') }}</td>
+                            @else
+                                <td class="h5 mb-1 font-weight-bold text-danger text-uppercase ">
+                                    {{ number_format($jan_total, 2, '.', ',') }}</td>
+                            @endif
+
+                        </tbody>
+
+                        <tbody>
+                            @if ($monthCheck == '2')
+                                <td class="h5 mb-1 font-weight-bold text-dark text-uppercase "><a>กุมภาพันธ์</a></td>
+                            @else
+                                <td class="h5 mb-1 font-weight-bold text-dark text-uppercase ">กุมภาพันธ์</td>
+                            @endif
+
+                            <td class="h5 mb-1 font-weight-bold text-primary text-uppercase ">
+                                {{ number_format($feb_income, 2, '.', ',') }}
+                                <a href="{{ url('/report_sup/' . $yearCheck . '/feb_income') }}"
+                                    class="btn btn-sm" title="Detail">
+                                    <i class="font-weight-bold">more...</i>
+                                </a>
+                            </td>
+                            <td class="h5 mb-1 font-weight-bold text-danger text-uppercase ">
+                                {{ number_format($feb_expense, 2, '.', ',') }}
+                                <a href="{{ url('/report_sup/' . $yearCheck . '/feb_expense') }}"
+                                    class="btn btn-sm" title="Detail">
+                                    <i class="font-weight-bold">more...</i>
+                                </a>
+                            </td>
+
+                            @if ($feb_total >= 0)
+                                <td class="h5 mb-1 font-weight-bold text-success text-uppercase ">
+                                    &nbsp;{{ number_format($feb_total, 2, '.', ',') }}</td>
+                            @else
+                                <td class="h5 mb-1 font-weight-bold text-danger text-uppercase ">
+                                    {{ number_format($feb_total, 2, '.', ',') }}</td>
+                            @endif
+
+                        </tbody>
+
+                        <tbody>
+                            @if ($monthCheck == '3')
+                                <td class="h5 mb-1 font-weight-bold text-dark text-uppercase "><a>มีนาคม</a></td>
+                            @else
+                                <td class="h5 mb-1 font-weight-bold text-dark text-uppercase ">มีนาคม</td>
+                            @endif
+
+                            <td class="h5 mb-1 font-weight-bold text-primary text-uppercase ">
+                                {{ number_format($mar_income, 2, '.', ',') }}
+                                <a href="{{ url('/report_sup/' . $yearCheck . '/mar_income') }}"
+                                    class="btn btn-sm" title="Detail">
+                                    <i class="font-weight-bold">more...</i>
+                                </a>
+                            </td>
+                            <td class="h5 mb-1 font-weight-bold text-danger text-uppercase ">
+                                {{ number_format($mar_expense, 2, '.', ',') }}
+                                <a href="{{ url('/report_sup/' . $yearCheck . '/mar_expense') }}"
+                                    class="btn btn-sm" title="Detail">
+                                    <i class="font-weight-bold">more...</i>
+                                </a>
+                            </td>
+
+                            @if ($mar_total >= 0)
+                                <td class="h5 mb-1 font-weight-bold text-success text-uppercase ">
+                                    &nbsp;{{ number_format($mar_total, 2, '.', ',') }}</td>
+                            @else
+                                <td class="h5 mb-1 font-weight-bold text-danger text-uppercase ">
+                                    {{ number_format($mar_total, 2, '.', ',') }}</td>
+                            @endif
+
+                        </tbody>
+
+                        <tbody>
+                            @if ($monthCheck == '4')
+                                <td class="h5 mb-1 font-weight-bold text-dark text-uppercase "><a>เมษายน</a></td>
+                            @else
+                                <td class="h5 mb-1 font-weight-bold text-dark text-uppercase ">เมษายน</td>
+                            @endif
+
+                            <td class="h5 mb-1 font-weight-bold text-primary text-uppercase ">
+                                {{ number_format($apr_income, 2, '.', ',') }}
+                                <a href="{{ url('/report_sup/' . $yearCheck . '/apr_income') }}"
+                                    class="btn  btn-sm" title="Detail">
+                                    <i class="font-weight-bold">more...</i>
+                                </a>
+                            </td>
+                            <td class="h5 mb-1 font-weight-bold text-danger text-uppercase ">
+                                {{ number_format($apr_expense, 2, '.', ',') }}
+                                <a href="{{ url('/report_sup/' . $yearCheck . '/apr_expense') }}"
+                                    class="btn  btn-sm" title="Detail">
+                                    <i class="font-weight-bold">more...</i>
+                                </a>
+                            </td>
+
+                            @if ($apr_total >= 0)
+                                <td class="h5 mb-1 font-weight-bold text-success text-uppercase ">
+                                    &nbsp;{{ number_format($apr_total, 2, '.', ',') }}</td>
+                            @else
+                                <td class="h5 mb-1 font-weight-bold text-danger text-uppercase ">
+                                    {{ number_format($apr_total, 2, '.', ',') }}</td>
+                            @endif
+
+                        </tbody>
+
+                        <tbody>
+                            @if ($monthCheck == '5')
+                                <td class="h5 mb-1 font-weight-bold text-dark text-uppercase "><a>พฤษภาคม</a></td>
+                            @else
+                                <td class="h5 mb-1 font-weight-bold text-dark text-uppercase ">พฤษภาคม</td>
+                            @endif
+
+
+                            <td class="h5 mb-1 font-weight-bold text-primary text-uppercase ">
+                                {{ number_format($may_income, 2, '.', ',') }}
+                                <a href="{{ url('/report_sup/' . $yearCheck . '/may_income') }}"
+                                    class="btn  btn-sm" title="Detail">
+                                    <i class="font-weight-bold">more...</i>
+                                </a>
+                            </td>
+                            <td class="h5 mb-1 font-weight-bold text-danger text-uppercase ">
+                                {{ number_format($may_expense, 2, '.', ',') }}
+                                <a href="{{ url('/report_sup/' . $yearCheck . '/may_expense') }}"
+                                    class="btn  btn-sm" title="Detail">
+                                    <i class="font-weight-bold">more...</i>
+                                </a>
+                            </td>
+
+                            @if ($may_total >= 0)
+                                <td class="h5 mb-1 font-weight-bold text-success text-uppercase ">
+                                    &nbsp;{{ number_format($may_total, 2, '.', ',') }}</td>
+                            @else
+                                <td class="h5 mb-1 font-weight-bold text-danger text-uppercase ">
+                                    {{ number_format($may_total, 2, '.', ',') }}</td>
+                            @endif
+
+                        </tbody>
+
+                        <tbody>
+                            @if ($monthCheck == '6')
+                                <td class="h5 mb-1 font-weight-bold text-dark text-uppercase "><a>มิถุนายน</a></td>
+                            @else
+                                <td class="h5 mb-1 font-weight-bold text-dark text-uppercase ">มิถุนายน</td>
+                            @endif
+
+
+                            <td class="h5 mb-1 font-weight-bold text-primary text-uppercase ">
+                                {{ number_format($jun_income, 2, '.', ',') }}
+                                <a href="{{ url('/report_sup/' . $yearCheck . '/jun_income') }}"
+                                    class="btn  btn-sm" title="Detail">
+                                    <i class="font-weight-bold">more...</i>
+                                </a>
+                            </td>
+                            <td class="h5 mb-1 font-weight-bold text-danger text-uppercase ">
+                                {{ number_format($jun_expense, 2, '.', ',') }}
+                                <a href="{{ url('/report_sup/' . $yearCheck . '/jun_expense') }}"
+                                    class="btn  btn-sm" title="Detail">
+                                    <i class="font-weight-bold">more...</i>
+                                </a>
+                            </td>
+
+                            @if ($jun_total >= 0)
+                                <td class="h5 mb-1 font-weight-bold text-success text-uppercase ">
+                                    &nbsp;{{ number_format($jun_total, 2, '.', ',') }}</td>
+                            @else
+                                <td class="h5 mb-1 font-weight-bold text-danger text-uppercase ">
+                                    {{ number_format($jun_total, 2, '.', ',') }}</td>
+                            @endif
+
+                        </tbody>
+
+                        <tbody>
+                            @if ($monthCheck == '7')
+                                <td class="h5 mb-1 font-weight-bold text-dark text-uppercase "><a>กรกฎาคม</a></td>
+                            @else
+                                <td class="h5 mb-1 font-weight-bold text-dark text-uppercase ">กรกฎาคม</td>
+                            @endif
+
+
+                            <td class="h5 mb-1 font-weight-bold text-primary text-uppercase ">
+                                {{ number_format($jul_income, 2, '.', ',') }}
+                                <a href="{{ url('/report_sup/' . $yearCheck . '/jul_income') }}"
+                                    class="btn  btn-sm" title="Detail">
+                                    <i class="font-weight-bold">more...</i>
+                                </a>
+                            </td>
+                            <td class="h5 mb-1 font-weight-bold text-danger text-uppercase ">
+                                {{ number_format($jul_expense, 2, '.', ',') }}
+                                <a href="{{ url('/report_sup/' . $yearCheck . '/jul_expense') }}"
+                                    class="btn  btn-sm" title="Detail">
+                                    <i class="font-weight-bold">more...</i>
+                                </a>
+                            </td>
+
+                            @if ($jul_total >= 0)
+                                <td class="h5 mb-1 font-weight-bold text-success text-uppercase ">
+                                    &nbsp;{{ number_format($jul_total, 2, '.', ',') }}</td>
+                            @else
+                                <td class="h5 mb-1 font-weight-bold text-danger text-uppercase ">
+                                    {{ number_format($jul_total, 2, '.', ',') }}</td>
+                            @endif
+
+                        </tbody>
+
+                        <tbody>
+                            @if ($monthCheck == '8')
+                                <td class="h5 mb-1 font-weight-bold text-dark text-uppercase "><a>สิงหาคม</a></td>
+                            @else
+                                <td class="h5 mb-1 font-weight-bold text-dark text-uppercase ">สิงหาคม</td>
+                            @endif
+
+
+                            <td class="h5 mb-1 font-weight-bold text-primary text-uppercase ">
+                                {{ number_format($aug_income, 2, '.', ',') }}
+                                <a href="{{ url('/report_sup/' . $yearCheck . '/aug_income') }}"
+                                    class="btn  btn-sm" title="Detail">
+                                    <i class="font-weight-bold">more...</i>
+                                </a>
+                            </td>
+                            <td class="h5 mb-1 font-weight-bold text-danger text-uppercase ">
+                                {{ number_format($aug_expense, 2, '.', ',') }}
+                                <a href="{{ url('/report_sup/' . $yearCheck . '/aug_expense') }}"
+                                    class="btn  btn-sm" title="Detail">
+                                    <i class="font-weight-bold">more...</i>
+                                </a>
+                            </td>
+
+                            @if ($aug_total >= 0)
+                                <td class="h5 mb-1 font-weight-bold text-success text-uppercase ">
+                                    &nbsp;{{ number_format($aug_total, 2, '.', ',') }}</td>
+                            @else
+                                <td class="h5 mb-1 font-weight-bold text-danger text-uppercase ">
+                                    {{ number_format($aug_total, 2, '.', ',') }}</td>
+                            @endif
+
+                        </tbody>
+
+                        <tbody>
+                            @if ($monthCheck == '9')
+                                <td class="h5 mb-1 font-weight-bold text-dark text-uppercase "><a>กันยายน</a></td>
+                            @else
+                                <td class="h5 mb-1 font-weight-bold text-dark text-uppercase ">กันยายน</td>
+                            @endif
+
+
+                            <td class="h5 mb-1 font-weight-bold text-primary text-uppercase ">
+                                {{ number_format($sep_income, 2, '.', ',') }}
+                                <a href="{{ url('/report_sup/' . $yearCheck . '/sep_income') }}"
+                                    class="btn  btn-sm" title="Detail">
+                                    <i class="font-weight-bold">more...</i>
+                                </a>
+                            </td>
+                            <td class="h5 mb-1 font-weight-bold text-danger text-uppercase ">
+                                {{ number_format($sep_expense, 2, '.', ',') }}
+                                <a href="{{ url('/report_sup/' . $yearCheck . '/sep_expense') }}"
+                                    class="btn  btn-sm" title="Detail">
+                                    <i class="font-weight-bold">more...</i>
+                                </a>
+                            </td>
+
+                            @if ($sep_total >= 0)
+                                <td class="h5 mb-1 font-weight-bold text-success text-uppercase ">
+                                    &nbsp;{{ number_format($sep_total, 2, '.', ',') }}</td>
+                            @else
+                                <td class="h5 mb-1 font-weight-bold text-danger text-uppercase ">
+                                    {{ number_format($sep_total, 2, '.', ',') }}</td>
+                            @endif
+
+                        </tbody>
+
+                        <tbody>
+                            @if ($monthCheck == '10')
+                                <td class="h5 mb-1 font-weight-bold text-dark text-uppercase "><a>ตุลาคม</a></td>
+                            @else
+                                <td class="h5 mb-1 font-weight-bold text-dark text-uppercase ">ตุลาคม</td>
+                            @endif
+
+
+                            <td class="h5 mb-1 font-weight-bold text-primary text-uppercase ">
+                                {{ number_format($oct_income, 2, '.', ',') }}
+                                <a href="{{ url('/report_sup/' . $yearCheck . '/oct_income') }}"
+                                    class="btn  btn-sm" title="Detail">
+                                    <i class="font-weight-bold">more...</i>
+                                </a>
+                            </td>
+                            <td class="h5 mb-1 font-weight-bold text-danger text-uppercase ">
+                                {{ number_format($oct_expense, 2, '.', ',') }}
+                                <a href="{{ url('/report_sup/' . $yearCheck . '/oct_expense') }}"
+                                    class="btn  btn-sm" title="Detail">
+                                    <i class="font-weight-bold">more...</i>
+                                </a>
+                            </td>
+
+                            @if ($oct_total >= 0)
+                                <td class="h5 mb-1 font-weight-bold text-success text-uppercase ">
+                                    &nbsp;{{ number_format($oct_total, 2, '.', ',') }}</td>
+                            @else
+                                <td class="h5 mb-1 font-weight-bold text-danger text-uppercase ">
+                                    {{ number_format($oct_total, 2, '.', ',') }}</td>
+                            @endif
+
+                        </tbody>
+
+                        <tbody>
+                            @if ($monthCheck == '11')
+                                <td class="h5 mb-1 font-weight-bold text-dark text-uppercase "><a>พฤศจิกายน</a></td>
+                            @else
+                                <td class="h5 mb-1 font-weight-bold text-dark text-uppercase ">พฤศจิกายน</td>
+                            @endif
+
+
+                            <td class="h5 mb-1 font-weight-bold text-primary text-uppercase ">
+                                {{ number_format($nov_income, 2, '.', ',') }}
+                                <a href="{{ url('/report_sup/' . $yearCheck . '/nov_income') }}"
+                                    class="btn  btn-sm" title="Detail">
+                                    <i class="font-weight-bold">more...</i>
+                                </a>
+                            </td>
+                            <td class="h5 mb-1 font-weight-bold text-danger text-uppercase ">
+                                {{ number_format($nov_expense, 2, '.', ',') }}
+                                <a href="{{ url('/report_sup/' . $yearCheck . '/nov_expense') }}"
+                                    class="btn  btn-sm" title="Detail">
+                                    <i class="font-weight-bold">more...</i>
+                                </a>
+                            </td>
+
+                            @if ($nov_total >= 0)
+                                <td class="h5 mb-1 font-weight-bold text-success text-uppercase ">
+                                    &nbsp;{{ number_format($nov_total, 2, '.', ',') }}</td>
+                            @else
+                                <td class="h5 mb-1 font-weight-bold text-danger text-uppercase ">
+                                    {{ number_format($nov_total, 2, '.', ',') }}</td>
+                            @endif
+                        </tbody>
+
+                        <tbody>
+                            @if ($monthCheck == '12')
+                                <td class="h5 mb-1 font-weight-bold text-dark text-uppercase "><a>ธันวาคม</a></td>
+                            @else
+                                <td class="h5 mb-1 font-weight-bold text-dark text-uppercase ">ธันวาคม</td>
+                            @endif
+
+
+                            <td class="h5 mb-1 font-weight-bold text-primary text-uppercase ">
+                                {{ number_format($dec_income, 2, '.', ',') }}
+                                <a href="{{ url('/report_sup/' . $yearCheck . '/dec_income') }}"
+                                    class="btn  btn-sm" title="Detail">
+                                    <i class="font-weight-bold">more...</i>
+                                </a>
+                            </td>
+                            <td class="h5 mb-1 font-weight-bold text-danger text-uppercase ">
+                                {{ number_format($dec_expense, 2, '.', ',') }}
+                                <a href="{{ url('/report_sup/' . $yearCheck . '/dec_expense') }}"
+                                    class="btn  btn-sm" title="Detail">
+                                    <i class="font-weight-bold">more...</i>
+                                </a>
+                            </td>
+
+                            @if ($dec_total >= 0)
+                                <td class="h5 mb-1 font-weight-bold text-success text-uppercase ">
+                                    &nbsp;{{ number_format($dec_total, 2, '.', ',') }}</td>
+                            @else
+                                <td class="h5 mb-1 font-weight-bold text-danger text-uppercase ">
+                                    {{ number_format($dec_total, 2, '.', ',') }}</td>
+                            @endif
+
+                        </tbody>
+
+                    </table>
+                </form>
+
+                <div class="row justify-content-around">
+
+                    <!-- รายรับ -->
+                    <div class="col-xl-5 col-md-5 mb-4">
+                        <div class="card ">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <h5 class="mb-1 font-weight-bold text-primary text-uppercase ">
+                                            <a class="h5 mb-1 font-weight-bold text-dark text-uppercase ">รวมรายรับปี
+                                                {{ $yearCheck + 543 }} :</a>
+                                            {{ number_format($annual_income, 2, '.', ',') }}
+                                            <a class="h5 mb-1 font-weight-bold text-dark text-uppercase "> บาท</a>
+                                        </h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- รายจ่าย -->
+                    <div class="col-xl-5 col-md-5 mb-4">
+                        <div class="card ">
+
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <h5 class="mb-1 font-weight-bold text-danger text-uppercase ">
+                                            <a class="h5 mb-1 font-weight-bold text-dark text-uppercase ">รวมรายจ่ายปี
+                                                {{ $yearCheck + 543}}  :</a>
+                                            {{ number_format($annual_expense, 2, '.', ',') }}
+                                            <a class="h5 mb-1 font-weight-bold text-dark text-uppercase "> บาท</a>
+                                        </h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+              
+
+                </div>
+            </div>
+
+        </div>
+                        @else
                             <h4 class="m-1 font-weight-bold text-gray-800 " style="text-align: center">
                                 รายงานสรุปค่าใช้จ่ายปี {{ $yearName }}</h4>
                     </div>
@@ -529,7 +900,8 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <h5 class="mb-1 font-weight-bold text-primary text-uppercase ">
-                                                <a class="h5 mb-1 font-weight-bold text-dark text-uppercase ">รวมรายรับปี {{ $yearName }} :</a>
+                                                <a class="h5 mb-1 font-weight-bold text-dark text-uppercase ">รวมรายรับปี
+                                                    {{ $yearName }} :</a>
                                                 {{ number_format($annual_income, 2, '.', ',') }}
                                                 <a class="h5 mb-1 font-weight-bold text-dark text-uppercase "> บาท</a>
                                             </h5>
@@ -558,24 +930,7 @@
                             </div>
                         </div>
 
-                        <!-- ยอดรวม-->
-                        {{-- <div class="col-xl-3 col-md-5 mb-4">
-                            <div class="card ">
-
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <h5 class="mb-1 font-weight-bold text-success text-uppercase ">
-                                                <a class="h5 mb-1 font-weight-bold text-dark text-uppercase ">ยอดรวมปี
-                                                    {{ $yearName }} :</a>
-                                                {{ number_format($annual_total, 2, '.', ',') }}
-                                                <a class="h5 mb-1 font-weight-bold text-dark text-uppercase "> บาท</a>
-                                            </h5>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> --}}
+                  
 
                     </div>
                 </div>

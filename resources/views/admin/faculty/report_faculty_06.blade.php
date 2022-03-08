@@ -32,6 +32,50 @@
 
             <div class="row">
 
+                <div class="col-xl-12 col-md-6 mb-4">
+                    <div class="card  shadow h-100 ">
+                        <div class="card-header py-2">
+                            <h4 class="m-1 font-weight-bold text-gray-800">รายละเอียดผู้ใช้
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+
+                                        <table class="table dataTable">
+                                          <thead>
+                                            <tr>
+                                              <th>#</th>
+                                              <th>ชื่อในเว็บ</th>
+                                              <th>อีเมล</th>                                        
+                                              <th></th>
+                                            </tr>
+                                          </thead>
+                                          @foreach($users as $item)
+                                          <tbody>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td> {{ $item->name  }}</td>
+                                            <td> {{ $item->email  }}</td>                 
+                                            @if(!empty($select_year))               
+                                                    <td><a href="{{ url('/faculty_show/' . $item->id .'/'. $select_year .'/06')  }}" title="รายละเอียด"><button 
+                                                        class="btn btn-primary btn-sm"><i class="fas fa-edit" aria-hidden="true"></i></button></a>                                           
+                                                    </td>
+                                                @else
+                                                    <td><a href="{{ url('/faculty_show/' . $item->id .'/'. $yearCheck .'/06')  }}" title="รายละเอียด"><button 
+                                                        class="btn btn-primary btn-sm"><i class="fas fa-edit" aria-hidden="true"></i></button></a>                                           
+                                                    </td>
+                                                @endif
+                                          </tbody>
+                                          @endforeach
+                                        </table>
+                                        <div class="mt-4">{{ $users->links() }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
         
                 <div class="col-xl-12 col-md-6 mb-4">
                     <div class="card border-left-danger shadow h-100 ">

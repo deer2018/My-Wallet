@@ -54,7 +54,7 @@
                                     <th>ประเภท</th>
                                     <th>หมวดหมู่</th>
                                     <th>หมายเหตุ</th>
-                                    <th>จำนวนเงิน</th>
+                                    <th>จำนวนเงิน(บาท)</th>
 
                                 </tr>
                             </thead>
@@ -80,7 +80,7 @@
                         </table>
 
                         <div class="table font-weight-bold" style="text-align: right ; padding-right:10%">รวม :
-                            <a style="color:red">{{ number_format($sum_expense, 2, '.', ',') }}</a>
+                            <a style="color:red">{{ number_format($sum_expense, 2, '.', ',') }}</a>&nbsp;&nbsp;บาท
                         </div>
                     </div>
                     <div class="mt-4">{{ $transaction->links() }}</div>
@@ -94,43 +94,73 @@
                     {{-- <a href="{{ url('/chart') }}" title="Back"><button class="btn btn-warning btn-sm"><i
                         class="fa fa-arrow-left" aria-hidden="true"></i> ไป</button></a> --}}
                     <div class="card-header py-2 ">
-                        <h5 class="m-1 font-weight-bold text-gray-800">รายจ่ายตามหมวดหมู่</h5>
+                        <h5 class="m-1 font-weight-bold text-gray-800">รายจ่ายรวมของเดือนนี้ <a style="color:red">{{ number_format($expense_total, 2, '.', ',') }}</a> บาท</h5>
                     
                     </div>
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                {{-- <div class="h4 font-weight-bold text-gray-800">รายจ่ายตามหมวดหมู่ทั้งหมด</div><hr> --}}
-                                <div class="row">
-                                    <div class="col-xl-4 col-md-6 mb-3 ">
-                                        @foreach ($expense_cate as $item)
-                                            <div class=" font-weight-bold text-gray-800">
-                                                {{ $item->topic }} <br>
-                                            </div>
-                                        @endforeach
+                    @if(isset($select))
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    {{-- <div class="h4 font-weight-bold text-gray-800">รายจ่ายตามหมวดหมู่ทั้งหมด</div><hr> --}}
+                                    <div class="row">
+                                        <div class="col-xl-4 col-md-6 mb-3 ">
+                                            @foreach ($expense_cate as $item)
+                                                <div class=" font-weight-bold text-gray-800">
+                                                    {{ $item->topic }} <br>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    
+                                        <div class="col-xl-4 col-md-6 mb-3 ">
+                                            @foreach ($expense_cate as $item)
+                                                <div class=" font-weight-bold text-danger">
+                                                    <a class=" mb-1 font-weight-bold text-dark text-uppercase">คิดเป็น : </a>
+                                                        {{ number_format($item->total_expense/$expense_total * 100 , 2, '.', ',') }} 
+                                                    <a class=" mb-1 font-weight-bold text-dark text-uppercase"> % ของรายจ่ายทั้งหมดในเดือนนี้ </a><br>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                        {{-- <div class="mt-4">{{ $transaction->links() }}</div> --}}
                                     </div>
-                                    <div class="col-xl-4 col-md-6 mb-3 ">
-                                        @foreach ($expense_cate as $item)
-                                            <div class=" font-weight-bold text-gray-800">
-                                                <a class=" mb-1 font-weight-bold text-danger text-uppercase">
-                                                    {{ number_format($item->total_expense, 2, '.', ',') }}</a> บาท<br>
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                    <div class="col-xl-4 col-md-6 mb-3 ">
-                                        @foreach ($expense_cate as $item)
-                                            <div class=" font-weight-bold text-danger">
-                                                <a class=" mb-1 font-weight-bold text-dark text-uppercase">คิดเป็น : </a>
-                                                    {{ number_format($item->total_expense/$expense_total * 100 , 2, '.', ',') }} 
-                                                <a class=" mb-1 font-weight-bold text-dark text-uppercase"> % ของยอดรวม </a><br>
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                    {{-- <div class="mt-4">{{ $transaction->links() }}</div> --}}
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    @else
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    {{-- <div class="h4 font-weight-bold text-gray-800">รายจ่ายตามหมวดหมู่ทั้งหมด</div><hr> --}}
+                                    <div class="row">
+                                        <div class="col-xl-4 col-md-6 mb-3 ">
+                                            @foreach ($expense_cate as $item)
+                                                <div class=" font-weight-bold text-gray-800">
+                                                    {{ $item->topic }} <br>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                        <div class="col-xl-4 col-md-6 mb-3 ">
+                                            @foreach ($expense_cate as $item)
+                                                <div class=" font-weight-bold text-gray-800">
+                                                    <a class=" mb-1 font-weight-bold text-danger text-uppercase">
+                                                        {{ number_format($item->total_expense, 2, '.', ',') }}</a> บาท<br>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                        <div class="col-xl-4 col-md-6 mb-3 ">
+                                            @foreach ($expense_cate as $item)
+                                                <div class=" font-weight-bold text-danger">
+                                                    <a class=" mb-1 font-weight-bold text-dark text-uppercase">คิดเป็น : </a>
+                                                        {{ number_format($item->total_expense/$expense_total * 100 , 2, '.', ',') }} 
+                                                    <a class=" mb-1 font-weight-bold text-dark text-uppercase"> % ของรายจ่ายทั้งหมดในเดือนนี้ </a><br>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                        {{-- <div class="mt-4">{{ $transaction->links() }}</div> --}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
                 </div>
             </div>
 

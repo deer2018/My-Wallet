@@ -30,7 +30,7 @@
     <script src="http://code.highcharts.com/modules/exporting.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            var topic =  <?php echo json_encode($donut_topic); ?>;
+            var topic =  <?php echo json_encode($expense_cate); ?>;
             var options = {
                 stackLabels: {
                     enabled: true,
@@ -69,11 +69,12 @@
                 series: [{
                     type:'pie',
                     name:'รายจ่าย',
+                  
                 }]
             }
             myarray = [];
             $.each(topic, function(index, val) {
-                myarray[index] = [val.topic, val.count];
+                myarray[index] = [val.topic, val.total_expense];
             });
             options.series[0].data = myarray;
             chart = new Highcharts.Chart(options);

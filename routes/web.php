@@ -40,7 +40,14 @@ Route::get('/faculty05', 'Admin\FacultyController@faculty_05');
 Route::get('/faculty06', 'Admin\FacultyController@faculty_06');
 Route::get('/faculty07', 'Admin\FacultyController@faculty_07');
 
-
+//หน้า show_info ในหน้า faculty_report
+Route::get('/faculty_show/{id}/{select_year}/01', 'Admin\Faculty_PerController@faculty_show_01');
+Route::get('/faculty_show/{id}/{select_year}/02', 'Admin\Faculty_PerController@faculty_show_02');
+Route::get('/faculty_show/{id}/{select_year}/03', 'Admin\Faculty_PerController@faculty_show_03');
+Route::get('/faculty_show/{id}/{select_year}/04', 'Admin\Faculty_PerController@faculty_show_04');
+Route::get('/faculty_show/{id}/{select_year}/05', 'Admin\Faculty_PerController@faculty_show_05');
+Route::get('/faculty_show/{id}/{select_year}/06', 'Admin\Faculty_PerController@faculty_show_06');
+Route::get('/faculty_show/{id}/{select_year}/07', 'Admin\Faculty_PerController@faculty_show_07');
 //User----------------------------------------------------------------------------------------------------------------------------------------
 Route::resource('user_personal', 'User\user_perController');
 

@@ -32,6 +32,51 @@
 
             <div class="row">
 
+                <div class="col-xl-12 col-md-6 mb-4">
+                    <div class="card  shadow h-100 ">
+                        <div class="card-header py-2">
+                            <h4 class="m-1 font-weight-bold text-gray-800">รายละเอียดผู้ใช้
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+
+                                        <table class="table dataTable">
+                                          <thead>
+                                            <tr>
+                                              <th>#</th>
+                                              <th>ชื่อในเว็บ</th>
+                                              <th>อีเมล</th>                                        
+                                              <th></th>
+                                            </tr>
+                                          </thead>
+                                          @foreach($users as $item)
+                                            <tbody>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td> {{ $item->name  }}</td>
+                                                <td> {{ $item->email  }}</td>  
+                                                @if(!empty($select_year))               
+                                                    <td><a href="{{ url('/faculty_show/' . $item->id .'/'. $select_year .'/01')  }}" title="รายละเอียด"><button 
+                                                        class="btn btn-primary btn-sm"><i class="fas fa-edit" aria-hidden="true"></i></button></a>                                           
+                                                    </td>
+                                                @else
+                                                    <td><a href="{{ url('/faculty_show/' . $item->id .'/'. $yearCheck .'/01')  }}" title="รายละเอียด"><button 
+                                                        class="btn btn-primary btn-sm"><i class="fas fa-edit" aria-hidden="true"></i></button></a>                                           
+                                                    </td>
+                                                @endif
+                                            </tbody>
+                                          @endforeach
+                                        </table>
+                                        <div class="mt-4">{{ $users->links() }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+
         
                 <div class="col-xl-12 col-md-6 mb-4">
                     <div class="card border-left-danger shadow h-100 ">
@@ -81,8 +126,11 @@
                                         </div>
 
                                     </div>
-                                    {{-- <h5 class="mb-1 font-weight-bold text-danger text-uppercase ">{{ $expense }}<a
-                                    class="h4 mb-1 font-weight-bold text-dark text-uppercase "> บาท</a></h5> --}}
+
+                                    <div class="panel-body" align="center">
+                                        <div id="pie_chart" style="width:750px; height:550px;"></div>   
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -151,3 +199,58 @@
     </div></div>
     </div>
 @endsection
+
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        var topic =  <?php echo json_encode($expense_cate); ?>;
+        var options = {
+            stackLabels: {
+                enabled: true,
+                verticalAlign: 'bottom',
+                crop: false,
+                overflow: 'none',
+                y: -275
+            },
+            chart: {
+                renderTo: 'pie_chart',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: 'เปอร์เซ็นตามหมวดหมู่'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.y:,.2f}</b>',
+                percentageDecimals: 1
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                        dataLabels: {
+                        enabled: true,
+                        color: '#000000',
+                        connectorColor: '#000000',
+                        formatter: function() {
+                            return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
+                        }
+                    }
+                }
+            },
+            series: [{
+                type:'pie',
+                name:'รายจ่าย',
+            }]
+        }
+        myarray = [];
+        $.each(topic, function(index, val) {
+            myarray[index] = [val.topic, val.total_expense];
+        });
+        options.series[0].data = myarray;
+        chart = new Highcharts.Chart(options);
+        
+    });
+</script>
