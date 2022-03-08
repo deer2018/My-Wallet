@@ -57,6 +57,8 @@ class Faculty_PerController extends Controller
             ->where('users.faculty', '=', 'ครุศาสตร์')
             ->whereYear('transaction_02.created_at', '=', $select_year)
             ->sum('income');
+        
+        
 
         return view(
                 'admin.faculty.faculty_per.faculty_show_01',
@@ -66,6 +68,7 @@ class Faculty_PerController extends Controller
                     'income_cate',
                     'income_total',
                     'select_year',
+                    'user_id',
     
                 )
             );
@@ -125,7 +128,7 @@ class Faculty_PerController extends Controller
                     'income_cate',
                     'income_total',
                     'select_year',
-    
+                    'user_id',
                 )
             );
     }
@@ -184,7 +187,7 @@ class Faculty_PerController extends Controller
                     'income_cate',
                     'income_total',
                     'select_year',
-    
+                    'user_id',
                 )
             );
     }
@@ -243,7 +246,7 @@ class Faculty_PerController extends Controller
                     'income_cate',
                     'income_total',
                     'select_year',
-    
+                    'user_id',
                 )
             );
     }
@@ -302,7 +305,7 @@ class Faculty_PerController extends Controller
                     'income_cate',
                     'income_total',
                     'select_year',
-    
+                    'user_id',
                 )
             );
     }
@@ -361,7 +364,7 @@ class Faculty_PerController extends Controller
                     'income_cate',
                     'income_total',
                     'select_year',
-    
+                    'user_id',
                 )
             );
     }
@@ -420,7 +423,7 @@ class Faculty_PerController extends Controller
                     'income_cate',
                     'income_total',
                     'select_year',
-    
+                    'user_id',
                 )
             );
     }

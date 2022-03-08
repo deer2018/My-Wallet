@@ -1,10 +1,12 @@
 @extends('layouts.admin.main')
 
 @section('content')
-    <div class="container">
+    <div class="container-fluid">
      
                 <div class="card">
-                    <div class="card-header">ข้อมูลปี {{$select_year + 543}}</div>
+                    <div class="card-header">
+                        <h5 class="m-1 font-weight-bold text-gray-800">ข้อมูล {{$user_id->name}} ปี {{$select_year + 543}} คณะ {{$user_id->faculty}}</h5> 
+                    </div>
                     <div class="card-body">
 
                         <a href="{{ url()->previous() }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i>ย้อนกลับ</button></a>

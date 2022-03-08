@@ -127,9 +127,9 @@
 
                                     </div>
 
-                                    <div class="panel-body" align="center">
+                                    {{-- <div class="panel-body" align="center">
                                         <div id="pie_chart" style="width:750px; height:550px;"></div>   
-                                    </div>
+                                    </div> --}}
 
                                 </div>
                             </div>
