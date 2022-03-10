@@ -519,17 +519,26 @@ class ReportController extends Controller
         $yearCheck = Carbon::now()->format('Y');
 
         // รายจ่ายตามหมวดหมู่ของผู้ใช้
-        $expense_cate = DB::table('transaction_02')
+        $total_expense = DB::table('transaction_02')
         ->leftJoin('category_02', 'transaction_02.category_id', '=', 'category_02.category_id')
         ->leftJoin('users', 'transaction_02.user_id', '=', 'users.id')
         ->select('transaction_02.*', 'category_02.topic', 'users.faculty', DB::raw('count(expense) as total_expense'))
         ->groupBy('topic')
         ->where('transaction_02.category_type', '=', 'รายจ่าย')
-        ->where('users.faculty', '=', 'ครุศาสตร์')
         ->whereYear('transaction_02.created_at', '=', $yearCheck)
-        ->get();
+        ->pluck('total_expense');
 
-        return view('user.user_report.chart', compact('expense_cate'));
+        // รายจ่ายตามหมวดหมู่ของผู้ใช้
+        $topic = DB::table('transaction_02')
+        ->leftJoin('category_02', 'transaction_02.category_id', '=', 'category_02.category_id')
+        ->leftJoin('users', 'transaction_02.user_id', '=', 'users.id')
+        ->select('transaction_02.*', 'category_02.topic', 'users.faculty', DB::raw('count(expense) as total_expense'))
+        ->groupBy('topic')
+        ->where('transaction_02.category_type', '=', 'รายจ่าย')
+        ->whereYear('transaction_02.created_at', '=', $yearCheck)
+        ->pluck('topic');
+
+        return view('user.user_report.chart', compact('total_expense','topic'));
     }
 
     // public function chart()

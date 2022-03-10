@@ -33,6 +33,11 @@
         <input class="form-control" rows="5" name="comment" type="text" id="comment" placeholder="คำอธิบายหรือหมายเหตุเพิ่มเติม" value="{{ isset($transaction->comment) ? $transaction->comment : ''}}">{!! $errors->first('comment', '<p class="help-block">:message</p>') !!}
     </div>
 
+    <div class="form-group {{ $errors->has('created_at') ? 'has-error' : ''}}">
+        <label for="created_at" class="control-label">{{ 'วันที่' }}</label>
+        <input class="form-control" rows="5" name="created_at" type="date" id="created_at" placeholder="เลือกวันที่" value="{{ isset($transaction->created_at) ? $transaction->created_at : ''}}">{!! $errors->first('created_at', '<p class="help-block">:message</p>') !!}
+    </div>
+
 
     <div id="inc" style="display: block" class="form-group {{ $errors->has('income') ? 'has-error' : ''}}">
         <label for="income" class="control-label">{{ 'จำนวนเงิน' }}</label>

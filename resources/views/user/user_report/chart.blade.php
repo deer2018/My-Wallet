@@ -26,60 +26,69 @@
             </div>
         </div>
     </div>
+
     <script src="http://code.highcharts.com/highcharts.js"></script>
     <script src="http://code.highcharts.com/modules/exporting.js"></script>
+
     <script type="text/javascript">
-        $(document).ready(function() {
-            var topic =  <?php echo json_encode($expense_cate); ?>;
-            var options = {
-                stackLabels: {
-                    enabled: true,
-                    verticalAlign: 'bottom',
-                    crop: false,
-                    overflow: 'none',
-                    y: -275
-                },
-                chart: {
-                    renderTo: 'pie_chart',
-                    plotBackgroundColor: null,
-                    plotBorderWidth: null,
-                    plotShadow: false
-                },
-                title: {
-                    text: 'เปอร์เซ็นตามหมวดหมู่'
-                },
-                tooltip: {
-                    pointFormat: '{series.name}: <b>{point.y:,.2f}</b>',
-                    percentageDecimals: 1
-                },
-                plotOptions: {
-                    pie: {
-                        allowPointSelect: true,
-                        cursor: 'pointer',
-                            dataLabels: {
-                            enabled: true,
-                            color: '#000000',
-                            connectorColor: '#000000',
-                            formatter: function() {
-                                return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
-                            }
-                        }
-                    }
-                },
-                series: [{
-                    type:'pie',
-                    name:'รายจ่าย',
-                  
-                }]
+      $(function () {
+    $('#containerbar').highcharts({
+
+        chart: {
+            type: 'column'
+        },
+
+        title: {
+            text: 'Total fruit consumtion, grouped by gender'
+        },
+
+        xAxis: {
+            categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
+        },
+
+        yAxis: {
+            allowDecimals: false,
+            min: 0,
+            title: {
+                text: 'Number of fruits'
             }
-            myarray = [];
-            $.each(topic, function(index, val) {
-                myarray[index] = [val.topic, val.total_expense];
-            });
-            options.series[0].data = myarray;
-            chart = new Highcharts.Chart(options);
-            
-        });
+        },
+
+        tooltip: {
+            formatter: function () {
+                return '<b>' + this.x + '</b><br/>' +
+                    this.series.name + ': ' + this.y + '<br/>' +
+                    'Total: ' + this.point.stackTotal;
+            }
+        },
+
+        plotOptions: {
+            column: {
+                stacking: 'normal'
+            }
+        },
+
+        series: [{
+            name: 'John',
+            data: [5, 3, 4, 7, 2],
+            stack: 'male'
+        }, {
+            name: 'Joe',
+            data: [3, 4, 4, 2, 5],
+            stack: 'male'
+        }, {
+            name: 'Jane',
+            data: [2, 5, 6, 2, 1],
+            stack: 'female'
+        }, {
+            name: 'Janet',
+            data: [3, 0, 4, 4, 3],
+            stack: 'female'
+        }]
+    });
+});
+   
     </script>
+
 </body>
 </html>

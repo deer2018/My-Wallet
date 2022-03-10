@@ -10,7 +10,7 @@ class Transaction_02 extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['category_id', 'category_type','income','expense', 'comment', 'user_id'];
+    protected $fillable = ['category_id', 'category_type','income','expense', 'comment', 'user_id','created_at'];
 
     // public function category_02(){
     //     return $this->hasMany('App\Category_02','category_id')->selectRaw('category_02.*,sum(expense) as total')->groupBy('topic');
