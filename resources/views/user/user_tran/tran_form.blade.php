@@ -33,10 +33,10 @@
         <input class="form-control" rows="5" name="comment" type="text" id="comment" placeholder="คำอธิบายหรือหมายเหตุเพิ่มเติม" value="{{ isset($transaction->comment) ? $transaction->comment : ''}}">{!! $errors->first('comment', '<p class="help-block">:message</p>') !!}
     </div>
 
-    <div class="form-group {{ $errors->has('created_at') ? 'has-error' : ''}}">
+    {{-- <div class="form-group {{ $errors->has('created_at') ? 'has-error' : ''}}">
         <label for="created_at" class="control-label">{{ 'วันที่' }}</label>
         <input class="form-control" rows="5" name="created_at" type="date" id="created_at" placeholder="เลือกวันที่" value="{{ isset($transaction->created_at) ? $transaction->created_at : ''}}">{!! $errors->first('created_at', '<p class="help-block">:message</p>') !!}
-    </div>
+    </div> --}}
 
 
     <div id="inc" style="display: block" class="form-group {{ $errors->has('income') ? 'has-error' : ''}}">
@@ -66,13 +66,19 @@
         document.getElementById('category_type').addEventListener("change", function(e) {
             if (e.target.value === 'รายรับ') {
                 document.getElementById('exp').style.display = 'none';
+                document.getElementById('expense').disabled = true;
+                
                 document.getElementById('inc').style.display = 'block';
                 document.getElementById('income').required = true;
+                document.getElementById('income').disabled = false;
                 showTopicIncome();
             } else {
                 document.getElementById('inc').style.display = 'none';
+                document.getElementById('income').disabled = true;
+              
                 document.getElementById('exp').style.display = 'block'
                 document.getElementById('expense').required = true;
+                document.getElementById('expense').disabled = false;
                 showTopicExpense();
             }
         });

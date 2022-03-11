@@ -117,38 +117,11 @@ class TransactionController extends Controller
             ->select('transaction_02.*', 'category_02.topic')
             ->orderBy('created_at','desc')->paginate($perPage); 
 
-            // $sum_income = Transaction_02::where('transaction_02.user_id' ,'=', $user_id) 
-            // ->sum('income');
-            // $sum_expense = Transaction_02::where('transaction_02.user_id' ,'=', $user_id) 
-            // ->sum('expense');
-            // $transaction_total = $sum_income - $sum_expense;
+       
         }
          
         return view('user.user_tran.tran_index', compact('transaction','topic','startDate','endDate','type','keyword'));
     }
-
-    // public function dateRange(Request $request)
-    // {
-    //     $user_id = Auth::id();
-    //     $perPage = 10;
-
-    //     $startDate = $request->get('date-start');
-    //     $endDate = $request->get('date-end');
-
-    //     $transaction = Transaction_02::join('category_02', 'transaction_02.category_id', '=', 'category_02.category_id')
-    //     ->where('transaction_02.user_id' ,'=', $user_id)  
-    //     ->select('transaction_02.*', 'category_02.topic')
-    //     // ->whereBetween('created_at', [$startDate, $endDate])
-    //     ->where('transaction_02.created_at', '>=', $startDate)
-    //     ->where('transaction_02.created_at', '<=', $endDate)
-    //     ->orderBy('id','desc')->paginate($perPage); 
-
-
-      
-
-    //     return view('user.user_tran.tran_index', compact('startDate','transaction'));
-    // }
-
 
     
     public function create()
