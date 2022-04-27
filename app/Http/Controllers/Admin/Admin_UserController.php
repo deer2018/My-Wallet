@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\Transaction_02;
+use App\Detail;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -66,7 +67,9 @@ class Admin_UserController extends Controller
     public function show($id)
     {
         $users = User::findOrFail($id);
-        return view('admin.admin_user.admin_show', compact('users'));
+
+        $detail = Detail::where(array('user_id' => $users->id));
+        return view('admin.admin_user.admin_show', compact('users','detail'));
     }
 
     

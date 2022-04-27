@@ -44,6 +44,11 @@
                             title="Add New Transaction">
                             <i class="fa fa-plus" aria-hidden="true"></i> เพิ่มรายการ
                         </a>
+
+                        <a href="{{ url('/transaction/detail') }}" class="btn btn-success btn-sm"
+                        title="Add New Transaction">
+                        <i class="fa fa-plus" aria-hidden="true"></i> คำร้องขอเพิ่มหมวดหมู่
+                        </a>
                     </div>
 
                     <form method="GET" action="{{ url('/transaction') }}" accept-charset="UTF-8">

@@ -16,7 +16,7 @@ class FacultyController extends Controller
 
     public function faculty_01(Request $request)
     {
-        $perPage = 30;
+        $perPage = 10;
 
         // รับค่าปีจาก request
         $select_year = $request->get('selectYear');
@@ -137,27 +137,7 @@ class FacultyController extends Controller
                 ->whereYear('transaction_02.created_at', '=', $yearCheck)
                 ->sum('income');
 
-            // นับจำนวนรายการ รายรับตามหมวดหมู่ของผู้ใช้ เมื่อไม่ได้เลือกปี(แสดงปีปัจจุบัน)
-            $income_chart = DB::table('transaction_02')
-                ->leftJoin('category_02', 'transaction_02.category_id', '=', 'category_02.category_id')
-                ->leftJoin('users', 'transaction_02.user_id', '=', 'users.id')
-                ->select('transaction_02.*', 'category_02.topic', 'users.faculty', DB::raw('count(income) as total'))
-                ->groupBy('topic')
-                ->where('transaction_02.category_type', '=', 'รายรับ')
-                ->where('users.faculty', '=', 'ครุศาสตร์')
-                ->whereYear('transaction_02.created_at', '=', $yearCheck)
-                ->get();
-
-            //  นับจำนวนรายการ รายจ่ายตามหมวดหมู่ของผู้ใช้ เมื่อไม่ได้เลือกปี(แสดงปีปัจจุบัน)
-            $expense_chart = DB::table('transaction_02')
-                ->leftJoin('category_02', 'transaction_02.category_id', '=', 'category_02.category_id')
-                ->leftJoin('users', 'transaction_02.user_id', '=', 'users.id')
-                ->select('transaction_02.*', 'category_02.topic', 'users.faculty', DB::raw('count(expense) as total'))
-                ->groupBy('topic')
-                ->where('transaction_02.category_type', '=', 'รายจ่าย')
-                ->where('users.faculty', '=', 'ครุศาสตร์')
-                ->whereYear('transaction_02.created_at', '=', $yearCheck)
-                ->get();
+        
 
             //ดึงรายชื่อผู้ใช้เฉพาะคณะ
             $users = User::where('users.role', '=', "ผู้ใช้ทั่วไป")
@@ -179,15 +159,14 @@ class FacultyController extends Controller
                 'select_year',
                 'yearCheck',
                 'users',
-                'income_chart',
-                'expense_chart',
+         
             )
         );
     }
 
     public function faculty_02(Request $request)
     {
-        $perPage = 30;
+         $perPage = 10;
 
         // รับค่าปีจาก request
         $select_year = $request->get('selectYear');
@@ -308,27 +287,6 @@ class FacultyController extends Controller
                 ->whereYear('transaction_02.created_at', '=', $yearCheck)
                 ->sum('income');
 
-            // นับจำนวนรายการ รายรับตามหมวดหมู่ของผู้ใช้ เมื่อไม่ได้เลือกปี(แสดงปีปัจจุบัน)
-            $income_chart = DB::table('transaction_02')
-                ->leftJoin('category_02', 'transaction_02.category_id', '=', 'category_02.category_id')
-                ->leftJoin('users', 'transaction_02.user_id', '=', 'users.id')
-                ->select('transaction_02.*', 'category_02.topic', 'users.faculty', DB::raw('count(income) as total'))
-                ->groupBy('topic')
-                ->where('transaction_02.category_type', '=', 'รายรับ')
-                ->where('users.faculty', '=', 'วิทยาการจัดการ')
-                ->whereYear('transaction_02.created_at', '=', $yearCheck)
-                ->get();
-
-            //  นับจำนวนรายการ รายจ่ายตามหมวดหมู่ของผู้ใช้ เมื่อไม่ได้เลือกปี(แสดงปีปัจจุบัน)
-            $expense_chart = DB::table('transaction_02')
-                ->leftJoin('category_02', 'transaction_02.category_id', '=', 'category_02.category_id')
-                ->leftJoin('users', 'transaction_02.user_id', '=', 'users.id')
-                ->select('transaction_02.*', 'category_02.topic', 'users.faculty', DB::raw('count(expense) as total'))
-                ->groupBy('topic')
-                ->where('transaction_02.category_type', '=', 'รายจ่าย')
-                ->where('users.faculty', '=', 'วิทยาการจัดการ')
-                ->whereYear('transaction_02.created_at', '=', $yearCheck)
-                ->get();
 
             //ดึงรายชื่อผู้ใช้เฉพาะคณะ
             $users = User::where('users.role', '=', "ผู้ใช้ทั่วไป")
@@ -348,8 +306,7 @@ class FacultyController extends Controller
                 'group_year',
                 'select_year',
                 'yearCheck',
-                'income_chart',
-                'expense_chart',
+        
 
             )
         );
@@ -357,7 +314,7 @@ class FacultyController extends Controller
 
     public function faculty_03(Request $request)
     {
-        $perPage = 30;
+         $perPage = 10;
 
         // รับค่าปีจาก request
         $select_year = $request->get('selectYear');
@@ -478,27 +435,7 @@ class FacultyController extends Controller
                 ->whereYear('transaction_02.created_at', '=', $yearCheck)
                 ->sum('income');
 
-            // นับจำนวนรายการ รายรับตามหมวดหมู่ของผู้ใช้ เมื่อไม่ได้เลือกปี(แสดงปีปัจจุบัน)
-            $income_chart = DB::table('transaction_02')
-                ->leftJoin('category_02', 'transaction_02.category_id', '=', 'category_02.category_id')
-                ->leftJoin('users', 'transaction_02.user_id', '=', 'users.id')
-                ->select('transaction_02.*', 'category_02.topic', 'users.faculty', DB::raw('count(income) as total'))
-                ->groupBy('topic')
-                ->where('transaction_02.category_type', '=', 'รายรับ')
-                ->where('users.faculty', '=', 'วิทยาศาสตร์และเทคโนโลยี')
-                ->whereYear('transaction_02.created_at', '=', $yearCheck)
-                ->get();
-
-            //  นับจำนวนรายการ รายจ่ายตามหมวดหมู่ของผู้ใช้ เมื่อไม่ได้เลือกปี(แสดงปีปัจจุบัน)
-            $expense_chart = DB::table('transaction_02')
-                ->leftJoin('category_02', 'transaction_02.category_id', '=', 'category_02.category_id')
-                ->leftJoin('users', 'transaction_02.user_id', '=', 'users.id')
-                ->select('transaction_02.*', 'category_02.topic', 'users.faculty', DB::raw('count(expense) as total'))
-                ->groupBy('topic')
-                ->where('transaction_02.category_type', '=', 'รายจ่าย')
-                ->where('users.faculty', '=', 'วิทยาศาสตร์และเทคโนโลยี')
-                ->whereYear('transaction_02.created_at', '=', $yearCheck)
-                ->get();
+        
 
             //ดึงรายชื่อผู้ใช้เฉพาะคณะ
             $users = User::where('users.role', '=', "ผู้ใช้ทั่วไป")
@@ -518,8 +455,7 @@ class FacultyController extends Controller
                 'select_year',
                 'yearCheck',
                 'users',
-                'income_chart',
-                'expense_chart',
+             
 
             )
         );
@@ -527,7 +463,7 @@ class FacultyController extends Controller
 
     public function faculty_04(Request $request)
     {
-        $perPage = 30;
+         $perPage = 10;
 
         // รับค่าปีจาก request
         $select_year = $request->get('selectYear');
@@ -648,27 +584,6 @@ class FacultyController extends Controller
                 ->whereYear('transaction_02.created_at', '=', $yearCheck)
                 ->sum('income');
 
-            // นับจำนวนรายการ รายรับตามหมวดหมู่ของผู้ใช้ เมื่อไม่ได้เลือกปี(แสดงปีปัจจุบัน)
-            $income_chart = DB::table('transaction_02')
-                ->leftJoin('category_02', 'transaction_02.category_id', '=', 'category_02.category_id')
-                ->leftJoin('users', 'transaction_02.user_id', '=', 'users.id')
-                ->select('transaction_02.*', 'category_02.topic', 'users.faculty', DB::raw('count(income) as total'))
-                ->groupBy('topic')
-                ->where('transaction_02.category_type', '=', 'รายรับ')
-                ->where('users.faculty', '=', 'เทคโนโลยีอุตสาหกรรม')
-                ->whereYear('transaction_02.created_at', '=', $yearCheck)
-                ->get();
-
-            //  นับจำนวนรายการ รายจ่ายตามหมวดหมู่ของผู้ใช้ เมื่อไม่ได้เลือกปี(แสดงปีปัจจุบัน)
-            $expense_chart = DB::table('transaction_02')
-                ->leftJoin('category_02', 'transaction_02.category_id', '=', 'category_02.category_id')
-                ->leftJoin('users', 'transaction_02.user_id', '=', 'users.id')
-                ->select('transaction_02.*', 'category_02.topic', 'users.faculty', DB::raw('count(expense) as total'))
-                ->groupBy('topic')
-                ->where('transaction_02.category_type', '=', 'รายจ่าย')
-                ->where('users.faculty', '=', 'เทคโนโลยีอุตสาหกรรม')
-                ->whereYear('transaction_02.created_at', '=', $yearCheck)
-                ->get();
 
             //ดึงรายชื่อผู้ใช้เฉพาะคณะ
             $users = User::where('users.role', '=', "ผู้ใช้ทั่วไป")
@@ -688,15 +603,14 @@ class FacultyController extends Controller
                 'select_year',
                 'yearCheck',
                 'users',
-                'income_chart',
-                'expense_chart',
+             
             )
         );
     }
 
     public function faculty_05(Request $request)
     {
-        $perPage = 30;
+         $perPage = 10;
 
         // รับค่าปีจาก request
         $select_year = $request->get('selectYear');
@@ -817,27 +731,7 @@ class FacultyController extends Controller
                 ->whereYear('transaction_02.created_at', '=', $yearCheck)
                 ->sum('income');
 
-            // นับจำนวนรายการ รายรับตามหมวดหมู่ของผู้ใช้ เมื่อไม่ได้เลือกปี(แสดงปีปัจจุบัน)
-            $income_chart = DB::table('transaction_02')
-                ->leftJoin('category_02', 'transaction_02.category_id', '=', 'category_02.category_id')
-                ->leftJoin('users', 'transaction_02.user_id', '=', 'users.id')
-                ->select('transaction_02.*', 'category_02.topic', 'users.faculty', DB::raw('count(income) as total'))
-                ->groupBy('topic')
-                ->where('transaction_02.category_type', '=', 'รายรับ')
-                ->where('users.faculty', '=', 'เทคโนโลยีการเกษตร')
-                ->whereYear('transaction_02.created_at', '=', $yearCheck)
-                ->get();
-
-            //  นับจำนวนรายการ รายจ่ายตามหมวดหมู่ของผู้ใช้ เมื่อไม่ได้เลือกปี(แสดงปีปัจจุบัน)
-            $expense_chart = DB::table('transaction_02')
-                ->leftJoin('category_02', 'transaction_02.category_id', '=', 'category_02.category_id')
-                ->leftJoin('users', 'transaction_02.user_id', '=', 'users.id')
-                ->select('transaction_02.*', 'category_02.topic', 'users.faculty', DB::raw('count(expense) as total'))
-                ->groupBy('topic')
-                ->where('transaction_02.category_type', '=', 'รายจ่าย')
-                ->where('users.faculty', '=', 'เทคโนโลยีการเกษตร')
-                ->whereYear('transaction_02.created_at', '=', $yearCheck)
-                ->get();
+         
 
             //ดึงรายชื่อผู้ใช้เฉพาะคณะ
             $users = User::where('users.role', '=', "ผู้ใช้ทั่วไป")
@@ -857,8 +751,7 @@ class FacultyController extends Controller
                 'select_year',
                 'yearCheck',
                 'users',
-                'income_chart',
-                'expense_chart',
+             
 
             )
         );
@@ -866,7 +759,7 @@ class FacultyController extends Controller
 
     public function faculty_06(Request $request)
     {
-        $perPage = 30;
+         $perPage = 10;
 
         // รับค่าปีจาก request
         $select_year = $request->get('selectYear');
@@ -987,27 +880,6 @@ class FacultyController extends Controller
                 ->whereYear('transaction_02.created_at', '=', $yearCheck)
                 ->sum('income');
 
-            // นับจำนวนรายการ รายรับตามหมวดหมู่ของผู้ใช้ เมื่อไม่ได้เลือกปี(แสดงปีปัจจุบัน)
-            $income_chart = DB::table('transaction_02')
-                ->leftJoin('category_02', 'transaction_02.category_id', '=', 'category_02.category_id')
-                ->leftJoin('users', 'transaction_02.user_id', '=', 'users.id')
-                ->select('transaction_02.*', 'category_02.topic', 'users.faculty', DB::raw('count(income) as total'))
-                ->groupBy('topic')
-                ->where('transaction_02.category_type', '=', 'รายรับ')
-                ->where('users.faculty', '=', 'มนุษยศาสตร์และสังคมศาสตร์')
-                ->whereYear('transaction_02.created_at', '=', $yearCheck)
-                ->get();
-
-            //  นับจำนวนรายการ รายจ่ายตามหมวดหมู่ของผู้ใช้ เมื่อไม่ได้เลือกปี(แสดงปีปัจจุบัน)
-            $expense_chart = DB::table('transaction_02')
-                ->leftJoin('category_02', 'transaction_02.category_id', '=', 'category_02.category_id')
-                ->leftJoin('users', 'transaction_02.user_id', '=', 'users.id')
-                ->select('transaction_02.*', 'category_02.topic', 'users.faculty', DB::raw('count(expense) as total'))
-                ->groupBy('topic')
-                ->where('transaction_02.category_type', '=', 'รายจ่าย')
-                ->where('users.faculty', '=', 'มนุษยศาสตร์และสังคมศาสตร์')
-                ->whereYear('transaction_02.created_at', '=', $yearCheck)
-                ->get();
 
             //ดึงรายชื่อผู้ใช้เฉพาะคณะ
             $users = User::where('users.role', '=', "ผู้ใช้ทั่วไป")
@@ -1027,8 +899,7 @@ class FacultyController extends Controller
                 'select_year',
                 'yearCheck',
                 'users',
-                'income_chart',
-                'expense_chart',
+               
 
             )
         );
@@ -1036,7 +907,7 @@ class FacultyController extends Controller
 
     public function faculty_07(Request $request)
     {
-        $perPage = 30;
+         $perPage = 10;
 
         // รับค่าปีจาก request
         $select_year = $request->get('selectYear');
@@ -1157,27 +1028,7 @@ class FacultyController extends Controller
                 ->whereYear('transaction_02.created_at', '=', $yearCheck)
                 ->sum('income');
 
-            // นับจำนวนรายการ รายรับตามหมวดหมู่ของผู้ใช้ เมื่อไม่ได้เลือกปี(แสดงปีปัจจุบัน)
-            $income_chart = DB::table('transaction_02')
-                ->leftJoin('category_02', 'transaction_02.category_id', '=', 'category_02.category_id')
-                ->leftJoin('users', 'transaction_02.user_id', '=', 'users.id')
-                ->select('transaction_02.*', 'category_02.topic', 'users.faculty', DB::raw('count(income) as total'))
-                ->groupBy('topic')
-                ->where('transaction_02.category_type', '=', 'รายรับ')
-                ->where('users.faculty', '=', 'สาธารณสุขศาสตร์')
-                ->whereYear('transaction_02.created_at', '=', $yearCheck)
-                ->get();
-
-            //  นับจำนวนรายการ รายจ่ายตามหมวดหมู่ของผู้ใช้ เมื่อไม่ได้เลือกปี(แสดงปีปัจจุบัน)
-            $expense_chart = DB::table('transaction_02')
-                ->leftJoin('category_02', 'transaction_02.category_id', '=', 'category_02.category_id')
-                ->leftJoin('users', 'transaction_02.user_id', '=', 'users.id')
-                ->select('transaction_02.*', 'category_02.topic', 'users.faculty', DB::raw('count(expense) as total'))
-                ->groupBy('topic')
-                ->where('transaction_02.category_type', '=', 'รายจ่าย')
-                ->where('users.faculty', '=', 'สาธารณสุขศาสตร์')
-                ->whereYear('transaction_02.created_at', '=', $yearCheck)
-                ->get();
+           
 
             //ดึงรายชื่อผู้ใช้เฉพาะคณะ
             $users = User::where('users.role', '=', "ผู้ใช้ทั่วไป")
@@ -1199,9 +1050,7 @@ class FacultyController extends Controller
                 'select_year',
                 'yearCheck',
                 'users',
-                'chart',
-                'income_chart',
-                'expense_chart',
+        
 
             )
         );

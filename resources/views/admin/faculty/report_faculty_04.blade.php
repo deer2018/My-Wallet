@@ -50,6 +50,8 @@
                                                     <tr>
                                                         <th>#</th>
                                                         <th>ชื่อในเว็บ</th>
+                                                        <th>ชื่อจริง</th>
+                                                        <th>นามสกุล</th>
                                                         <th>อีเมล</th>
                                                         <th></th>
                                                     </tr>
@@ -58,6 +60,8 @@
                                                     <tbody>
                                                         <td>{{ $loop->iteration }}</td>
                                                         <td> {{ $item->name }}</td>
+                                                        <td> {{ $item->mastername }}</td>
+                                                        <td> {{ $item->surname }}</td>
                                                         <td> {{ $item->email }}</td>
                                                         @if (!empty($select_year))
                                                             <td><a href="{{ url('/faculty_show/' . $item->id . '/' . $select_year . '/04') }}"
@@ -84,7 +88,13 @@
                     <div class="col-xl-12 col-md-6 mb-4">
                         <div class="card border-left-danger shadow h-100 ">
                             <div class="card-header py-2">
-                                <h4 class="m-1 font-weight-bold text-gray-800">รายจ่ายตามหมวดหมู่ทั้งหมด</h4>
+                                @if (empty($select_year))
+                                    <h4 class="m-1 font-weight-bold text-gray-800">รายจ่ายตามหมวดหมู่ทั้งหมด ปี
+                                        {{ $yearCheck + 543 }}</h4>
+                                @else
+                                    <h4 class="m-1 font-weight-bold text-gray-800">รายจ่ายตามหมวดหมู่ทั้งหมด ปี
+                                        {{ $select_year + 543 }}</h4>
+                                @endif
                             </div>
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">
@@ -117,7 +127,7 @@
                                                 <tr class="h5 mb-1 font-weight-bold text-dark text-uppercase">
                                                     <th></th>
                                                     <th>รวม
-                                                    <td>{{ $expense_total }}</td>
+                                                    <td>{{ number_format($expense_total, 2, '.', ',') }}</td>
                                                     </th>
                                                 </tr>
                                             </table>
@@ -135,7 +145,13 @@
                     <div class="col-xl-12 col-md-6 mb-4">
                         <div class="card border-left-primary shadow h-100 ">
                             <div class="card-header py-2">
-                                <h4 class="m-1 font-weight-bold text-gray-800">รายรับตามหมวดหมู่ทั้งหมด</h4>
+                                @if (empty($select_year))
+                                    <h4 class="m-1 font-weight-bold text-gray-800">รายรับตามหมวดหมู่ทั้งหมด ปี
+                                        {{ $yearCheck + 543 }}</h4>
+                                @else
+                                    <h4 class="m-1 font-weight-bold text-gray-800">รายรับตามหมวดหมู่ทั้งหมด ปี
+                                        {{ $select_year + 543 }}</h4>
+                                @endif
                             </div>
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">
@@ -168,7 +184,7 @@
                                                 <tr class="h5 mb-1 font-weight-bold text-dark text-uppercase">
                                                     <th></th>
                                                     <th>รวม
-                                                    <td>{{ $income_total }}</td>
+                                                    <td>{{ number_format($income_total, 2, '.', ',') }}</td>
                                                     </th>
                                                 </tr>
                                             </table>
@@ -196,8 +212,14 @@
 <script src="http://code.highcharts.com/modules/exporting.js"></script>
 
 <script type="text/javascript">
+Highcharts.setOptions({
+        lang: {
+            thousandsSep: ','
+        }
+    })
+
     $(document).ready(function() {
-        var topic = <?php echo json_encode($expense_chart); ?>;
+        var topic = <?php echo json_encode($expense_cate); ?>;
 
         var options = {
             stackLabels: {
@@ -214,20 +236,25 @@
                 plotShadow: false
             },
             title: {
-                text: 'จำนวนรายการ รายจ่ายตามหมวดหมู่'
+                text: 'กราฟแสดงรายจ่ายตามหมวดหมู่'
             },
             tooltip: {
-                pointFormat: '{series.name}: <b>{point.y:,.0f} รายการ</b>',
+                pointFormat: '{series.name}: <b>{point.y:,.0f} บาท</b>',
                 percentageDecimals: 2
             },
             plotOptions: {
                 pie: {
                     allowPointSelect: true,
                     cursor: 'pointer',
+
                     dataLabels: {
                         enabled: true,
                         color: '#000000',
                         connectorColor: '#000000',
+                        style: {
+                            fontSize: '15px'
+                        },
+
 
                         formatter: function() {
                             return '<b>' + this.point.name + '</b>: ' + this.percentage.toFixed(2) +
@@ -244,7 +271,7 @@
         }
         myarray = [];
         $.each(topic, function(index, val) {
-            myarray[index] = [val.topic, val.total];
+            myarray[index] = [val.topic, Number(val.total_expense)];
         });
         options.series[0].data = myarray;
         chart = new Highcharts.Chart(options);
@@ -253,7 +280,7 @@
 
 
     $(document).ready(function() {
-        var topic = <?php echo json_encode($income_chart); ?>;
+        var topic = <?php echo json_encode($income_cate); ?>;
 
         var options = {
             stackLabels: {
@@ -270,10 +297,10 @@
                 plotShadow: false
             },
             title: {
-                text: 'จำนวนรายการ รายรับตามหมวดหมู่'
+                text: 'กราฟแสดงรายรับตามหมวดหมู่'
             },
             tooltip: {
-                pointFormat: '{series.name}: <b>{point.y:,.0f} รายการ</b>',
+                pointFormat: '{series.name}: <b>{point.y:,.0f} บาท</b>',
                 percentageDecimals: 2
             },
             plotOptions: {
@@ -284,6 +311,10 @@
                         enabled: true,
                         color: '#000000',
                         connectorColor: '#000000',
+                        style: {
+                            fontSize: '15px'
+                        },
+
                         formatter: function() {
                             return '<b>' + this.point.name + '</b>: ' + this.percentage.toFixed(2) +
                                 ' %';
@@ -298,8 +329,8 @@
             }]
         }
         myarray = [];
-        $.each(topic, function(index, val) {
-            myarray[index] = [val.topic, val.total];
+        $.each(topic, function(index, val, ) {
+            myarray[index] = [val.topic, Number(val.total_income)];
         });
         options.series[0].data = myarray;
         chart = new Highcharts.Chart(options);

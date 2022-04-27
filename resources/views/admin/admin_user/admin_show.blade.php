@@ -19,18 +19,19 @@
                             <br></br>
                         <div class="table-responsive">
                             <table class="table">
+                               
                                 <tbody>
-                                <tbody>
-                                    <tr><th>เลขลำดับอาสาสมัคร</th><td>{{ $users->id }} </td></tr>
+                                    <tr><th>เลขไอดี</th><td>{{ $users->id }} </td></tr>
                                     {{-- <tr><th>รหัสนักศึกษา</th><td>{{ $users->student_id }} </td></tr> --}}
                                     <tr><th>ชื่อ</th><td> {{ $users->mastername }} </td></tr>
                                     <tr><th>นามสกุล</th><td> {{ $users->surname }} </td></tr>
                                     <tr><th>เบอร์-มือถือ</th><td> {{ $users->phone }} </td></tr>
                                     <tr><th>อายุ</th><td> {{ $users->age }} </td></tr>
                                     <tr><th>เพศ</th><td> {{ $users->sex }} </td></tr>
-                                    <tr><th>คณะ</th><td> {{ $users->faculty }} </td></tr>                                    
+                                    <tr><th>คณะ</th><td> {{ $users->faculty }} </td></tr> 
+                                                             
                                 </tbody>
-                                </tbody>
+                               
                             </table>
                         </div>
                         <a href="{{ url('/admin_user/' . $users->id . '/edit') }}" title="Edit"><button class="btn btn-info btn-sm"><i class="" aria-hidden="true"></i>แก้ไขข้อมูล</button></a>

@@ -23,6 +23,8 @@ Route::get('/dashboard', 'Admin\Admin_DashboardController@index');
 Route::get('/dashboard2', 'Admin\Dashboard2_Controller@index');
 
 
+///detail
+Route::get('/detail', 'Admin\DetailController@index');
 //category-admin--------------
 Route::get('/category', 'Admin\CategoryController@index');
 Route::get('/category/create', 'Admin\CategoryController@create');
@@ -54,7 +56,10 @@ Route::resource('user_personal', 'User\user_perController');
 //transaction--------------------------------------------------
 Route::get('/transaction', 'User\TransactionController@index');
 // Route::get('/daterange', 'User\TransactionController@dateRange'); 
+Route::get('/transaction/detail', 'User\TransactionController@detail');
+Route::post('/transaction/detail', 'User\TransactionController@store_detail');
 Route::get('/transaction/create', 'User\TransactionController@create');
+
 Route::post('/transaction', 'User\TransactionController@store');
 Route::get('/transaction/{id}/edit_inc', 'User\TransactionController@edit_inc');
 Route::get('/transaction/{id}/edit_exp', 'User\TransactionController@edit_exp');

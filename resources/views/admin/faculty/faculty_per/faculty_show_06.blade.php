@@ -5,7 +5,7 @@
      
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="m-1 font-weight-bold text-gray-800">ข้อมูล {{$user_id->name}} ปี {{$select_year + 543}} คณะ {{$user_id->faculty}}</h5> 
+                        <h5 class="m-1 font-weight-bold text-gray-800">ข้อมูลของ <a class="text-primary">{{$user_id->mastername}} {{$user_id->surname}}</a> ปี {{$select_year + 543}} คณะ {{$user_id->faculty}}</h5> 
                     </div>
                     <div class="card-body">
 
@@ -49,10 +49,17 @@
                                                 <tr class="h5 mb-1 font-weight-bold text-dark text-uppercase">
                                                     <th></th>
                                                     <th>รวม
-                                                    <td>{{ $expense_total }}</td>
+                                                    <td>{{ number_format($expense_total, 2, '.', ',') }}</td>
                                                     </th>
                                                 </tr>
                                             </table>
+
+                                            <hr>
+
+                                            <div class="panel-body" align="center">
+                                                <div id="expense_chart" style="width:750px; height:450px;">
+                                                </div>
+                                            </div>
         
                                         </div>
                                     </div>
@@ -96,10 +103,17 @@
                                                 <tr class="h5 mb-1 font-weight-bold text-dark text-uppercase">
                                                     <th></th>
                                                     <th>รวม
-                                                    <td>{{ $income_total }}</td>
+                                                    <td>{{ number_format($income_total, 2, '.', ',') }}</td>
                                                     </th>
                                                 </tr>
                                             </table>
+
+                                            <hr>
+
+                                            <div class="panel-body" align="center">
+                                                <div id="income_chart" style="width:750px; height:450px;">
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -111,3 +125,134 @@
         
     </div>
 @endsection
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+<script type="text/javascript">
+    Highcharts.setOptions({
+        lang: {
+            thousandsSep: ','
+        }
+    })
+
+    $(document).ready(function() {
+        var topic = <?php echo json_encode($expense_cate); ?>;
+
+        var options = {
+            stackLabels: {
+                enabled: true,
+                verticalAlign: 'bottom',
+                crop: false,
+                overflow: 'none',
+                y: -275
+            },
+            chart: {
+                renderTo: 'expense_chart',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: 'กราฟแสดงรายจ่ายตามหมวดหมู่'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.y} บาท</b>',
+                percentageDecimals: 2
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+
+                    dataLabels: {
+                        enabled: true,
+                        color: '#000000',
+                        connectorColor: '#000000',
+                        style: {
+                            fontSize: '15px'
+                        },
+
+
+                        formatter: function() {
+                            return '<b>' + this.point.name + '</b>: ' + this.percentage.toFixed(2) +
+                                ' %';
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'จำนวน',
+
+            }]
+        }
+        myarray = [];
+        $.each(topic, function(index, val) {
+            myarray[index] = [val.topic, Number(val.total_expense)];
+        });
+        options.series[0].data = myarray;
+        chart = new Highcharts.Chart(options);
+
+    });
+
+
+    $(document).ready(function() {
+        var topic = <?php echo json_encode($income_cate); ?>;
+
+        var options = {
+            stackLabels: {
+                enabled: true,
+                verticalAlign: 'bottom',
+                crop: false,
+                overflow: 'none',
+                y: -275
+            },
+            chart: {
+                renderTo: 'income_chart',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: 'กราฟแสดงรายรับตามหมวดหมู่'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.y:,.0f} บาท</b>',
+                percentageDecimals: 2
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        color: '#000000',
+                        connectorColor: '#000000',
+                        style: {
+                            fontSize: '15px'
+                        },
+
+                        formatter: function() {
+                            return '<b>' + this.point.name + '</b>: ' + this.percentage.toFixed(2) +
+                                ' %';
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'จำนวน',
+
+            }]
+        }
+        myarray = [];
+        $.each(topic, function(index, val, ) {
+            myarray[index] = [val.topic, Number(val.total_income)];
+        });
+        options.series[0].data = myarray;
+        chart = new Highcharts.Chart(options);
+
+    });
+</script>

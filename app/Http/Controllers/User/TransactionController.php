@@ -7,7 +7,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Transaction;
 use App\Transaction_02;
+use App\User;
 use App\Category_02;
+use App\Detail;
 
 class TransactionController extends Controller
 {
@@ -130,6 +132,23 @@ class TransactionController extends Controller
         // ->get();
 
         return view('user.user_tran.tran_create' );
+    }
+
+    public function store_detail(Request $request)
+    {
+        $requestData = $request->all();
+        $user_id = Auth::id();
+        $requestData["user_id"] = $user_id;
+        
+        Detail::create($requestData);
+
+        return view('user.user_tran.tran_detail' );
+    }
+    
+    public function detail(Request $request)
+    {
+
+        return view('user.user_tran.tran_detail' );
     }
     
   

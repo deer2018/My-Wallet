@@ -6,7 +6,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fab fa-btc"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">My-wallet </div>
+        <div class="sidebar-brand-text mx-3">VRU My-wallet </div>
     </a>
 
     <!-- Divider -->
@@ -38,8 +38,12 @@
             <i class="fas fa-circle"></i>
             <span>จัดการหมวดหมู่</span></a>
     </li>
-
-
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url('/detail') }}">
+            <i class="fas fa-circle"></i>
+            <span>คำร้อง</span></a>
+    </li>
+   
 
 </ul>
 <!-- End of Sidebar -->

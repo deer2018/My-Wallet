@@ -79,11 +79,11 @@
                                         class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o"
                                             aria-hidden="true"></i>สรุปรายรับรายจ่ายรายปี</button></a>
                                 <hr>
-                                <h5 class="mb-1 font-weight-bold text-success text-uppercase ">
+                                {{-- <h5 class="mb-1 font-weight-bold text-success text-uppercase ">
                                     <a class="h5 mb-1 font-weight-bold text-dark text-uppercase ">ไม่มีข้อมูลคณะ
                                     </a> &nbsp;&nbsp;{{ $no_faculty }}
                                     <a class="h4 mb-1 font-weight-bold text-dark text-uppercase "> &nbsp;&nbsp;คน</a>
-                                </h5>
+                                </h5> --}}
                             </div>
                         </div>
                     </div>

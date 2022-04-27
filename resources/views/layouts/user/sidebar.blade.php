@@ -6,7 +6,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fab fa-btc"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">My-wallet</div>
+        <div class="sidebar-brand-text mx-3">VRU My-wallet </div>
     </a>
 
     <!-- Divider -->

@@ -125,6 +125,8 @@
                                         {{ $data->faculty }}
                                     </td>
                                 </tr>
+
+                               
                              
                             </tbody>
                         </table>
