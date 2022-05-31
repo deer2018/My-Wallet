@@ -1,5 +1,5 @@
 <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion" id="accordionSidebar" >
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
@@ -23,26 +23,26 @@
             <i class="fas fa-circle"></i>
             <span>แดชบอร์ด</span></a>
     </li> --}}
-     <li class="nav-item">
+     <li class="nav-item" >
         <a class="nav-link" href="{{ url('/dashboard2') }}">
             <i class="fas fa-circle"></i>
-            <span>แดชบอร์ด</span></a>
+            <span style="color:black ; font-weight:bold" >แดชบอร์ด</span></a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="{{ url('/admin_user') }}">
             <i class="fas fa-circle"></i>
-            <span>จัดการสมาชิก</span></a>
+            <span style="color:black ; font-weight:bold" >จัดการสมาชิก</span></a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="{{ url('/category') }}">
             <i class="fas fa-circle"></i>
-            <span>จัดการหมวดหมู่</span></a>
+            <span style="color:black ; font-weight:bold" >จัดการหมวดหมู่</span></a>
     </li>
-    <li class="nav-item">
+    {{-- <li class="nav-item">
         <a class="nav-link" href="{{ url('/detail') }}">
             <i class="fas fa-circle"></i>
             <span>คำร้อง</span></a>
-    </li>
+    </li> --}}
    
 
 </ul>

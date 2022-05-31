@@ -1,5 +1,5 @@
     {{-- เลือกรายรับ-รายจ่าย --}}
-    <div class="form-group {{ $errors->has('category_type') ? 'has-error' : ''}}">
+    <div  class="form-group {{ $errors->has('category_type') ? 'has-error' : ''}}">
         <label for="category_type" class="control-label">{{ 'ประเภท' }}</label>
         <select name="category_type" class="form-control" id="category_type" required>
         <option selected disabled>กรุณาเลือกประเภท</option>

@@ -38,7 +38,7 @@
                 </div>
                 <form method="GET" action="{{ url('/report_sup') }}" accept-charset="UTF-8">
                     <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0"
-                        role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                        role="grid" aria-describedby="dataTable_info" style="width: 100%;" >
                         <thead>
                             <tr>
                                 <th class="h5 mb-1 font-weight-bold text-dark text-uppercase ">เดือน</th>
@@ -48,7 +48,7 @@
                             </tr>
                         </thead>
 
-                        <tbody>
+                        <tbody >
                             @if ($monthCheck == '1')
                                 <td class="h5 mb-1 font-weight-bold text-dark text-uppercase "><a>มกราคม</a></td>
                             @else
@@ -491,7 +491,7 @@
                     <form method="GET" action="{{ url('/report_sup') }}" accept-charset="UTF-8">
                         <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0"
                             role="grid" aria-describedby="dataTable_info" style="width: 100%;">
-                            <thead>
+                            <thead >
                                 <tr>
                                     <th class="h5 mb-1 font-weight-bold text-dark text-uppercase ">เดือน</th>
                                     <th class="h5 mb-1 font-weight-bold text-dark text-uppercase ">รายรับ</th>

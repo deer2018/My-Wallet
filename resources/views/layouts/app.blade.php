@@ -37,14 +37,14 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ml-auto" style="border-color: black ">
                         <!-- Authentication Links -->
                         @guest
-                            <li class="nav-item">
+                            <li class="nav-item" style="font-weight: bold">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('เข้าสู่ระบบ') }}</a>
                             </li>
                             @if (Route::has('register'))
-                                <li class="nav-item">
+                                <li class="nav-item" style="font-weight: bold">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('สมัครสมาชิก') }}</a>
                                 </li>
                             @endif

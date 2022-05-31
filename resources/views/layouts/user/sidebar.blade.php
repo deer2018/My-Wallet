@@ -22,13 +22,13 @@
 
         <a class="nav-link" href="{{ url('/transaction') }}">
             <i class="fas fa-circle"></i>
-            <span>หน้าธุรกรรม</span></a>
+            <span style="color:black ; font-weight:bold">หน้าธุรกรรม</span></a>
         <a class="nav-link" href="{{ url('/report_user') }}">
             <i class="fas fa-circle"></i>
-            <span>หน้าสรุปรวม</span></a>
+            <span style="color:black ; font-weight:bold">หน้าสรุปรวม</span></a>
         <a class="nav-link" href="{{ url('/user_personal') }}">
             <i class="fas fa-circle"></i>
-            <span>หน้าประวัติส่วนตัว</span></a>
+            <span style="color:black ; font-weight:bold">หน้าประวัติส่วนตัว</span></a>
     </li>
     {{-- <li class="nav-item">
             <a class="nav-link" href="{{ url('/volunteer_question') }}">

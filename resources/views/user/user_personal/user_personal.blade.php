@@ -3,7 +3,7 @@
 @section('content')
 <div class="card">
     <div class="card-header py-3">
-        <h6 class="m-1 font-weight-bold text-success">ประวัติส่วนตัว</h6>
+        <h6 class="m-1 font-weight-bold " style="color:black ; font-weight:bold">ประวัติส่วนตัว</h6>
     </div>
     <br>
     <div class="container bootstrap snippets bootdey">
@@ -12,7 +12,7 @@
                 <div class="col-md-6">
 
                     <div class="table-responsive">
-                        <table class="table table-user-information">
+                        <table class="table table-user-information" style="color:black ; font-weight:bold">
                             <tbody>
                                 <tr>
                                     <td>

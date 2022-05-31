@@ -11,10 +11,7 @@
     {{-- เรียกใช้ datepicker --}}
     <link href="assets/bootstrap-datepicker-thai/css/datepicker.css" rel="stylesheet">
 
-    {{-- <script type="text/javascript" src="bootstrap-datepicker-thai/js/bootstrap-datepicker.js"></script>
-    <script type="text/javascript" src="bootstrap-datepicker-thai/js/bootstrap-datepicker-thai.js"></script>
-    <script type="text/javascript" src="bootstrap-datepicker-thai/js/locales/bootstrap-datepicker.th.js"></script> --}}
-    {{-- <script type="text/javascript" src="bootstrap-datepicker.th.js" charset="UTF-8"></script> --}}
+   
     <script type="text/javascript">
         $(function() {
             $('#date-start').datetimepicker({
@@ -32,21 +29,21 @@
 
     @section('content')
 
-        <div class="container-fluid">
+        <div class="container-fluid" >
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-1 font-weight-bold text-success">ข้อมูลรายรับ-รายจ่าย</h6>
+                    <h6 class="m-1 font-weight-bold " style="color:black ; font-weight:bold">ข้อมูลรายรับ-รายจ่าย</h6>
                 </div>
 
                 <div class="card-body">
                     <div class="form-group">
                         <a href="{{ url('/transaction/create') }}" class="btn btn-success btn-sm"
-                            title="Add New Transaction">
+                            title="Add New Transaction" style="color:black ; font-weight:bold">
                             <i class="fa fa-plus" aria-hidden="true"></i> เพิ่มรายการ
                         </a>
 
                         <a href="{{ url('/transaction/detail') }}" class="btn btn-success btn-sm"
-                        title="Add New Transaction">
+                        title="Add New Transaction" style="color:black ; font-weight:bold">
                         <i class="fa fa-plus" aria-hidden="true"></i> คำร้องขอเพิ่มหมวดหมู่
                         </a>
                     </div>
@@ -63,25 +60,7 @@
                                 <input class="form-control" type="date" name="date-end" id="date-end"
                                     value="{{ request('date-end') }}" pattern="\d{1,2}/\d{1,2}/\d{4}" />
                             </div>
-                            {{-- &nbsp;ประเภท&nbsp;
-
-                            <div class="form-group">
-                                <div class="dataTables_length" >
-                                    <label><select id="category_type" name="category_type" aria-controls="dataTable"
-                                            class="custom-select form-control" value="{{ request('category_type') }}">
-                                            <option value="" >-- ทั้งหมด --</option>
-                                            <option id="รายรับ" value="รายรับ">รายรับ</option>
-                                            <option id="รายจ่าย" value="รายจ่าย">รายจ่าย</option>
-                                        </select></label>
-                                </div>
-                            </div>
-                            &nbsp;หมวดหมู่&nbsp;
-                            <div class="dataTables_length" >
-                                <label><select id="category_topic" name="category_topic" class="form-control" >
-                                    <option value="{{ request('category_topic') }}" >-- ทั้งหมด --</option>
-                                    </select></label>
-                                    
-                            </div> --}}
+                     
                             &nbsp;ค้นหา&nbsp;
                             <div class="form-group">
 
@@ -98,73 +77,7 @@
 
                         </div>
                     </form>
-                    {{-- @if (isset($startDate))
-                        {{ $startDate }}
-                    @else
-                        ว่าง
-                    @endif
-                    -
-                    @if (isset($endDate))
-                        {{ $endDate }}
-                    @else
-                        ว่าง
-                    @endif
-                    ,ประเภท =
-                    @if (isset($type))
-                        {{ $type }}
-                    @else
-                        ว่าง
-                    @endif
-                    ,หมวดหมู่ =
-                    @if (isset($topic))
-                        {{ $topic }}
-                    @else
-                        ว่าง
-                    @endif
-                    ,keyword =
-                    @if (isset($keyword))
-                        {{ $keyword }}
-                    @else
-                        ว่าง
-                    @endif --}}
-
-
-                    {{-- เลือกเวลาภาษาไทย --}}
-                    {{-- <div class="container">
-                        <div class="row">
-                            <div class='col-sm-2'>
-                                <div class="form-group">
-                                    <div class='input-group date' >
-                                       <input type="text" name="datepicker" id="datepicker" value=""/>
-                                        <span class="input-group-addon">
-                                            <span class="fas fa-time"></span>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                           
-                        </div>
-                    </div> --}}
-
-                    <!-- ค้นหา -->
-                    {{-- <div class="col-sm-3 col-md-12 mb-4"> --}}
-                    {{-- <form method="GET" action="{{ url('/transaction') }}" accept-charset="UTF-8"
-                        class="form-inline my-2 my-lg-0 float-right" role="search">
-
-
-
-                        <div class="input-group">
-
-                            <input class="form-control form-control" name="search" id="search"
-                                value="{{ request('search') }}" />
-                            <span class="input-group-append">
-                                <button class="btn btn-primary" type="submit">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                        </div>
-                    </form> --}}
-                    {{-- </div> --}}
+                
 
 
 
@@ -178,7 +91,7 @@
                                 <?php $sum_income = 0.0; ?>
                                 <?php $sum_expense = 0.0; ?>
                                 <?php $total = 0.0; ?>
-                                <table class="table dataTable">
+                                <table class="table dataTable" style="color:black ; font-weight:bold">
                                     <thead>
                                         <tr>
                                             <th>วัน-เดือน-ปี</th>
@@ -219,11 +132,7 @@
                                                         onclick="return confirm(&quot;Confirm delete?&quot;)"><i
                                                             class="fas fa-trash" aria-hidden="true"></i></button>
                                                 </form>
-                                                {{-- <a href="{{ url('/medic_volunteer/' . $item->id) }}"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>ข้อมูลอาสาสมัคร</button></a>
-
-                                @if (!empty($item->advice2))
-                                    <a href="{{ url('/medic_pdf/' . $item->id) }}"><button class="btn btn-success btn-sm" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i>ปริ้น PDF</button></a>
-                                @endif --}}
+                                           
                                             </td>
 
                                         </tbody>
@@ -234,13 +143,7 @@
                                 </table>
                                 <hr>
 
-                                {{-- <div class="table " style="text-align: center">รวม :
-                                    @if ($total >= 0)
-                                        <a style="color:blue">{{number_format($total, 2, '.', ',')}}</a>
-                                    @else
-                                        <a style="color:red">{{number_format($total, 2, '.', ',')}}</a>
-                                    @endif
-                                </div> --}}
+                              
                         </div>
                         <div class="mt-4">{{ $transaction->links() }}</div>
                         {{-- <div class="pagination-wrapper"> {!! $transaction->appends(['search' => Request::get('search')])->render() !!} </div> --}}

@@ -1,13 +1,13 @@
 @extends('layouts.user.main')
 
 @section('content')
-    <div class="container">
+    <div class="container" style="font-weight: bold ; color:black" >
         <div class="row">
 
             <div class="col-md-9">
                 <div class="card">
                     <div class="card-header">สร้างรายรับ-รายจ่าย</div>
-                    <div class="card-body">
+                    <div class="card-body" >
                         <a href="{{ url('/transaction') }}" title="Back"><button class="btn btn-warning btn-sm"><i
                                     class="fa fa-arrow-left" aria-hidden="true"></i> กลับ</button></a>
                         <br />

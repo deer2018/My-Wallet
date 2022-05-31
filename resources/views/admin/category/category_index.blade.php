@@ -6,7 +6,7 @@
 
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-1 font-weight-bold text-info">ข้อมูลหมวดหมู่</h6>
+                <h6 class="m-1 font-weight-bold " style="color:black ; font-weight:bold" >ข้อมูลหมวดหมู่</h6>
             </div>
             <div class="card-body">
                 <div class="table-responsive-sm">
@@ -16,7 +16,7 @@
                         <div class="row">
                             <div class="col-sm-12 col-md-10">
                                 <div class="dataTables_length" id="dataTable_length">
-                                    <a href="{{ url('/category/create') }}" class="btn btn-info btn-sm" title="Add New category">
+                                    <a href="{{ url('/category/create') }}" class="btn btn-info btn-sm" title="Add New category" style="color:black ; font-weight:bold" >
                                         <i class="fa fa-plus" aria-hidden="true"></i> เพิ่มรายการหมวดหมู่
                                     </a>
                                 </div>
@@ -41,7 +41,7 @@
                     </div>
                     <br>
                     <div class="table-responsive">
-                        <table class="table">
+                        <table class="table" style="color:black ; font-weight:bold" >
                             <thead>
                                 <tr>                             
                                     <th>ไอดีหมวดหมู่</th>

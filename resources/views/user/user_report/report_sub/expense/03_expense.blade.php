@@ -43,7 +43,7 @@
 
                     <div class="table-responsive-sm">
                         <table class="table table-bordered dataTable font-weight-bold" id="dataTable" width="100%" cellspacing="0"
-                            role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                            role="grid" aria-describedby="dataTable_info" style="width: 100%;" >
 
 
                             <?php $sum_expense = 0.0; ?>
