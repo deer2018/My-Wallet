@@ -9,7 +9,7 @@
     <script type="text/javascript" src="jquery.js"></script>
 
     {{-- เรียกใช้ datepicker --}}
-    <link href="assets/bootstrap-datepicker-thai/css/datepicker.css" rel="stylesheet">
+    <!-- <link href="assets/bootstrap-datepicker-thai/css/datepicker.css" rel="stylesheet">
 
    
     <script type="text/javascript">
@@ -20,7 +20,7 @@
 
             });
         });
-    </script>
+    </script> -->
 </head>
 
 <body>
@@ -73,6 +73,11 @@
                                 <button class="btn btn-primary" type="submit">
                                     <i class="fa fa-search"></i>
                                 </button>
+                            </div>
+                            &nbsp;&nbsp;
+                            <div class="dataTables_length">
+                            <a href="{{ url('/transaction') }}" type="submit" class="btn btn-danger "
+                                            ><i class="fa fa-trash"></i></a>
                             </div>
 
                         </div>

@@ -7,7 +7,7 @@
 
           
             {{-- จำนวนผู้ใช้ในเว็บ --}}
-            <div class="col-xl-12 col-md-6 mb-4">
+            <div class="col-xl-12 col-md-12 mb-4">
                 <div class="card  shadow h-100 ">
                     <div class="card-header py-2">
                         <h4 class="m-1 font-weight-bold text-gray-800">จำนวนผู้ใช้เว็บไซต์ทั้งหมด {{ $user_amount }} คน

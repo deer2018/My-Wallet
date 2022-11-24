@@ -13,9 +13,13 @@
                     <div class="dataTables_length">
                         <select name='selectYear' class="form-control">
                             @foreach ($group_year as $group_year)
+                                @if(!empty($group_year->year))
                                 <option value="{{ $group_year->year }}"
                                     {{ $group_year->year == $select_year ? 'selected' : '' }}>
                                     รายการปี {{ $group_year->year + 543 }}</option>
+                                @else
+                                    <option value="ว่าง"></option>
+                                @endif
                             @endforeach
                         </select>
                     </div>
